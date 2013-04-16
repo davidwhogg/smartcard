@@ -14,22 +14,100 @@
 \setlength{\headheight}{2ex}
 \setlength{\headsep}{3ex}
 \input{hogg_nasa}
+\newcommand{\Untrendy}{\project{Untrendy}}
+\newcommand{\turnstyle}{\project{turnstyle}}
+\newcommand{\bart}{\project{Bart}}
+\newcommand{\TheCreator}{\project{The~Creator}}
 \pagestyle{myheadings}
-\markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of \Kepler\ data}}
+\markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 \begin{document}
 
 \section*{project summary}
 
+The \Kepler\ observatory has provided the most important and
+scientifically productive data set ever for the study of exoplanets;
+it has yeilded enormous numbers of new exoplanets and exoplanetary
+systems.  It has generated unprecedented discoveries, measurements,
+and insights in the domain of exoplanet science.  This proposal is to
+systematically re-analyze all of the \Kepler\ data from the ground up,
+to verify and improve upon the tremendously successful \Kepler-team
+led analyses of the data, and to provide new inference capabilities to
+the entire astrophysics community.  In particular, the proposal is to
+design, build, and release to the public novel, easy-to-use tools for
+probabilistic inference of exoplanet populations in the \Kepler data.
+
+This project with design, build, and release four non-trivial
+algorithmic methods (and corresponding software tools): The first is
+\Untrendy, a system for flexibly but responsibly modeling the
+combination of spacecraft photometric and stellar variability that
+makes every \Kepler\ target a strong variable in the raw data stream.
+The second is \turnstyle, a brute-force generative-modeling machinery
+that creates and tests (against enormous numbers of \Kepler\ targets)
+enormous numbers of exoplanetary hypotheses.  The third is \bart, an
+inference package that returns responsible, properly marginalized
+parameter estimates under parameterized (or non-parametric) prior
+probability density functions for exoplanet system properties.  The
+fourth is \TheCreator, a hierarchical modeling framework and software
+system that permits probabilistic inference of the true distribution
+of exoplanetary system parameters (``architecture'' in the lingo),
+starting at parameter estimation and including all the information
+coming not just from well measured systems but also from all the
+(numerous) marginal and null detections among the \Kepler\ targets.
+
+The common thread joining all of these projects is probabilistic
+inference.  The co-Is are known in the astrophysics community for
+creating useful tools and methods for principled inference, most
+notably with generative, justified, causal models and Markov Chain
+Monte Carlo (MCMC).  The \Untrendy\ system is novel because it is
+based on a model that is very flexible where it needs to be, but
+inflexible (relative to its competitors) where it doesn't.  The
+\turnstyle\ machinery can make discoveries that predecessors have
+missed because it makes principle approximations to full generative
+modeling of the data without the enormous computational cost.  It also
+capitalizes on current computer architecture where it can.  The
+\bart\ package capitalizes on the co-Is expertise in fast, self-tuning
+MCMC to perform parameter estimation efficiently.  Part of its core
+design philosophy is flexibility in parameterization of systems; this
+makes it easy to propagate its results---even from different systems
+with very different multiplicities---into population inference.
+\TheCreator\ makes use of concepts from probabilistic graphical models
+(Bayesian networks) to incorporate ideas about causal mechanisms and
+quantitatively precise noise models into global population inferences.
+
+Each of the four packages embodies a set of important ideas in data
+analysis and will be expressed in the form of easy-to-use, public,
+open-source software.
+
 \section{why re-analyze \Kepler\ data?}
+
+...contribute to \Kepler\ efforts
+
+...multiple eyes
+
+...most important data set in the business
+
+...this team has special and demonstrated skills
 
 \section{de-trending}
 
+...running median is too flexible most of the time, and not flexible enough when there are discontinuities
+
 \section{fast, approximate hypothesis testing}
+
+...fastness
 
 \section{probabilistic parameter estimation}
 
+...bart and emcee
+
 \section{hierarchical population inference}
 
+...pgm intro
+
 \section{management plan}
+
+...roles of co-Is
+
+...schedule and deliverables
 
 \end{document}
