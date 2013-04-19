@@ -10,4 +10,6 @@ authors
 
 License
 -------
-We haven't written a word yet, and any re-use of anything we *do* write would be scientific misconduct.  Cool!
+All content copyright 2013 the authors.
+We have barely written a word so far,
+and any re-use of anything we *do* write would constitute scientific misconduct.
