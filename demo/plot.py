@@ -44,4 +44,6 @@ for ax, s in zip([ax1, ax2, ax3], ["raw", "PDC corrected", "untrended"]):
     ax.annotate(s, [1, 1], xycoords="axes fraction", ha="right", va="top",
                 xytext=[-5, -5], textcoords="offset points")
 
+ax3.set_xlabel(r"time [KBJD]")
+
 fig.savefig("data.png")
