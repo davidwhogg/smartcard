@@ -15,15 +15,15 @@
 \setlength{\headsep}{3ex}
 \input{hogg_nasa}
 \newcommand{\Untrendy}{\package{Untrendy}}
-\newcommand{\Turnstyle}{\package{Turnstyle}}
+\newcommand{\Turnstile}{\package{IronHorse}}
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
-\newcommand{\TheCreator}{\package{The~Creator}}
+\newcommand{\TheCreator}{\package{TheCreator}}
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 \begin{document}
 
-\paragraph{project summary}
+\paragraph{project summary:}
 
 The \Kepler\ observatory has provided the most important and
 scientifically productive data set ever for the study of exoplanets;
@@ -45,14 +45,15 @@ combination of tiny spacecraft photometric issues and stellar
 variability that makes every \Kepler\ target variable even in the
 calibrated data stream.  These effects, if unmodeled, are far larger
 than the exoplanet transits of greatest importance.  The second is
-\Turnstyle, a brute-force generative-modeling machinery that creates
+\Turnstile, a brute-force generative-modeling machinery that creates
 and tests against enormous numbers of \Kepler\ targets---each of which
 has enormous numbers of observations---enormous numbers of
-exoplanetary hypotheses.  The third is \Bart, an inference package
-that returns responsible, properly marginalized parameter estimates
-under parameterized (or non-parametric) prior probability density
-functions for exoplanet system properties.  The fourth is \TheCreator,
-a hierarchical modeling framework and software system that permits
+exoplanetary hypotheses.  This is how exoplanet candidates are found
+(or should be found).  The third is \Bart, an inference package that
+returns responsible, properly marginalized parameter estimates under
+parameterized (or non-parametric) prior probability density functions
+for exoplanet system properties.  The fourth is \TheCreator, a
+hierarchical modeling framework and software system that permits
 probabilistic inference of the true distribution of exoplanetary
 system parameters (``architecture'' in the lingo), starting at
 parameter estimation and including all the information coming not just
@@ -65,7 +66,7 @@ tools and methods for principled inference, most notably with
 generative, justified, causal models and Markov Chain Monte Carlo
 (MCMC).  The \Untrendy\ system is novel because it is based on a model
 that is very flexible where it needs to be, but inflexible (relative
-to its competitors) where it doesn't.  The \Turnstyle\ machinery can
+to its competitors) where it doesn't.  The \Turnstile\ machinery can
 make discoveries that predecessors have missed because it makes
 principled approximations to full generative modeling of the data
 without the enormous computational cost.  It also capitalizes on
@@ -96,9 +97,32 @@ This is a proposal to enhance the capabilities of the \Kepler\ mission
 and give new tools to the entire community to increase the scientific
 return from the \Kepler\ data (and many related and future data sets).
 
-...multiple eyes
+The first reason that it makes sense to re-consider the \Kepler\ data
+from the ground up is the simple point that it is valuable to have
+multiple eyes on the problem.  We bring different prejudices,
+different intuitions, and different expertise than exists on the
+\Kepler\ team.  In addition, we can analyze the \Kepler\ data in a
+more open-ended way since we do not bear the responsibility of
+delivering results according to existing schedules and requirements.
+That said, we very much hope to create methods and code that make the
+\Kepler\ team products more valuable and easier to deliver.
 
-...no fear about probabilistic reasoning... value of probabilistic reasoning... value of causal reasoning
+The second reason it makes sense for us to take an independent look at
+the \Kepler\ data is that we will bring a strong probabilistic,
+causal, generative model approach to everything we do.  In each
+component of this project, we are trying to write down a probability
+for the data given the parameters, and in each component we are trying
+to have the relationship of the parameters to the predictions obey
+deep ideas we have about the physical or causal processes that
+generate the data.  For certain kinds of (endearing) fanatics---or
+perhaps more correctly, under certain kinds of restrictive
+assumptions---these probabilistic approaches to data analysis are
+guaranteed to succeed over more heuristic methods.  We have god on our
+side, in this sense.  But because we are free from project
+requirements, we can take a more principled approach to the data
+analysis and see if that delivers better results.  If it does (because
+we are proposing to generate public, open-source, easy-to-use code)
+\emph{everybody wins.}
 
 Finally, the most important reason to bring new people and new ideas
 to the \Kepler\ data is that the \Kepler\ data are so damned
@@ -146,17 +170,37 @@ very strong position to deliver extremely valuable new methods to the
 
 ...running median is too flexible most of the time, and not flexible enough when there are discontinuities
 
+...DFM: Explain what is currently done---or at least \emph{said to be done}.  With citations.
+
+...DFM: Explain what \Untrendy\ will do in its first release.  And demo figure.
+
+...Hogg:  Explain what \Untrendy\ might do in future releases.
+
 \section{fast, approximate hypothesis testing}
 
 ...fastness
 
+...DFM:  Explain what is currently done and how.  With citations.
+
+...Hogg:  Explain what \Turnstile\ will do in its first release.  DFM:  And demo figure.
+
+...Hogg:  Explain what future releases of \Turnstile\ might do.
+
 \section{probabilistic parameter estimation}
 
-...\Bart and \emcee
+...DFM:  Explain the range of things that are currently done.  With citations and possibly also criticisms where appropriate.
+
+...DFM:  Explain what \Bart\ will do in its first release.  And demo figures.
+
+...Hogg:  What might \Bart\ do in future releases?
 
 \section{hierarchical population inference}
 
 ...pgm intro
+
+...DFM:  Explain what is currently done, perhaps concentrating on Tremaine paper and competitors.  Also we should touch on theory here.
+
+...Hogg:  What will \TheCreator\ do?
 
 \section{side projects}
 
