@@ -19,6 +19,8 @@
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
 \newcommand{\TheCreator}{\package{TheCreator}}
+\newcommand{\KIC}{\textsl{KIC}}
+\newcommand{\KOI}{\textsl{KOI}}
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 \begin{document}
@@ -212,10 +214,55 @@ very strong position to deliver extremely valuable new methods to the
 
 \section{management plan}
 
-...roles of co-Is
+This project is the PhD dissertation project of Co-I Foreman-Mackey;
+in this sense Foreman-Mackey is the scientific lead of the project,
+making decisions about scientific priorities and the ordering of
+experiments and code enhancements.  PI Hogg is the faculty advisor on
+this dissertation; in this sense Hogg is the management lead of the
+project, ensuring that deadlines get met, papers get written, and code
+gets properly documented and released.  The budget also includes a
+small amount of support for an additional part-time graduate student
+and postdoc.  These are budgeted to support short-term scentific
+collaborations that make use of the software or improve it.  That is,
+some of the sub-parts of the project can be executed by new graduate
+students or postdocs at NYU.
 
-...roles of postdoc and undergraduate researchers
+The project is budgeted for three years of project lifetime.  An
+approximate schedule is the following
 
-...schedule and deliverables
+\paragraph{first year:}
+Version~0.1 releases of \Untrendy, \Turnstile, and \Bart, executing
+the first stages of approximation identified above.  Submission of
+short papers describing these three codes, comparing them with
+standard community practice, and showing first results.  Execution of
+\Untrendy\ and \Turnstile\ on the entire \KIC; publication of all
+candidate transiting exoplanets, especially those previously unknown.
+Execution of \Bart\ on the best or most interesting of those
+companions, with an eye to exoplanet characterization and
+false-positive rejection.
+
+\paragraph{second year:}
+Submission of papers describing the results of the \Untrendy,
+\Turnstile, and \Bart\ from the first year.  Version~0.1 release of
+\TheCreator, executing the simplest meaningful graphical model, as
+described above.  Execution of \Bart\ and \TheCreator\ on the complete
+set of exoplanet candidates geenerated in the first year.  Submission
+of paper describing those results.  With feedback from this full
+``closed loop'', re-prioritize enhancements to \Untrendy\ and
+\Turnstile; add features to \Bart.  Version~0.2 code releases for
+these packages.  Start side projects on stellar variability,
+eclipsing binaries, transit-timing variations, or limb-darkening as
+appropriate.
+
+\paragraph{third year:}
+Following up best hints in results from \TheCreator in the second
+year, complexify or adjust the graphical model, or launch multiple
+models for competition.  Re-run everything on the entire \KIC to
+update the population analysis to incorporate all improvements.
+Submit papers describing improved software and new results.  Complete
+side projects and submit papers.  Make final decisions about final
+code versions, final code adjustments, documentation, and hosting and
+release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
+\TheCreator, along with (possibly very short) papers on arXiv or ASCL.
 
 \end{document}
