@@ -2,7 +2,7 @@
 RM = /bin/rm -fv
 PDFLATEX = pdflatex
 
-all: description.pdf
+all: summary.pdf description.pdf facilities.pdf biosketch_hogg.pdf
 
 %.aux: %.tex
 	$(PDFLATEX) $*
