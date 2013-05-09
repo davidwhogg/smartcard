@@ -112,6 +112,19 @@ foo
 
 \section{de-trending}
 
+Key features of \project{untrendy}:
+\begin{itemize}
+\item Very scalable/local compared to ``Bayesian'' algorithm. Similar to
+      a more robust windowed median.
+\item Finds discontinuities---called Sudden Pixel Sensitivity Dropouts (SPSD)
+      by the Kepler team---automatically and corrects the trends. There is a
+      claim in the literature (with reference to a non-existent
+      Kolodziejczak 2012 paper) that PDC in the Kepler pipeline 8.0 will deal
+      with this but it's not included as part of the standard de-trending.
+\item Untrendy is less robust to maintaining intrinsic stellar variability
+      but it is
+\end{itemize}
+
 ...running median is too flexible most of the time, and not flexible enough when there are discontinuities
 
 ...DFM: Explain what is currently done---or at least \emph{said to be done}.  With citations.
