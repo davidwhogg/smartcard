@@ -180,8 +180,56 @@ algorithm is probably better suited.
 \paragraph{Untrendy}
 Our algorithm and implementation---currently titled \Untrendy---takes a
 somewhat different approach.
+Using only a single quarter of data as input, the algorithm will attempt to
+remove all systematic variations (and properly account for SPSDs) while
+maintaining the strength of any existing transit signal.
+Initial experiments have produced extremely promising results even when
+reproducing the lowest signal-to-noise discoveries in the Kepler catalog.
 
-...Hogg:  Explain what \Untrendy\ might do in future releases.
+The proposed algorithm involves an iterative procedure with two distinct
+steps.
+The first step fits a cubic spline model (with one knot every few days; will
+probably work best for denser sampling than the median filter model) using
+iteratively re-weighted least-squares (IRLS;\ Hogg: some sort of citation?) to
+the median normalized aperture photometry.
+Then, discontinuities can be detected using a matched filter on the residuals
+from the model fit in the previous step.
+Finally, after adding $K$ knots in the discontinuity, return to the first IRLS
+step and repeat.
+
+IRLS is a good choice for this purpose because it is extremely robust to
+outliers.
+This means that it can fit and correct for the global trends but not corrupt
+the transit signal.
+The optimization will also be insensitive to the outliers caused by the
+discontinuities until the model is given more flexibility (in the form of
+added knots) at these positions.
+
+The choice of a cubic spline model with iteratively chosen knots is
+justified---and preferable to a windowed median model---for several reasons.
+First, it is significantly simpler (in general) that the median or PDC models.
+The number of free parameters in the model is only the total number of knots
+in the spline.
+Contrast this to the median model (and probably the PDC model\ldots who
+knows?) where the model implicitly has the same number of parameters as
+data points.
+Also, the spline model can have variable complexity (or flexibility) at
+different points---a fact that we are taking advantage of to correct for
+discontinuities.
+Furthermore, spline models can be evaluated extremely efficiently so a model
+like the one that we propose here is not significantly more computationally
+complex than a median filter model.
+
+We propose to release a implementation of this algorithm as a standalone C
+library with Python bindings under a liberal open source license (MIT!).
+This algorithm could be easily incorporated into any analysis where a running
+median is currently in use.
+It would also be a complimentary addition to the standard Kepler data
+product along side the PDC and MAP-PDC results.
+
+
+\paragraph{Enhanced goals}
+
 
 \begin{figure}[p]
 \includegraphics[width=\textwidth]{figures/untrend_data.pdf}
