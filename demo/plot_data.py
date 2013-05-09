@@ -21,9 +21,9 @@ ax1 = fig.add_subplot(311)
 ax2 = fig.add_subplot(312)
 ax3 = fig.add_subplot(313)
 
-ax1.plot(time, sap - 1e3, ".k")
-ax2.plot(time, pdc - 1e3, ".k")
-ax3.plot(time, flux - 1e3, ".k")
+ax1.plot(time, sap - 1e3, ".k", alpha=0.5, rasterized=True)
+ax2.plot(time, pdc - 1e3, ".k", alpha=0.5, rasterized=True)
+ax3.plot(time, flux - 1e3, ".k", alpha=0.5, rasterized=True)
 
 std = np.std(sap[~np.isnan(sap)])
 ax1.set_ylim([-5 * std, 5 * std])
@@ -47,4 +47,4 @@ for ax, s in zip([ax1, ax2, ax3], ["raw", "PDC corrected", "untrended"]):
 ax3.set_xlabel(r"time [KBJD]")
 
 fig.savefig("untrend_data.png")
-fig.savefig("untrend_data.pdf")
+fig.savefig("../document/figures/untrend_data.pdf")
