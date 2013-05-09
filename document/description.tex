@@ -185,7 +185,22 @@ somewhat different approach.
 
 \begin{figure}[p]
 \includegraphics[width=\textwidth]{figures/untrend_data.pdf}
-\caption{Demo of untrendy.\label{fig:untrendy}}
+\caption{%
+The long cadence observations of the star Kepler-10.
+There are two confirmed exoplanets in this system.
+\emph{Top:} the raw aperture photometry from the Kepler data reduction
+pipeline.
+For plotting purposes, each quarter was normalized by the median flux in the
+quarter and then 1 was subtracted to show the variation around the median.
+\emph{Middle:} the PDC corrected fluxes.
+Again, the fluxes were normalized by the median and then shifted to zero
+median.
+Note the change of units on the y-axis; the PDC procedure clearly makes good
+progress towards removing the main systematic trends in the data.
+\emph{Bottom:} the light curve after untrending.
+The units on the y-axis are the same as the middle panel.
+The results are way better\ldots WAY.
+\label{fig:untrendy}}
 \end{figure}
 
 \section{fast, approximate hypothesis testing}
