@@ -121,15 +121,67 @@ Key features of \project{untrendy}:
       claim in the literature (with reference to a non-existent
       Kolodziejczak 2012 paper) that PDC in the Kepler pipeline 8.0 will deal
       with this but it's not included as part of the standard de-trending.
-\item Untrendy is less robust to maintaining intrinsic stellar variability
-      but it is
+\item Untrendy is probably less robust to maintaining intrinsic stellar
+      variability but if the goal is a \emph{planet search} then something
+      scalable that removes any non-planetary signal is interesting.
 \end{itemize}
 
-...running median is too flexible most of the time, and not flexible enough when there are discontinuities
+\paragraph{Standard Pre-search Data Conditioning (PDC)}
+The first step in the Kepler plant search is to remove systematic trends in
+the data.
+Transit signals can be significantly diluted by both intrinsic stellar
+variability and instrumental effects. In general, these features can be much
+larger than the transit signals so care must be taken to separate
+blah blah Sudden Pixel Sensitivity Dropouts (SPSDs)
 
-...DFM: Explain what is currently done---or at least \emph{said to be done}.  With citations.
+\paragraph{Standard Practice}
+For most precision experiments, the light curves corrected using PDC are not
+sufficiently de-trended.
+It is standard practice (Dressing, for example) to normalize fluxes by a
+running windowed median with a width of a few days (this is a free parameter).
+This method actually works very well.
+It corrects for most of the smooth systematic signals and can remove any
+stellar variability on time scales longer than the window width.
+Using the median is extremely robust to outliers so if you use a wide enough
+window, this procedure doesn't significantly affect the transit signal.
+It is important to note that if you're looking to study the parameters of the
+\emph{planets} it is often preferable to remove the effects of stellar
+variability.
+It would probably not be a good idea to do something as simplistic as a
+windowed median if you're interested in studying the properties of variable
+stars.
+This procedure runs into serious trouble when it encounters a SPSD or any
+other sharp discontinuity.
+The implicit background model must be smooth even across discontinuities so it
+will introduce significant structured residuals at SPSDs.
+The most responsible procedure would probably be to simply discard the data
+near these points (as with PDC) but the literature is not very clear on how
+this is done in practice.
 
-...DFM: Explain what \Untrendy\ will do in its first release.  And demo figure.
+
+\paragraph{``Bayesian'' MAP-PDC}
+\begin{itemize}
+\item uses co-trending with surrounding stars to remove systematic trends that
+\emph{are correlated} between nearby sources.
+\item should also deal with SPSDs (word on the street) but the paper doesn't
+exist.
+\item this will be included in the ``next'' official release of the Kepler
+pipeline but it hasn't been yet so we can't compare.
+\item this is probably FAR better for studies of variable stars.
+\item the other side of the same coin is that it probably isn't as good for
+studying planets unless your model of the star includes a model of stellar
+variability\ldots and if you're going to that trouble, why aren't you forward
+modelling the systematics too.
+\item also, if you're trying to \emph{find} exoplanets, a more destructive
+algorithm is probably better suited.
+\end{itemize}
+
+
+\paragraph{Untrendy}
+Our algorithm and implementation---currently titled \Untrendy---takes a
+somewhat different approach.
+
+
 
 ...Hogg:  Explain what \Untrendy\ might do in future releases.
 
@@ -141,7 +193,7 @@ Key features of \project{untrendy}:
 
 ...Hogg:  Explain what \Turnstile\ will do in its first release.  DFM:  And demo figure.
 
-y...Hogg:  Explain what future releases of \Turnstile\ might do.
+...Hogg:  Explain what future releases of \Turnstile\ might do.
 
 \section{probabilistic parameter estimation}
 
