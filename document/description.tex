@@ -8,6 +8,12 @@
 % - spend
 
 \documentclass[letterpaper,12pt,preprint]{hack_aastex}
+
+\usepackage{color,hyperref}
+\definecolor{linkcolor}{rgb}{0,0,0.5}
+\hypersetup{colorlinks=true,linkcolor=linkcolor,citecolor=linkcolor,
+            filecolor=linkcolor,urlcolor=linkcolor}
+
 \usepackage{epsfig}
 \usepackage{graphicx}
 \newcommand{\sectionname}{Section}
@@ -25,7 +31,7 @@
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 
-\usepackage{color,listings}
+\usepackage{listings}
 \lstset{%
     language=Python,
     basicstyle=\footnotesize\ttfamily,
@@ -131,14 +137,14 @@ MAST also includes complete catalogs of stellar parameters, \Kepler\ Object of
 Interest (KOI) parameters, and the measured parameters of confirmed planets
 in the \Kepler\ field.
 Another catalog of exoplanet parameters is the NASA Exoplanet Archive%
-\footnote{http://exoplanetarchive.ipac.caltech.edu/}.
+\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/}}.
 The Exoplanet Archive hosts a complete mirror of the MAST \Kepler\ tables but
 it also includes results from other exoplanet studies.
 The standard method for accessing data from these catalogs is through at web
 form%
-\footnote{http://archive.stsci.edu/kepler/data\_search/search.php}%
-\footnote{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
-/upload.html}
+\footnote{\url{http://archive.stsci.edu/kepler/data\_search/search.php}}%
+\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
+/upload.html}}
 but both services also offer programmatic access via an Application
 Programming Interface (API).
 This is especially interesting to these authors because we are interested in
@@ -168,10 +174,10 @@ Python is a good choice for this for several reasons.
 First, many astronomers are beginning to adopt Python as their main
 programming language (CITE dotastro?) and there are many powerful
 astronomy-specific tools that are becoming part of the standard scientific
-stack---especially \package{AstroPy} (http://www.astropy.org/).
-Also, Python has many tools---such as \package{iPython} (http://ipython.org/)
-and the \package{iPython} notebook (http://ipython.org/notebook.html)---for
-interactive data exploration.
+stack---especially \package{AstroPy} (\url{http://www.astropy.org/}).
+Also, Python has many tools---such as \package{iPython}
+ (\url{http://ipython.org/}) and the \package{iPython} notebook
+ (\url{http://ipython.org/notebook.html})---for interactive data exploration.
 The proposed interface should satisfy at least the following requirements:
 \begin{itemize}
 \item The interface should be general enough that any request that could
@@ -210,8 +216,8 @@ kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
 
 The development on this tool has started on GitHub at
-https://github.com/dfm/kplr and a pre-release version is already available
-under the liberal MIT open source license.
+\url{https://github.com/dfm/kplr} and a pre-release version is already
+available under the liberal MIT open source license.
 
 
 \section{de-trending}
