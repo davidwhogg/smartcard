@@ -396,11 +396,30 @@ Main features of \Bart:
 \item Flexible, non-parametric limb-darkening profile.
 \item Fast standalone Fortran library.
 \item User-friendly Python bindings with expressive model-building syntax.
-\item Efficient sampling using \emcee \citep{emcee}.
+\item Efficient sampling using \emcee\ \citep{emcee}.
 \end{itemize}
 
 \paragraph{Current practice for parameter estimation}
 \citet{mandel}
+
+\paragraph{A flexible, non-parametric limb darkening model}
+As mentioned above, most analyses of transiting exoplanets rely on the
+analytic limb darkening expressions of \citet{mandel}.
+These results are extremely restrictive on the form of limb darkening profile
+that can be used and the results are still relatively expensive to compute
+because they rely heavily on special functions whose values must be computed
+numerically.
+More recently, \citet{crazyass1} and \citet{crazyass2} have proposed
+alternative methods for computing the light curve of a planet transiting a
+star with a more general limb darkening profile.
+The algorithm proposed by \citet{crazyass1} requires the summation of many
+high-order special functions.
+DFM:\ do they make claims about efficiency?
+The second method \citep{crazyass2} involves a numerical integration for
+all but the simplest profiles.
+Since the computation of the overlapping area of occulting disks is extremely
+inexpensive to compute, blah\ldots
+
 
 \paragraph{Enhanced goals}
 False positive detection using LD discrepancies.
@@ -477,9 +496,27 @@ release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
 
 \begin{thebibliography}{}\raggedright%
 
+\bibitem[Borucki \etal(2010)]{kepler4}
+Borucki, W.~J., Koch, D.~G., Brown, T.~M., \etal\ 2010, \apjl,
+\textbf{713}, L126
+
+\bibitem[Ford(2005)]{ford}
+Ford, E.~B.\ 2005, \aj, \textbf{129}, 1706
+
 \bibitem[Foreman-Mackey \etal(2012)]{emcee}
 Foreman-Mackey, D., Hogg, D.~W., Lang, D., \& Goodman, J.\ 2013,
 \pasp, \textbf{125}, 306
+
+\bibitem[Gim{\'e}nez(2006)]{crazyass1}
+Gim{\'e}nez, A.\ 2006, \aap, \textbf{450}, 1231
+
+\bibitem[Koch \etal(2010)]{kepler5}
+Koch, D.~G., Borucki, W.~J., Rowe, J.~F., et al.\ 2010, \apjl,
+\textbf{713}, L131
+
+\bibitem[Kjurkchieva \etal(2013)]{crazyass2}
+Kjurkchieva, D., Dimitrov, D., Vladev, A., \& Yotov, V.\ 2013, \mnras,
+\textbf{1123}
 
 \bibitem[Mandel \& Agol(2002)]{mandel}
 Mandel, K., \& Agol, E.\ 2002, \apjl, \textbf{580}, L171
