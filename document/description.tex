@@ -299,7 +299,22 @@ the median normalized aperture photometry.
 Then, discontinuities can be detected using a matched filter on the residuals
 from the model fit in the previous step.
 Finally, after adding $K$ knots in the discontinuity, return to the first IRLS
-step and repeat.
+step and repeat.\ssfigure{figures/untrend_data.pdf}{%
+The long cadence observations of the star Kepler-10.
+There are two confirmed exoplanets in this system.
+\emph{Top:} the raw aperture photometry from the Kepler data reduction
+pipeline.
+For plotting purposes, each quarter was normalized by the median flux in the
+quarter and then 1 was subtracted to show the variation around the median.
+\emph{Middle:} the PDC corrected fluxes.
+Again, the fluxes were normalized by the median and then shifted to zero
+median.
+Note the change of units on the y-axis; the PDC procedure clearly makes good
+progress towards removing the main systematic trends in the data.
+\emph{Bottom:} the light curve after untrending.
+The units on the y-axis are the same as the middle panel.
+The results are way better\ldots WAY.
+\label{fig:untrendy}}
 
 IRLS is a good choice for this purpose because it is extremely robust to
 outliers.
@@ -356,27 +371,6 @@ the locations of discontinuities tend to be the same for sources that are
 nearby on the detector.
 
 What about near periodicity in the systematic trends between quarters?
-
-
-\begin{figure}[p]
-\includegraphics[width=\textwidth]{figures/untrend_data.pdf}
-\caption{%
-The long cadence observations of the star Kepler-10.
-There are two confirmed exoplanets in this system.
-\emph{Top:} the raw aperture photometry from the Kepler data reduction
-pipeline.
-For plotting purposes, each quarter was normalized by the median flux in the
-quarter and then 1 was subtracted to show the variation around the median.
-\emph{Middle:} the PDC corrected fluxes.
-Again, the fluxes were normalized by the median and then shifted to zero
-median.
-Note the change of units on the y-axis; the PDC procedure clearly makes good
-progress towards removing the main systematic trends in the data.
-\emph{Bottom:} the light curve after untrending.
-The units on the y-axis are the same as the middle panel.
-The results are way better\ldots WAY.
-\label{fig:untrendy}}
-\end{figure}
 
 \section{fast, approximate hypothesis testing}
 
