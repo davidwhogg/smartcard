@@ -14,7 +14,7 @@
 \setlength{\headheight}{2ex}
 \setlength{\headsep}{3ex}
 \input{hogg_nasa}
-\newcommand{\kplr}{\package{kplr.co}}
+\newcommand{\kplr}{\package{kplr}}
 \newcommand{\Untrendy}{\package{Untrendy}}
 \newcommand{\Turnstile}{\package{IronHorse}}
 \newcommand{\Bart}{\package{Bart}}
@@ -24,6 +24,22 @@
 \newcommand{\KOI}{\textsl{KOI}}
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
+
+\usepackage{color,listings}
+\lstset{%
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    showspaces=false,
+    showstringspaces=false,
+    tabsize=2,
+    breaklines=false,
+    breakatwhitespace=true,
+    identifierstyle=\ttfamily,
+    keywordstyle=\bfseries\color[rgb]{0.133,0.545,0.133},
+    commentstyle=\color[rgb]{0.4,0.4,0.4},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
 \begin{document}
 
 \section{why re-analyze \Kepler\ data?}
@@ -106,9 +122,97 @@ the proposing team, but their combination is unusual and puts us in a
 very strong position to deliver extremely valuable new methods to the
 \Kepler\ team and larger community.
 
-\section{an API for \Kepler\ data}
+\section{tools for easy access to \Kepler\ data}
 
-foo
+\paragraph{Sources of \Kepler\ data}
+The official source of Kepler data is the Mikulski Archive for Space
+Telescopes (MAST) archive.
+MAST also includes complete catalogs of stellar parameters, \Kepler\ Object of
+Interest (KOI) parameters, and the measured parameters of confirmed planets
+in the \Kepler\ field.
+Another catalog of exoplanet parameters is the NASA Exoplanet Archive%
+\footnote{http://exoplanetarchive.ipac.caltech.edu/}.
+The Exoplanet Archive hosts a complete mirror of the MAST \Kepler\ tables but
+it also includes results from other exoplanet studies.
+The standard method for accessing data from these catalogs is through at web
+form%
+\footnote{http://archive.stsci.edu/kepler/data\_search/search.php}%
+\footnote{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
+/upload.html}
+but both services also offer programmatic access via an Application
+Programming Interface (API).
+This is especially interesting to these authors because we are interested in
+doing automated data analysis.
+It is also generally useful to have easy access to data from a standard
+scientific programming environment because it lets an interested user apply
+their standard analysis tools to new datasets easily.
+In general, all programming languages that are commonly used for science have
+libraries designed to interact with web services using HTTP requests so it's
+possible to access the \Kepler\ data from any language.
+That being said, these tools tend to be very general so for any particular
+query that you would like to make, you'll need to construct the URL by hand
+and then parse the returned text using a custom set of tools.
+This can be time consuming and tends to be error prone so many users will
+resort to using the HTML web form and downloading and importing the data by
+hand.
+This can be a significant obstacle for the development of automated data
+analyses.
+
+Maybe comment on JSON.\
+
+
+\paragraph{\kplr\ interface}
+We propose to build a library to easy data access directly from the Python
+programming environment.
+Python is a good choice for this for several reasons.
+First, many astronomers are beginning to adopt Python as their main
+programming language (CITE dotastro?) and there are many powerful
+astronomy-specific tools that are becoming part of the standard scientific
+stack---especially \package{AstroPy} (http://www.astropy.org/).
+Also, Python has many tools---such as \package{iPython} (http://ipython.org/)
+and the \package{iPython} notebook (http://ipython.org/notebook.html)---for
+interactive data exploration.
+The proposed interface should satisfy at least the following requirements:
+\begin{itemize}
+\item The interface should be general enough that any request that could
+possibly be made from the web form should be possible.
+\item Common tasks (like searching for a particular planet or the top 10
+largest KOIs, for example) should be easy.
+\item The results should be automatically parsed into a Python object with the
+correct types so that it can be easily integrated with existing tools.
+\item The results syntax should be consistent for different data types.
+\end{itemize}
+Below is an example of the proposed syntax for the module.
+This code could be run from the interactive Python prompt or from within a
+script.
+
+\begin{lstlisting}
+import kplr
+client = kplr.API()
+
+# Get the listing for the confirmed planet Kepler-10 b
+kepler10b = client.planet("10b")
+print(kepler10b)
+# <kplr.Planet("Kepler-10 b")>
+
+print(kepler10b.period)
+# 0.8374903
+
+# Loop over available datasets and download the light curves from MAST.
+for d in kepler10b.data:
+    d.fetch()
+    # ...
+    # Analyse the dataset using d.time, d.sapflux, etc.
+    # Plot using matplotlib or whatever.
+
+# Find the 10 largest KOIs.
+kois = client.kois(sort=("planet_radius", -1), limit=10)
+\end{lstlisting}
+
+The development on this tool has started on GitHub at
+https://github.com/dfm/kplr and a pre-release version is already available
+under the liberal MIT open source license.
+
 
 \section{de-trending}
 
@@ -251,7 +355,7 @@ In particular, a qualitative study of the some Kepler targets has shown that
 the locations of discontinuities tend to be the same for sources that are
 nearby on the detector.
 
-What about near periodicity in the systematic trends between quarters.
+What about near periodicity in the systematic trends between quarters?
 
 
 \begin{figure}[p]
