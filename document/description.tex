@@ -7,7 +7,7 @@
 % - submit
 % - spend
 
-\documentclass[letterpaper,12pt]{article}
+\documentclass[letterpaper,12pt]{aastex}
 \usepackage{epsfig}
 \usepackage{graphicx}
 \newcommand{\sectionname}{Section}
@@ -380,27 +380,38 @@ The results are way better\ldots WAY.
 
 \section{fast, approximate hypothesis testing}
 
-...fastness
+DFM:  Explain what is currently done and how.  With citations.
 
-...DFM:  Explain what is currently done and how.  With citations.
+Hogg:  Explain what \Turnstile\ will do in its first release.
 
-...Hogg:  Explain what \Turnstile\ will do in its first release.  DFM:  And demo figure.
+DFM:  And demo figure.
 
-...Hogg:  Explain what future releases of \Turnstile\ might do.
+Hogg:  Explain what future releases of \Turnstile\ might do.
+
 
 \section{probabilistic parameter estimation}
 
-...DFM:  Explain the range of things that are currently done.  With citations and possibly also criticisms where appropriate.
+Main features of \Bart:
+\begin{itemize}
+\item Flexible, non-parametric limb-darkening profile.
+\item Fast standalone Fortran library.
+\item User-friendly Python bindings with expressive model-building syntax.
+\item Efficient sampling using \emcee \citep{emcee}.
+\end{itemize}
 
-...DFM:  Explain what \Bart\ will do in its first release.  And demo figures.
+\paragraph{Current practice for parameter estimation}
+\citet{mandel}
 
-...Hogg:  What might \Bart\ do in future releases?
+\paragraph{Enhanced goals}
+False positive detection using LD discrepancies.
+
 
 \section{hierarchical population inference}
 
 ...pgm intro
 
-...DFM:  Explain what is currently done, perhaps concentrating on Tremaine paper and competitors.  Also we should touch on theory here.
+...DFM:  Explain what is currently done, perhaps concentrating on Tremaine
+paper and competitors.  Also we should touch on theory here.
 
 ...Hogg:  What will \TheCreator\ do?
 
@@ -463,5 +474,17 @@ side projects and submit papers.  Make final decisions about final
 code versions, final code adjustments, documentation, and hosting and
 release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
 \TheCreator, along with (possibly very short) papers on arXiv or ASCL.
+
+\begin{thebibliography}{}\raggedright%
+
+\bibitem[Foreman-Mackey \etal(2012)]{emcee}
+Foreman-Mackey, D., Hogg, D.~W., Lang, D., \& Goodman, J.\ 2013,
+\pasp, \textbf{125}, 306
+
+\bibitem[Mandel \& Agol(2002)]{mandel}
+Mandel, K., \& Agol, E.\ 2002, \apjl,
+\textbf{580}, L171
+
+\end{thebibliography}
 
 \end{document}
