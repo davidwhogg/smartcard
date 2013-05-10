@@ -55,6 +55,14 @@
   \setlength{\itemsep}{0.0ex}%
   \setlength{\leftmargin}{1.5\parindent}}}{\end{list}}
 
+%----- mess with paragraph spacing!
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {1ex}%
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+\makeatother
+
 %----- Special Hogg list for references
   \newcommand{\hogglist}{%
     \rightmargin=0in
