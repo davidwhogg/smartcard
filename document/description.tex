@@ -28,6 +28,8 @@
 \newcommand{\TheCreator}{\package{TheCreator}}
 \newcommand{\KIC}{\textsl{KIC}}
 \newcommand{\KOI}{\textsl{KOI}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\bvec}[1]{\mathbf{#1}}
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 
@@ -319,7 +321,7 @@ Note the change of units on the y-axis; the PDC procedure clearly makes good
 progress towards removing the main systematic trends in the data.
 \emph{Bottom:} the light curve after untrending.
 The units on the y-axis are the same as the middle panel.
-The results are way better\ldots WAY.
+The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
 IRLS is a good choice for this purpose because it is extremely robust to
@@ -417,8 +419,33 @@ high-order special functions.
 DFM:\ do they make claims about efficiency?
 The second method \citep{crazyass2} involves a numerical integration for
 all but the simplest profiles.
-Since the computation of the overlapping area of occulting disks is extremely
-inexpensive to compute, blah\ldots
+
+\Bart\ will take a brute force approach.
+Since the solution of the overlapping area of occulting disks is extremely
+inexpensive to compute, it seems like a good idea to integrate the light curve
+shape numerically.
+Following the notation of \citet{mandel}, the fraction of the stellar flux
+that is occulted by a transiting planet is given---in the general case---by
+the area integral
+\begin{eqnarray}
+\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(\bvec{r}) \dd^2 \bvec{A}
+\end{eqnarray}
+where $I(\bvec{r})$ is the (properly normalized) limb darkening profile and
+$\bvec{A}_\mathrm{occ}$ is the occulted area.
+Assuming that $I(\bvec{r}) \equiv I(r)$ is radially symmetric, this integral
+simplifies to
+\begin{eqnarray}
+\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(r) \, r \dd r \dd \theta \quad.
+\end{eqnarray}
+Finally, if we write $I(r)$ as a piecewise constant function with values $I_n$
+with breakpoints at arbitrary radii $r_n$, the occulted flux is simply
+\begin{eqnarray}
+\lambda & = & \sum_n w_n \, I_n
+\end{eqnarray}
+where the $w_n$ are just differences of non-limb darkened solutions.
+Preliminary experiments show that arbitrary models can be computed to
+extremely high precision for the same computational cost as the standard
+\citet{mandel} models but with significantly more flexibility.
 
 
 \paragraph{Enhanced goals}
