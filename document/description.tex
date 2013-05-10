@@ -229,6 +229,29 @@ product along side the PDC and MAP-PDC results.
 
 
 \paragraph{Enhanced goals}
+While the data pre-processing algorithm described above is a realistic and
+quickly obtainable first step towards better modeling and detection of
+exoplanets in the Kepler data stream, it leaves the probabilistically
+righteous among us a little unsatisfied.
+The cubic spline model suggested above is only a very rough approximation to
+the physical (causal) model that we have of the data and by applying this
+point estimated model we introduce significantly correlated noise and don't
+correctly propagate the uncertainty introduced by the modeling procedure.
+An exiting prospect for improving this procedure would be to model the data
+using a flexible non-parametric probabilistic model like a Gaussian Process
+ (CITE STUFF).
+Applying a Gaussian process to a dataset as large as a Kepler light curve is
+an interesting problem in computer science but since most of the power in the
+systematics is at short time lag, it would be possible to take advantage of
+the sparsity of the problem for efficiency (Iain Murray?).
+
+Another interesting idea would be to---like the MAP-PDC algorithm does---take
+advantage of correlations between the systematic variations of nearby sources.
+In particular, a qualitative study of the some Kepler targets has shown that
+the locations of discontinuities tend to be the same for sources that are
+nearby on the detector.
+
+What about near periodicity in the systematic trends between quarters.
 
 
 \begin{figure}[p]
