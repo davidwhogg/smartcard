@@ -22,7 +22,8 @@
 \newcommand{\dd}{\,\mathrm{d}}
 \newcommand{\bvec}[1]{\mathbf{#1}}
 \pagestyle{myheadings}
-\markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
+\markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of %
+Kepler data}}
 
 \usepackage{listings}
 \lstset{%
@@ -92,7 +93,7 @@ possible in part by the scale and in part by the simplicity of the
 Although \Kepler\ is just the first step of \NASA's exoplanet journey,
 it is the best data set in it's class right now, and will retain
 unique capabilities for many years to come.  Furthermore, many future
-data sets (for example that from \TESS; CITE), produce data that are
+data sets (for example that from \TESS;\ CITE), produce data that are
 \Kepler-like in many ways.  \textbf{If we can take the most valuable
   data set in exoplanetary astrophysics and make it substantially more
   valuable with an ADAP-scale project, we can deliver to
@@ -113,15 +114,17 @@ probabilistic modeling of astrophysical data sets (CITE some eg
 papers).
 
 On the one side of this,
-one example is that Co-I Foreman-Mackey is the lead developer of \emcee\ package
-for fast, self-tuning Markov-Chain Monte Carlo sampling.
-This is by far the fastest-growing MCMC package in the astrophysics community (at time of writing it is getting almost ten citations per month in the refereed literature).
+one example is that Co-I Foreman-Mackey is the lead developer of \emcee\
+package for fast, self-tuning Markov-Chain Monte Carlo sampling.
+This is by far the fastest-growing MCMC package in the astrophysics community
+ (at time of writing it is getting almost ten citations per month in the
+refereed literature).
 On the other side of this,
-one example is that Co-I Hogg was responsible (along with collaborators) for the
-precise self-calibration of the \observatory{Sloan Digital Sky Survey}
+one example is that Co-I Hogg was responsible (along with collaborators) for
+the precise self-calibration of the \observatory{Sloan Digital Sky Survey}
 imaging data (CITE Padmanabhan), which in turn led (almost directly)
 to discoveries such as ultra-faint Milky Way companions Willman I
-(CITE) and XXX (CITE) and the detection of the baryon acoustic feature
+ (CITE) and XXX (CITE) and the detection of the baryon acoustic feature
 in the large-scale structure (CITE).  These two
 strengths---calibration and probabilistic modeling---are not unique to
 the proposing team, but their combination is unusual and puts us in a
@@ -132,10 +135,11 @@ very strong position to deliver extremely valuable new methods to the
 
 The official source of Kepler data is the
 \observatory{Mikulski Archive for Space Telescopes} (\MAST) archive.
-\MAST\ also includes complete catalogs of stellar parameters, \Kepler\ ``Object of
-Interest'' (KOI) parameters, and the measured parameters of confirmed planets
-in the \Kepler\ field.
-Another catalog of exoplanet parameters is the \observatory{NASA Exoplanet Archive}%
+\MAST\ also includes complete catalogs of stellar parameters, \Kepler\
+``Object of Interest'' (KOI) parameters, and the measured parameters of
+confirmed planets in the \Kepler\ field.
+Another catalog of exoplanet parameters is the
+\observatory{NASA Exoplanet Archive}%
 \footnote{\url{http://exoplanetarchive.ipac.caltech.edu/}}.
 The \EA\ hosts a complete mirror of the \MAST\ \Kepler\ tables but
 also includes results from other exoplanet studies.
@@ -151,38 +155,46 @@ it is also generally useful to have easy access to data from a standard
 scientific programming environment because it lets an interested user apply
 standard or standardized analysis tools to new datasets easily.
 
-In general, all programming languages that are commonly used for scientific analyses (C, C++, Java, Python, R, IDL) have
+In general, all programming languages that are commonly used for scientific
+analyses (C, C++, Java, Python, R, IDL) have
 libraries designed to interact with web services using HTTP requests so it is
 possible to access the \Kepler\ data from any language.
 That said, HTTP tools tend to be very general;
 for any particular \Kepler\ query that a user wants to make,
-a complex URL must be constructed ``by hand'' (hard-coded or expert-system generated),
-and then the structured text returned by the Web server must be parsed with another equally hard-coded custom set of tools.
-Individual hand-construction of a useful API from HTTP requests can therefore be time consuming and error prone.
-More importantly, it represents repeated work that will be done (and probably already \emph{has} been done many times over in the community.
-One consequence is duplication of effort; another is that many who would benefit strongly from an API nonetheless
-resort to using the HTML web form and downloading and importing the data piecemeal by hand.
-This can be a significant obstacle for the development of automated data analyses.
+a complex URL must be constructed ``by hand'' (hard-coded or expert-system
+generated), and then the structured text returned by the Web server must be
+parsed with another equally hard-coded custom set of tools.
+Individual hand-construction of a useful API from HTTP requests can therefore
+be time consuming and error prone.
+More importantly, it represents repeated work that will be done (and probably
+already \emph{has} been done) many times over in the community.
+One consequence is duplication of effort; another is that many who would
+benefit strongly from an API nonetheless resort to using the HTML web form
+and downloading and importing the data piecemeal by hand.
+This can be a significant obstacle for the development of automated data
+analyses.
 
 Maybe comment on JSON.\
 
 \paragraph{\kplr\ interface}
-We propose to build a Python library to provide easy data access directly from the Python
-programming environment.
+We propose to build a Python library to provide easy data access directly
+from the Python programming environment.
 Python is a good choice for this for several reasons:
 Many astronomers have already adopted Python as the main
-programming language (CITE dotastro?) in their work, and many more are converting
-to Python.
-There are many powerful
-astronomy-specific tools that are becoming part of the standard scientific
-stack---especially \package{AstroPy} (\url{http://www.astropy.org/}).
+programming language (CITE dotastro?) in their work, and many more are
+converting to Python.
+There are many powerful astronomy-specific tools that are becoming part of
+the standard scientific stack---especially \package{AstroPy}
+ (\url{http://www.astropy.org/}).
 Also, Python has many tools---such as \package{iPython}
  (\url{http://ipython.org/}) and the \package{iPython} notebook
  (\url{http://ipython.org/notebook.html})---for interactive data exploration.
-Python capabilities are also good skills for graduate students to learn because they
-are equally valuable in academia and in non-academic environments (dot-coms, finance).
+Python capabilities are also good skills for graduate students to learn
+because they are equally valuable in academia and in non-academic
+environments (dot-coms, finance).
 
-Our proposed interface to the \Kepler\ data should satisfy at least the following requirements:
+Our proposed interface to the \Kepler\ data should satisfy at least the
+following requirements:
 The proposed interface should satisfy at least the following requirements:
 \begin{itemize}
 \item The interface should be general enough that any request that could
@@ -192,13 +204,15 @@ largest KOIs, for example) should be easy.
 \item The results should be automatically parsed into a Python object with the
 correct types so that it can be easily integrated with existing tools.
 \item The results syntax should be consistent for different data types.
-\item The code should be extremely easy to install; there should be no barrier to entry.
+\item The code should be extremely easy to install; there should be no
+barrier to entry.
 \end{itemize}
 These requirements are designed to maximize adoption within the Python
 exoplaneteer community.
 Our experience with the \emcee\ Markov-Chain Monte Carlo sampling package,
 and the brand we have developed with that package and other projects,
-suggests that we can get very high ``market penetration'' if we meet these requirements.
+suggests that we can get very high ``market penetration'' if we meet these
+requirements.
 
 Below is an example of the proposed syntax for the module.
 This code could be run from the interactive Python prompt or from within a
@@ -229,9 +243,11 @@ kois = client.kois(sort=("planet_radius", -1), limit=10)
 The development of this tool has started on \project{GitHub}%
 \footnote{\url{https://github.com/dfm/kplr}},
 along with documentation and example code.
-A pre-release version is already available under the liberal MIT open source license.
+A pre-release version is already available under the liberal MIT open source
+license.
 
-The code installs trivially on computers BY WHAT METHOD DFM? GIVE EXAMPLES HERE; IT IS PART OF OUR BRAND.
+The code installs trivially on computers BY WHAT METHOD DFM?\ GIVE EXAMPLES
+HERE;\ IT IS PART OF OUR BRAND.\
 
 \textbf{We propose to finish building the \kplr\ API code and its documentation.
 We propose to keep it released and maintained for easy installation and use.
@@ -242,14 +258,17 @@ In particular%
 ---and importantly for \Bart\ and \TheCreator\ (below)---%
 we propose to extend \kplr\ to access and interoperate with
 emerging archives of radial velocity data,
-which provide such important complementary information to that coming from the \Kepler\ satellite.
+which provide such important complementary information to that coming from
+the \Kepler\ satellite.
 
 By the end of the project,
 we expect the \kplr\ API to be a mature and widely-used interface,
 for all of the reasons given above
-(notably the customer-oriented requirements and the widespread use of Python in the community).
+ (notably the customer-oriented requirements and the widespread use of Python
+in the community).
 It makes sense to explore methods for long-term stewardship of the code.
-We propose to explore with the \MAST\ and \EA\ teams the possibility of transfer of the \kplr\ code and documentation ownership.
+We propose to explore with the \MAST\ and \EA\ teams the possibility of
+transfer of the \kplr\ code and documentation ownership.
 
 \section{De-trending}
 
@@ -411,13 +430,13 @@ What about near periodicity in the systematic trends between quarters?
 
 \section{Fast, approximate hypothesis testing}
 
-DFM:  Explain what is currently done and how.  With citations.
+DFM:\  Explain what is currently done and how.  With citations.
 
-Hogg:  Explain what \Turnstile\ will do in its first release.
+Hogg:\  Explain what \Turnstile\ will do in its first release.
 
-DFM:  And demo figure.
+DFM:\  And demo figure.
 
-Hogg:  Explain what future releases of \Turnstile\ might do.
+Hogg:\  Explain what future releases of \Turnstile\ might do.
 
 
 \section{probabilistic parameter estimation}
@@ -450,7 +469,7 @@ hopes for the best.
 Even so, there are numerous improvements that could be made on the existing
 tools.
 In particular, many astronomers are adopting Python as their main programming
-language instead of IDL.
+language instead of IDL.\
 Also, it's generally a good idea to have a \emph{community supported} code
 base instead of a single developer model.
 
@@ -557,20 +576,20 @@ False positive detection using LD discrepancies.
 
 \section{hierarchical population inference}
 
-...pgm intro
+pgm intro
 
-...DFM:  Explain what is currently done, perhaps concentrating on Tremaine
+DFM:\  Explain what is currently done, perhaps concentrating on Tremaine
 paper and competitors.  Also we should touch on theory here.
 
-...Hogg:  What will \TheCreator\ do?
+Hogg:\  What will \TheCreator\ do?
 
 \section{side projects}
 
-...GALEX project
+GALEX project
 
-...false-positive detection and characterization
+false-positive detection and characterization
 
-...variable-star science
+variable-star science
 
 \section{management plan}
 
@@ -585,18 +604,20 @@ small amount of support for an additional part-time graduate student
 and postdoc.  These are budgeted to support short-term scentific
 collaborations that make use of the software or improve it.  That is,
 some of the sub-parts of the project can be executed by new graduate
-students or postdocs at NYU.
+students or postdocs at NYU.\
 
 The project is budgeted for three years of project lifetime.  An
 approximate schedule is the following
 
 \paragraph{first year:}
-Complete and release version~1.0 of \kplr\ API along with complete documentation.
+Complete and release version~1.0 of \kplr\ API along with complete
+documentation.
 Release version~0.1
 of \Untrendy, \Turnstile, and \Bart, executing the first stages of
-approximation identified above, plus complete documentation.  Submit short papers describing these
-codes, comparing them with standard community practice, and showing
-first results.  Execute \Untrendy\ and \Turnstile\ on the entire KIC;
+approximation identified above, plus complete documentation.  Submit short
+papers describing these codes, comparing them with standard community
+practice, and showing first results.
+Execute \Untrendy\ and \Turnstile\ on the entire KIC;\
 publication of all candidate transiting exoplanets, especially those
 previously unknown.  Execute \Bart\ on the best or most interesting of
 those companions, with an eye to exoplanet characterization and
@@ -604,31 +625,37 @@ false-positive rejection.
 
 \paragraph{second year:}
 Submit papers describing the results of the \Untrendy, \Turnstile, and
-\Bart\ from the first year.  Complete and release version~0.1 of
-\TheCreator, executing the simplest meaningful graphical model, as
-described above, along with documentation.
+\Bart\ from the first year.
+Complete and release version~0.1 of \TheCreator, executing the simplest
+meaningful graphical model, as described above, along with documentation.
 Execute \Bart\ and \TheCreator\ on the complete set
 of exoplanet candidates geenerated in the first year.  Submit paper
-describing those results.  With feedback from this full ``closed
-loop'', re-prioritize enhancements to \Untrendy\ and \Turnstile; add
-features to \Bart.
-Complete and release Version~0.2 code for these packages, along with complete documentation.
-If the \MAST\ \Kepler\ data have changed or new relevant data sources have appeared, upgrade and release version~1.1 of \kplr.
-Start side projects on stellar variability, eclipsing
-binaries, transit-timing variations, or limb-darkening as appropriate.
+describing those results.
+With feedback from this full ``closed loop'', re-prioritize enhancements to
+\Untrendy\ and \Turnstile; ad  features to \Bart.
+Complete and release Version~0.2 code for these packages, along with complete
+documentation.
+If the \MAST\ \Kepler\ data have changed or new relevant data sources have
+appeared, upgrade and release version~1.1 of \kplr.
+Start side projects on stellar variability, eclipsing binaries, transit-timing
+variations, or limb-darkening as appropriate.
 
 \paragraph{third year:}
 Following up best hints in results from \TheCreator\ in the second
 year, complexify or adjust the graphical model, or launch multiple
-models for competition.  Re-run everything on the entire KIC to
-update the population analysis to incorporate all improvements.
-Submit papers describing improved software and new results.  Complete
-side projects and submit papers.
-Make final decisions about final code versions, final code adjustments, documentation, and hosting.
-Again, if the \MAST\ \Kepler\ data have changed or new relevant data sources have appeared, upgrade and release version~1.2 of \kplr.
+models for competition.
+Re-run everything on the entire KIC to update the population analysis to
+incorporate all improvements.
+Submit papers describing improved software and new results.
+Complete side projects and submit papers.
+Make final decisions about final code versions, final code adjustments,
+documentation, and hosting.
+Again, if the \MAST\ \Kepler\ data have changed or new relevant data sources
+have appeared, upgrade and release version~1.2 of \kplr.
 Explore possible sustainable maintainance of \kplr\ with the \MAST\ team.
 Release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
-\TheCreator, along with documentation and also (possibly very short) papers on arXiv or ASCL.
+\TheCreator, along with documentation and also (possibly very short) papers
+on arXiv or ASCL.\
 
 \begin{thebibliography}{}\raggedright%
 
