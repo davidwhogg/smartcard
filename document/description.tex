@@ -401,7 +401,31 @@ Main features of \Bart:
 \item Efficient sampling using \emcee\ \citep{emcee}.
 \end{itemize}
 
-\paragraph{Current practice for parameter estimation}
+\paragraph{Standard methods for parameter estimation}
+The exoplanet community has long understood and been open to data analysis
+using rigorous probabilistic inference \citep[][for example]{ford}.
+All recent methods of planetary parameter estimation use MCMC (or similar) to
+propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
+kepler5,kepler4}.
+Despite the fact that everyone uses the same techniques, there is no standard
+implementation of exoplanet model building and analysis.
+In fact, few of the published analysis papers are accompanied be source code.
+There are, of course, a few exceptions.
+In particular, \project{EXOFAST} \citep{exofast}---and by extension
+\project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
+routines for simultaneously modeling light curves and radial velocity
+observations using a method called Differential Evolution MCMC.%
+Since neither of these projects include a license, they can't legally be used
+by other research groups but it seems like the community ignores this fact and
+hopes for the best.
+Even so, there are numerous improvements that could be made on the existing
+tools.
+In particular, many astronomers are adopting Python as their main programming
+language instead of IDL.
+Also, it's generally a good idea to have a \emph{community supported} code
+base instead of a single developer model.
+
+
 \citet{mandel}
 
 \paragraph{A flexible, non-parametric limb darkening model}
@@ -573,9 +597,18 @@ release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
 
 \begin{thebibliography}{}\raggedright%
 
+\bibitem[Barclay \etal(2013)]{barclay}
+Barclay, T., Burke, C.~J., Howell, S.~B., \etal\ 2013, \apj, \textbf{768}, 101
+
 \bibitem[Borucki \etal(2010)]{kepler4}
 Borucki, W.~J., Koch, D.~G., Brown, T.~M., \etal\ 2010, \apjl,
 \textbf{713}, L126
+
+\bibitem[Dressing \& Charbonneau(2013)]{dressing}
+Dressing, C.~D., \& Charbonneau, D.\ 2013, \apj, \textbf{767}, 95
+
+\bibitem[Eastman et al.(2013)]{exofast}
+Eastman, J., Gaudi, B.~S., \& Agol, E.\ 2013, \pasp, \textbf{125}, 83
 
 \bibitem[Ford(2005)]{ford}
 Ford, E.~B.\ 2005, \aj, \textbf{129}, 1706
@@ -583,6 +616,9 @@ Ford, E.~B.\ 2005, \aj, \textbf{129}, 1706
 \bibitem[Foreman-Mackey \etal(2012)]{emcee}
 Foreman-Mackey, D., Hogg, D.~W., Lang, D., \& Goodman, J.\ 2013,
 \pasp, \textbf{125}, 306
+
+\bibitem[Gazak et al.(2012)]{autokep}
+Gazak, J.~Z., Johnson, J.~A., Tonry, J., \etal\ 2012, Advances in Astronomy
 
 \bibitem[Gim{\'e}nez(2006)]{crazyass1}
 Gim{\'e}nez, A.\ 2006, \aap, \textbf{450}, 1231
