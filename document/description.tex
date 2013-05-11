@@ -13,6 +13,12 @@
 % - spend
 
 \documentclass[letterpaper,12pt,preprint]{hack_aastex}
+
+\usepackage{color,hyperref}
+\definecolor{linkcolor}{rgb}{0,0,0.5}
+\hypersetup{colorlinks=true,linkcolor=linkcolor,citecolor=linkcolor,
+            filecolor=linkcolor,urlcolor=linkcolor}
+
 \usepackage{epsfig}
 \usepackage{graphicx}
 \newcommand{\sectionname}{Section}
@@ -25,10 +31,12 @@
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
 \newcommand{\TheCreator}{\package{TheCreator}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\bvec}[1]{\mathbf{#1}}
 \pagestyle{myheadings}
 \markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
 
-\usepackage{color,listings}
+\usepackage{listings}
 \lstset{%
     language=Python,
     basicstyle=\footnotesize\ttfamily,
@@ -140,14 +148,14 @@ The official source of Kepler data is the
 Interest'' (KOI) parameters, and the measured parameters of confirmed planets
 in the \Kepler\ field.
 Another catalog of exoplanet parameters is the \observatory{NASA Exoplanet Archive}%
-\footnote{http://exoplanetarchive.ipac.caltech.edu/}.
+\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/}}.
 The \EA\ hosts a complete mirror of the \MAST\ \Kepler\ tables but
 also includes results from other exoplanet studies.
 The standard method for accessing data from these catalogs is through a Web
 form%
-\footnote{http://archive.stsci.edu/kepler/data\_search/search.php}%
-\footnote{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
-/upload.html},
+\footnote{\url{http://archive.stsci.edu/kepler/data\_search/search.php}}%
+\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
+/upload.html}}
 but both services also offer programmatic access via an Application
 Programming Interface (API).
 An API is required technoogy for automated data analysis;
@@ -179,14 +187,15 @@ programming language (CITE dotastro?) in their work, and many more are convertin
 to Python.
 There are many powerful
 astronomy-specific tools that are becoming part of the standard scientific
-stack---especially \package{AstroPy} (http://www.astropy.org/) which incentivize this adoption.
-Python has many tools---such as \package{iPython} (http://ipython.org/)
-and the \package{iPython} notebook (http://ipython.org/notebook.html)---for
-interactive data exploration.
+stack---especially \package{AstroPy} (\url{http://www.astropy.org/}).
+Also, Python has many tools---such as \package{iPython}
+ (\url{http://ipython.org/}) and the \package{iPython} notebook
+ (\url{http://ipython.org/notebook.html})---for interactive data exploration.
 Python capabilities are also good skills for graduate students to learn because they
 are equally valuable in academia and in non-academic environments (dot-coms, finance).
 
 Our proposed interface to the \Kepler\ data should satisfy at least the following requirements:
+The proposed interface should satisfy at least the following requirements:
 \begin{itemize}
 \item The interface should be general enough that any request that could
 possibly be made from the web form should be possible.
@@ -229,6 +238,7 @@ for d in kepler10b.data:
 kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
 
+<<<<<<< HEAD
 The development of this tool has started on \project{GitHub}%
 \footnote{https://github.com/dfm/kplr},
 along with documentation and example code.
@@ -253,6 +263,12 @@ for all of the reasons given above
 (notably the customer-oriented requirements and the widespread use of Python in the community).
 It makes sense to explore methods for long-term stewardship of the code.
 We propose to explore with the \MAST\ and \EA\ teams the possibility of transfer of the \kplr\ code and documentation ownership.
+=======
+The development on this tool has started on GitHub at
+\url{https://github.com/dfm/kplr} and a pre-release version is already
+available under the liberal MIT open source license.
+
+>>>>>>> b4fc34ba031715e9302a65ab763864092569e3ab
 
 \section{de-trending}
 
@@ -353,7 +369,7 @@ Note the change of units on the y-axis; the PDC procedure clearly makes good
 progress towards removing the main systematic trends in the data.
 \emph{Bottom:} the light curve after untrending.
 The units on the y-axis are the same as the middle panel.
-The results are way better\ldots WAY.
+The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
 IRLS is a good choice for this purpose because it is extremely robust to
@@ -430,11 +446,129 @@ Main features of \Bart:
 \item Flexible, non-parametric limb-darkening profile.
 \item Fast standalone Fortran library.
 \item User-friendly Python bindings with expressive model-building syntax.
-\item Efficient sampling using \emcee \citep{emcee}.
+\item Efficient sampling using \emcee\ \citep{emcee}.
 \end{itemize}
 
-\paragraph{Current practice for parameter estimation}
+\paragraph{Standard methods for parameter estimation}
+The exoplanet community has long understood and been open to data analysis
+using rigorous probabilistic inference \citep[][for example]{ford}.
+All recent methods of planetary parameter estimation use MCMC (or similar) to
+propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
+kepler5,kepler4}.
+Despite the fact that everyone uses the same techniques, there is no standard
+implementation of exoplanet model building and analysis.
+In fact, few of the published analysis papers are accompanied be source code.
+There are, of course, a few exceptions.
+In particular, \project{EXOFAST} \citep{exofast}---and by extension
+\project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
+routines for simultaneously modeling light curves and radial velocity
+observations using a method called Differential Evolution MCMC.%
+Since neither of these projects include a license, they can't legally be used
+by other research groups but it seems like the community ignores this fact and
+hopes for the best.
+Even so, there are numerous improvements that could be made on the existing
+tools.
+In particular, many astronomers are adopting Python as their main programming
+language instead of IDL.
+Also, it's generally a good idea to have a \emph{community supported} code
+base instead of a single developer model.
+
+
 \citet{mandel}
+
+\paragraph{A flexible, non-parametric limb darkening model}
+As mentioned above, most analyses of transiting exoplanets rely on the
+analytic limb darkening expressions of \citet{mandel}.
+These results are extremely restrictive on the form of limb darkening profile
+that can be used and the results are still relatively expensive to compute
+because they rely heavily on special functions whose values must be computed
+numerically.
+More recently, \citet{crazyass1} and \citet{crazyass2} have proposed
+alternative methods for computing the light curve of a planet transiting a
+star with a more general limb darkening profile.
+The algorithm proposed by \citet{crazyass1} requires the summation of many
+high-order special functions.
+DFM:\ do they make claims about efficiency?
+The second method \citep{crazyass2} involves a numerical integration for
+all but the simplest profiles.
+
+\Bart\ will take a brute force approach.
+Since the solution of the overlapping area of occulting disks is extremely
+inexpensive to compute, it seems like a good idea to integrate the light curve
+shape numerically.
+Following the notation of \citet{mandel}, the fraction of the stellar flux
+that is occulted by a transiting planet is given---in the general case---by
+the area integral
+\begin{eqnarray}
+\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(\bvec{r}) \dd^2 \bvec{A}
+\end{eqnarray}
+where $I(\bvec{r})$ is the (properly normalized) limb darkening profile and
+$\bvec{A}_\mathrm{occ}$ is the occulted area.
+Assuming that $I(\bvec{r}) \equiv I(r)$ is radially symmetric, this integral
+simplifies to
+\begin{eqnarray}
+\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(r) \, r \dd r \dd \theta \quad.
+\end{eqnarray}
+Finally, if we write $I(r)$ as a piecewise constant function with values $I_n$
+with breakpoints at arbitrary radii $r_n$, the occulted flux is simply
+\begin{eqnarray}
+\lambda & = & \sum_n w_n \, I_n
+\end{eqnarray}
+where the $w_n$ are just differences of non-limb darkened solutions.
+Preliminary experiments show that arbitrary models can be computed to
+extremely high precision for the same computational cost as the standard
+\citet{mandel} models but with significantly more flexibility.
+
+\textit{Our proposal is to release an optimized Fortran or C library for
+computing light curves of arbitrary limb darkening models.}
+
+
+\paragraph{Model building \& parameter estimation}
+The current authors are specifically interested in the probabilistic modeling
+of observations of transiting exoplanets.
+The algorithm described in the previous section provides an efficient and
+flexible method of computing a \textit{likelihood function}.
+A likelihood function is a parameterization of the probability of observing a
+set of data given a set of model parameters and a model of the observational
+noise.
+As a first step, it is probably reasonable to assume that the uncertainties in
+the \Kepler\ data are Gaussian and independent.
+The independence assumption is certainly not true because of correlations
+introduced by the \Untrendy\ algorithm but there are various ways of dealing
+with this using more flexible noise models or wavelet methods (DFM:\ cite some
+Winn paper).
+
+Some of the more recent analyses of Kepler data have relied on Markov chain
+Monte Carlo (MCMC) to perform correct probabilistic inference in the face of
+noisy data.
+We have substantial expertise in the domain of MCMC methods \citep{emcee} (HOW
+ABOUT SOME OTHER CITATIONS TOO:\ Hou etc.) and our open source MCMC
+implementation has already been used by several groups in the field.
+Building on our experience releasing and supporting \emcee, we propose to
+build and release an open-source tool for modeling transit data built on the
+model described above and harnessing the power of the \emcee\ sampler.
+While the finished product will depend on all of the tools discussed earlier
+in this proposal, development has begun---on \project{GitHub} at
+\url{https://github.com/dfm/bart}---on an experimental pre-release version of
+the software.
+
+The basic \Bart\ work flow will take (as input) any or all of the following
+\begin{itemize}
+\item light curves (short and/or long cadence and potentially from other
+instruments),
+\item radial velocity measurements,
+\item astronometric constraints, and
+\item parameterized models of the prior probabilities on the model parameters.
+\end{itemize}
+The results will be in the form of samples from the posterior probability
+distribution for the parameters given the ensemble of data.
+These samples can then be used to estimate the correctly marginalized
+constraints on the values of the planetary and stellar parameters or compute
+the marginalized likelihood of the hierarchical parameters describing the
+prior distributions.
+This second use is necessary for \TheCreator\ project described in the next
+section.
+
 
 \paragraph{Enhanced goals}
 False positive detection using LD discrepancies.
@@ -517,9 +651,39 @@ Release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
 
 \begin{thebibliography}{}\raggedright%
 
+\bibitem[Barclay \etal(2013)]{barclay}
+Barclay, T., Burke, C.~J., Howell, S.~B., \etal\ 2013, \apj, \textbf{768}, 101
+
+\bibitem[Borucki \etal(2010)]{kepler4}
+Borucki, W.~J., Koch, D.~G., Brown, T.~M., \etal\ 2010, \apjl,
+\textbf{713}, L126
+
+\bibitem[Dressing \& Charbonneau(2013)]{dressing}
+Dressing, C.~D., \& Charbonneau, D.\ 2013, \apj, \textbf{767}, 95
+
+\bibitem[Eastman et al.(2013)]{exofast}
+Eastman, J., Gaudi, B.~S., \& Agol, E.\ 2013, \pasp, \textbf{125}, 83
+
+\bibitem[Ford(2005)]{ford}
+Ford, E.~B.\ 2005, \aj, \textbf{129}, 1706
+
 \bibitem[Foreman-Mackey \etal(2012)]{emcee}
 Foreman-Mackey, D., Hogg, D.~W., Lang, D., \& Goodman, J.\ 2013,
 \pasp, \textbf{125}, 306
+
+\bibitem[Gazak et al.(2012)]{autokep}
+Gazak, J.~Z., Johnson, J.~A., Tonry, J., \etal\ 2012, Advances in Astronomy
+
+\bibitem[Gim{\'e}nez(2006)]{crazyass1}
+Gim{\'e}nez, A.\ 2006, \aap, \textbf{450}, 1231
+
+\bibitem[Koch \etal(2010)]{kepler5}
+Koch, D.~G., Borucki, W.~J., Rowe, J.~F., et al.\ 2010, \apjl,
+\textbf{713}, L131
+
+\bibitem[Kjurkchieva \etal(2013)]{crazyass2}
+Kjurkchieva, D., Dimitrov, D., Vladev, A., \& Yotov, V.\ 2013, \mnras,
+\textbf{1123}
 
 \bibitem[Mandel \& Agol(2002)]{mandel}
 Mandel, K., \& Agol, E.\ 2002, \apjl, \textbf{580}, L171
