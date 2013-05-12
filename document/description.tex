@@ -249,6 +249,7 @@ license.
 The code installs trivially on computers BY WHAT METHOD DFM?\ GIVE EXAMPLES
 HERE;\ IT IS PART OF OUR BRAND.\
 
+\paragraph{Proposal:}
 \textbf{We propose to finish building the \kplr\ API code and its documentation.
 We propose to keep it released and maintained for easy installation and use.
 We propose to upgrade \kplr\ continuously as the \MAST\ and \EA\ data contents and
@@ -267,20 +268,20 @@ for all of the reasons given above
  (notably the customer-oriented requirements and the widespread use of Python
 in the community).
 It makes sense to explore methods for long-term stewardship of the code.
-We propose to explore with the \MAST\ and \EA\ teams the possibility of
-transfer of the \kplr\ code and documentation ownership.
+\textbf{We propose to explore with the \MAST\ and \EA\ teams the possibility of
+transfer of the \kplr\ code and documentation ownership.}
 
 \section{De-trending}
 
 For complicated reasons related to crowded-field photometry, flat-fielding,
-spacecraft temperature issues, stellar abberation, parallax, and proper motion,
+spacecraft temperature issues, stellar abberation, parallax, proper motion,
 and intrinsic stellar variability, a typical \Kepler\ lightcurve shows
 variability at the sub-percent level even when there is no transit.
 For context, the transits of greatest interest induce brightness dips at the
 $10^{-4}$ to $10^{-5}$ level.
-Most of these effects lead to smooth light-curve variations, but in addition
+Most of the non-transit effects lead to smooth light-curve variations, but in addition
 there are also discontinuities at the \Kepler\ quarter boundaries (when the
-spacecraft attitude is re-set) and in addition, poorly understood Sudden Pixel
+spacecraft attitude is re-set) and (more challenging) poorly understood Sudden Pixel
 Sensitivity Dropouts (SPSDs), which lead to essentially discontinuous jumps.
 The principled thing for an exoplanet searcher to do is to \emph{simultaneously}
 fit all of these ``trend'' and SPSD effects in a highly parameterized model,
@@ -401,8 +402,6 @@ The units on the y-axis are the same as the middle panel.
 The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
-% ---------------- 80 cols -----------------------------------------------------
-
 IRLS is a good choice for this purpose because it is extremely robust to
 outliers, but without excluding them from consideration entirely; that is, it
 obtains all the robustness value of sigma-clipping or medianing, without
@@ -428,13 +427,6 @@ complex than a median filter model.
 Fourth, spline models are inherently continuous; the running median is
 inherently discontinuous (it interpolates badly); to see this consider what
 happens as outlier pixels enter and leave the running window.
-
-We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
-library with Python bindings under a liberal open source license (MIT).
-This algorithm could be easily incorporated into any analysis where a running
-median is currently in use.
-It would also be a complimentary addition to the standard Kepler data
-product along side the PDC and MAP-PDC results.
 
 \paragraph{Enhanced goals:}
 While the version~0.1 version of \Untrendy\ described above is a realistic and
@@ -465,6 +457,17 @@ first quarters looking all very similar, and the second, and so on.
 This indicates that a good causal model for the variability could probably
 spearate spacecraft thermal effects from other effects, and possibly model
 them separately, possibly even using multi-quarter information simultaneously.
+
+\paragraph{Proposal:}
+\textbf{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
+library with Python bindings under a liberal open source license (MIT).}
+This algorithm could be easily incorporated into any analysis where a running
+median is currently in use.
+It would also be a complimentary addition to the standard Kepler data
+product along side the PDC and MAP-PDC results.
+\textbf{We propose to follow with more advanced releases as we explore,
+understand, and succeed in building more principled causal models of some
+of the more complicated effects.}
 
 \section{Fast, approximate hypothesis testing}
 
