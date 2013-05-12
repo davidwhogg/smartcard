@@ -176,7 +176,7 @@ analyses.
 
 Maybe comment on JSON.\
 
-\paragraph{\kplr\ interface}
+\paragraph{\kplr\ interface:}
 We propose to build a Python library to provide easy data access directly
 from the Python programming environment.
 Python is a good choice for this for several reasons:
@@ -272,90 +272,119 @@ transfer of the \kplr\ code and documentation ownership.
 
 \section{De-trending}
 
-Key features of \Untrendy:
-\begin{itemize}
-\item Very scalable/local compared to ``Bayesian'' algorithm. Similar to
-      a more robust windowed median.
-\item Finds discontinuities---called Sudden Pixel Sensitivity Dropouts (SPSD)
-      by the Kepler team---automatically and corrects the trends. There is a
-      claim in the literature (with reference to a non-existent
-      Kolodziejczak 2012 paper) that PDC in the Kepler pipeline 8.0 will deal
-      with this but it's not included as part of the standard de-trending.
-\item \Untrendy\ is probably less robust to maintaining intrinsic stellar
-      variability but if the goal is a \emph{planet search} then something
-      scalable that removes any non-planetary signal is interesting.
-\end{itemize}
+For complicated reasons related to crowded-field photometry, flat-fielding,
+spacecraft temperature issues, stellar abberation, parallax, and proper motion,
+and intrinsic stellar variability, a typical \Kepler\ lightcurve shows
+variability at the sub-percent level even when there is no transit.
+For context, the transits of greatest interest induce brightness dips at the
+$10^{-4}$ to $10^{-5}$ level.
+Most of these effects lead to smooth light-curve variations, but in addition
+there are also discontinuities at the \Kepler\ quarter boundaries (when the
+spacecraft attitude is re-set) and in addition, poorly understood Sudden Pixel
+Sensitivity Dropouts (SPSDs), which lead to essentially discontinuous jumps.
+The principled thing for an exoplanet searcher to do is to \emph{simultaneously}
+fit all of these ``trend'' and SPSD effects in a highly parameterized model,
+along with all possible exoplanet signals.
+However, because these effects are very hard to model interpretably, and since
+all these sources of variability are essentially \emph{nuisances} to the
+exoplaneteer, almost the entire \Kepler\ community performs heuristic, robust
+continuum-estimating procedures to the data.
+The continuum estimate is divided out to ``de-trend'' the lightcurve.
+In what follows, we will propose a highly effective and somewhat principled
+approach to the problem of de-trending, and a set of ideas about improving it.
+As with all components of this proposal, our solution involves delivering to the
+community open-source code and documentation.
 
-\paragraph{Standard Pre-search Data Conditioning (PDC)}
-The first step in the Kepler plant search is to remove systematic trends in
-the data.
-Transit signals can be significantly diluted by both intrinsic stellar
-variability and instrumental effects. In general, these features can be much
-larger than the transit signals so care must be taken to separate
-blah blah Sudden Pixel Sensitivity Dropouts (SPSDs)
-
-\paragraph{Standard Practice}
-For most precision experiments, the light curves corrected using PDC are not
-sufficiently de-trended.
-It is standard practice (Dressing, for example) to normalize fluxes by a
+\paragraph{Standard practice:}
+The \Kepler\ pipeline produces calibrated lightcurves, and then partially
+detrended ``PDC'' outputs that have much of the trends removed.
+However, For most precision experiments, the light curves corrected using PDC
+are not sufficiently de-trended.
+It is standard practice (DFM CITE Dressing, for example) to normalize fluxes by a
 running windowed median with a width of a few days (this is a free parameter).
-This method actually works very well.
-It corrects for most of the smooth systematic signals and can remove any
-stellar variability on time scales longer than the window width.
-Using the median is extremely robust to outliers so if you use a wide enough
-window, this procedure doesn't significantly affect the transit signal.
-It is important to note that if you're looking to study the parameters of the
-\emph{planets} it is often preferable to remove the effects of stellar
-variability.
-It would probably not be a good idea to do something as simplistic as a
-windowed median if you're interested in studying the properties of variable
-stars.
-This procedure runs into serious trouble when it encounters a SPSD or any
+This method is surprisingly effective; it shows that most effects---with the
+exception of the SPSDs---take place on multi-day time-scales.
+Using the median is extremely robust to outliers; if the median window is wide enough in time,
+this procedure doesn't significantly affect any (shorter time-scale) transit signal.
+
+The running windowed median procedure runs into serious trouble when it encounters a SPSD or any
 other sharp discontinuity.
-The implicit background model must be smooth even across discontinuities so it
+The implicit background model must be smooth even across discontinuities; it
 will introduce significant structured residuals at SPSDs.
-The most responsible procedure would probably be to simply discard the data
-near these points (as with PDC) but the literature is not very clear on how
-this is done in practice.
+The most responsible procedures in current practice discard the data
+near the SPSDs but no literature source is clear on how these points are identified
+in practice.
+(One further comment is that any investigator interested in long-timescale stellar variability
+should not use anything as simplistic as a windowed median.)
 
+A more sophisticated method is the ``Bayesian'' MAP-PDC method (DFM CITE THIS).
+It uses co-trending with surrounding stars to remove systematic trends that
+are correlated between nearby sources; that is, it capitalizes on spatial
+continuity of the spacecraft-induced variability of sources.
+It also has some capability to capture and model SPSDs, although this is not
+a published aspect of the method (at time of writing).
+The MAP-PDC will apparently be included in the ``next'' official release of the
+\Kepler\ pipeline but it is not yet available to us for analysis and comparison.
+Because the MAP-PDC explicitly tries to model spacecraft-induced effects, it
+has the advantage that it is expected to preserve (that is, not model and
+remove) as much of the true intrinsic stellar variations (as, say, a running
+median does).
+Of course this advantage is also a disadvantage for many exoplanet hunters:
+Any method that preserves stellar variability places a burden on the exoplanet
+scientist to simultaneously model the exoplanet transits and the stellar
+variability.
+Since most kinds of variable stars (even well-behaved RR Lyrae and the like)
+don't have good probabilistic generative models, many exoplaneteers are better
+off with methods that remove all stellar variability and leave a lightcurve
+that can be modeled by exoplanet transit alone.
 
-\paragraph{``Bayesian'' MAP-PDC}
+% DFM:  WHERE TO PUT THIS CLAIM
+%      claim in the literature (with reference to a non-existent
+%      Kolodziejczak 2012 paper) that PDC in the Kepler pipeline 8.0 will deal
+%      with this but it's not included as part of the standard de-trending.
+
+\paragraph{\Untrendy:}
+Our algorithm and implementation---\Untrendy---takes a
+different approach.
+Using only a single quarter of data as input, the algorithm attempts to
+remove all systematic variations---spacecraft, calibration, photometric, and
+intrinsic stellar---without affecting the strength or shape of any existing
+transit signal.
+It also properly captures and accounts for SPSDs.
+Initial experiments have produced extremely promising results even when
+reproducing the lowest signal-to-noise discoveries in the Kepler catalog
+(see \figurename~\ref{fig:untrendy}).
+
+The key features of \Untrendy are as follows:
 \begin{itemize}
-\item uses co-trending with surrounding stars to remove systematic trends that
-\emph{are correlated} between nearby sources.
-\item should also deal with SPSDs (word on the street) but the paper doesn't
-exist.
-\item this will be included in the ``next'' official release of the Kepler
-pipeline but it hasn't been yet so we can't compare.
-\item this is probably FAR better for studies of variable stars.
-\item the other side of the same coin is that it probably isn't as good for
-studying planets unless your model of the star includes a model of stellar
-variability\ldots and if you're going to that trouble, why aren't you forward
-modelling the systematics too.
-\item also, if you're trying to \emph{find} exoplanets, a more destructive
-algorithm is probably better suited.
+\item The algorithm is very scalable and local relative to the MAP-PDC
+  algorithm.
+  In its sensitivity to the data, it is similar to a more robust version of the
+  windowed median.
+  It obtains locality by using a spline basis for the trends; it obtains
+  locality with iteratively reweighted least squares (IRLS; HOGG CITATION).
+\item The algorithm automatically finds discontinuities---SPSDs---and inserts
+  them into the model as change-points.
+  It performs this magic by projecting the residuals away from a smooth fit
+  onto a sliding discontinuity basis ``eigenfunction''.
+\item The algorithm is agnostic about the \emph{origin} of variability; it
+  aggressively tries to model the combined effect of all lightcurve variability
+  on multi-day time-scales.
+  The goal is production of a clean ``transit-only'' de-trended lightcurve.
 \end{itemize}
 
-
-\paragraph{\Untrendy}
-Our algorithm and implementation---currently titled \Untrendy---takes a
-somewhat different approach.
-Using only a single quarter of data as input, the algorithm will attempt to
-remove all systematic variations (and properly account for SPSDs) while
-maintaining the strength of any existing transit signal.
-Initial experiments have produced extremely promising results even when
-reproducing the lowest signal-to-noise discoveries in the Kepler catalog.
-
-The proposed algorithm involves an iterative procedure with two distinct
+The proposed version~0.1 algorithm involves an iterative procedure with two distinct
 steps.
-The first step fits a cubic spline model (with one knot every few days; will
-probably work best for denser sampling than the median filter model) using
+The first step fits a cubic spline model (with one knot every few days; this
+probably works best for denser sampling than the median filter model) using
 iteratively re-weighted least-squares (IRLS;\ Hogg: some sort of citation?) to
-the median normalized aperture photometry.
-Then, discontinuities can be detected using a matched filter on the residuals
+the \Kepler\ median normalized aperture photometry.
+Discontinuities are detected using a matched filter on the residuals
 from the model fit in the previous step.
-Finally, after adding $K$ knots in the discontinuity, return to the first IRLS
-step and repeat.\ssfigure{figures/untrend_data.pdf}{%
+Add break-point knots in at the detected discontinuity locations and return to the first IRLS
+step; rinse and repeat.  A demo of the version~0.1 method is shown in
+\figurename~\ref{fig:untrendy}.%
+\ssfigure{figures/untrend_data.pdf}{%
 The long cadence observations of the star Kepler-10.
 There are two confirmed exoplanets in this system.
 \emph{Top:} the raw aperture photometry from the Kepler data reduction
@@ -372,39 +401,43 @@ The units on the y-axis are the same as the middle panel.
 The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
+% ---------------- 80 cols -----------------------------------------------------
+
 IRLS is a good choice for this purpose because it is extremely robust to
-outliers.
-This means that it can fit and correct for the global trends but not corrupt
-the transit signal.
-The optimization will also be insensitive to the outliers caused by the
+outliers, but without excluding them from consideration entirely; that is, it
+obtains all the robustness value of sigma-clipping or medianing, without
+rendering outliers completely uninformative in the fit.
+Of great value in early rinse--repeat rounds (when the SPSDs have not all be identified),
+the IRLS optimization is also be insensitive to the outliers caused by the
 discontinuities until the model is given more flexibility (in the form of
 added knots) at these positions.
 
-The choice of a cubic spline model with iteratively chosen knots is
-justified---and preferable to a windowed median model---for several reasons.
-First, it is significantly simpler (in general) that the median or PDC models.
+The choice of a cubic spline model is
+justified---and preferable to a windowed median model---for several reasons:
+Firstly, it is significantly simpler (in general) that the median or PDC models.
 The number of free parameters in the model is only the total number of knots
-in the spline.
-Contrast this to the median model (and probably the PDC model\ldots who
-knows?) where the model implicitly has the same number of parameters as
-data points.
-Also, the spline model can have variable complexity (or flexibility) at
+in the spline (the number of free parameters in a running median is sometimes
+thought of as being ``zero'' but it is in fact very large by any reasonable
+accounting; it might be as large as the number of data points in some sense).
+Second, the spline model can have variable complexity (or flexibility) at
 different points---a fact that we are taking advantage of to correct for
-discontinuities.
-Furthermore, spline models can be evaluated extremely efficiently so a model
+SPSDs.
+Third, spline models can be evaluated extremely efficiently; a model
 like the one that we propose here is not significantly more computationally
 complex than a median filter model.
+Fourth, spline models are inherently continuous; the running median is
+inherently discontinuous (it interpolates badly); to see this consider what
+happens as outlier pixels enter and leave the running window.
 
-We propose to release a implementation of this algorithm as a standalone C
-library with Python bindings under a liberal open source license (MIT!).
+We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
+library with Python bindings under a liberal open source license (MIT).
 This algorithm could be easily incorporated into any analysis where a running
 median is currently in use.
 It would also be a complimentary addition to the standard Kepler data
 product along side the PDC and MAP-PDC results.
 
-
-\paragraph{Enhanced goals}
-While the data pre-processing algorithm described above is a realistic and
+\paragraph{Enhanced goals:}
+While the version~0.1 version of \Untrendy\ described above is a realistic and
 quickly obtainable first step towards better modeling and detection of
 exoplanets in the Kepler data stream, it leaves the probabilistically
 righteous among us a little unsatisfied.
@@ -420,13 +453,18 @@ an interesting problem in computer science but since most of the power in the
 systematics is at short time lag, it would be possible to take advantage of
 the sparsity of the problem for efficiency (Iain Murray?).
 
-Another interesting idea would be to---like the MAP-PDC algorithm does---take
+Another interesting idea would be to---as in the MAP-PDC algorithm---take
 advantage of correlations between the systematic variations of nearby sources.
 In particular, a qualitative study of the some Kepler targets has shown that
 the locations of discontinuities tend to be the same for sources that are
 nearby on the detector.
 
-What about near periodicity in the systematic trends between quarters?
+One remarkable aspect of the spacecraft-induced lightcurve variability is 
+a remarkable repeatability for some stars from year to year; with the
+first quarters looking all very similar, and the second, and so on.
+This indicates that a good causal model for the variability could probably
+spearate spacecraft thermal effects from other effects, and possibly model
+them separately, possibly even using multi-quarter information simultaneously.
 
 \section{Fast, approximate hypothesis testing}
 
@@ -570,7 +608,7 @@ This second use is necessary for \TheCreator\ project described in the next
 section.
 
 
-\paragraph{Enhanced goals}
+\paragraph{Enhanced goals:}
 False positive detection using LD discrepancies.
 
 
