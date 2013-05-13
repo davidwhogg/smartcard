@@ -306,24 +306,28 @@ The \Kepler\ pipeline produces calibrated lightcurves, and then partially
 detrended ``PDC'' outputs that have much of the trends removed.
 However, For most precision experiments, the light curves corrected using PDC
 are not sufficiently de-trended.
-It is standard practice (DFM CITE Dressing, for example) to normalize fluxes by a
-running windowed median with a width of a few days (this is a free parameter).
-This method is surprisingly effective; it shows that most effects---with the
-exception of the SPSDs---take place on multi-day time-scales.
-Using the median is extremely robust to outliers; if the median window is wide enough in time,
-this procedure doesn't significantly affect any (shorter time-scale) transit signal.
+It is standard practice to normalize fluxes by a
+running windowed median with a width of a few days \citep{dressing} or a
+polynomial fit to the out-of-transit flux values \citep[regions chosen by
+hand][]{autokep}.
+These methods are surprisingly effective; it shows that most effects---with
+the exception of the SPSDs---take place on multi-day time-scales.
+Using the median is extremely robust to outliers; if the median window is
+wide enough in time, this procedure doesn't significantly affect any (shorter
+time-scale) transit signal.
 
-The running windowed median procedure runs into serious trouble when it encounters a SPSD or any
-other sharp discontinuity.
+Both of these procedures run into serious trouble when they encounter a SPSD
+or any other sharp discontinuity.
 The implicit background model must be smooth even across discontinuities; it
 will introduce significant structured residuals at SPSDs.
 The most responsible procedures in current practice discard the data
-near the SPSDs but no literature source is clear on how these points are identified
-in practice.
+near the SPSDs but no literature source is clear on how these points are
+identified in practice.
 (One further comment is that any investigator interested in long-timescale stellar variability
 should not use anything as simplistic as a windowed median.)
 
-A more sophisticated method is the ``Bayesian'' MAP-PDC method (DFM CITE THIS).
+A more sophisticated method is the ``Bayesian'' MAP-PDC method
+\citep{map-pdc1,map-pdc2}.
 It uses co-trending with surrounding stars to remove systematic trends that
 are correlated between nearby sources; that is, it capitalizes on spatial
 continuity of the spacecraft-induced variability of sources.
@@ -761,7 +765,13 @@ Kjurkchieva, D., Dimitrov, D., Vladev, A., \& Yotov, V.\ 2013, \mnras,
 Mandel, K., \& Agol, E.\ 2002, \apjl, \textbf{580}, L171
 
 \bibitem[Padmanabhan et al.(2008)]{ubercal}
-Padmanabhan, N., Schlegel, D.~J., Finkbeiner, D.~P., et al.\ 2008, \apj, 674, 1217
+Padmanabhan, N., Schlegel, D.~J., Finkbeiner, D.~P., \etal\ 2008, \apj, 674, 1217
+
+\bibitem[Smith \etal(2012)]{map-pdc2}
+Smith, J.~C., Stumpe, M.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 1000
+
+\bibitem[Stumpe \etal(2012)]{map-pdc1}
+Stumpe, M.~C., Smith, J.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 985
 
 \bibitem[Willman et al.(2005)]{wil1}
 Willman, B., Blanton, M.~R., West, A.~A., et al.\ 2005, \aj, 129, 2692
