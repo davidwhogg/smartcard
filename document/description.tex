@@ -843,29 +843,49 @@ Since we are at the very beginning of the specification of this project, it
 is essentially all ``enhanced goals'' at this point:
 \begin{itemize}
 \item
-TODO: key is to model the data, not statistics of the data (CITE VARIOUS)
+The absolutely most crucial element of \TheCreator\ is that it models
+\emph{the data} not \emph{statistics of the data}.  That is, the prior
+PDFs in \TheCreator\ are PDFs for exoplanet system parameters, which
+in turn are parameters for the likelihood function in \Bart\ acting on
+the data directly.  By integrating \Bart\ samplings in \TheCreator, we
+will be the first team in astrophysics to be modeling the whole
+exoplanet population, constrained by the lightcurve photometric points
+directly.
 \item
-We need to fully confront the problem of sampling in models of
-variable complexity (Cite Brewer).  It is both the case that we need
-to transmit information about marginal detections and non-detections,
-and that we have
+\TheCreator\ needs to fully confront the problem of sampling in models
+of variable complexity (Cite Brewer).  It is both the case that we
+need to transmit information about marginal detections and
+non-detections, and that we have unspecified model complexity for some
+of the non-parametric PDFs in the hierarchical model.  The sampling in
+\TheCreator\ is going to have to be able to jump between models with
+different numbers of planets in all KOI systems.
 \item
-TODO Independent-planet assumptions.
+Most analyses to date either assume that exoplanets are independently
+assigned to stars---that is, without regard to other exoplanets that
+might be there---or else make strong, rigid assumptions about
+multiplicity and period distributions.  We know (both from dynamics
+and from observations) that planets are \emph{not} independent but
+rather interact strongly; we need to generate flexible
+parameterizations for distrbutions simultaneously over planet number
+\emph{and} the properties of each planet.
 \item
-TODO Related to this, figure out flexible parameterizations for
-priors that handle non-independence of the planets in multi-planet
-systems.
-\item
-TODO Related to this, it is possible that advances in understandings
-of planetary dynamics or approximations thereto will lead to useful
+Related to this, it is possible that advances in understandings of
+planetary dynamics or approximations thereto will lead to useful
 ``dynamical priors'' that can be applied to avoid modeling systems or
 families of systems that would not be stable over long time scales.
+We already use ``no planet-crossing'' priors in some of our projects,
+but these are crude (to say the least).
 \item
-TODO Analysis in terms of planet compositions; connections to
-physical models and solar-system models.
+There is great excitement in the planet-formation community about
+population syntheses from first principles, based on star and planet
+formation models.  These can only connect to what we intend with
+\TheCreator\ if we can perform our hierarchical analyses in terms of
+planet compositions and other quantities related to formation and
+migration of planets.
 \item
-TODO Gather together all relevant data and build within
-\Bart\ likelihoods for all of them.
+Above all, we need to not only gather together all relevant data
+(photometric, dynamical, and astrometric); we need to build (within
+\Bart) likelihood functionss for all of them.
 \end{itemize}
 
 
