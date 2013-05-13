@@ -466,6 +466,8 @@ This indicates that a good causal model for the variability could probably
 spearate spacecraft thermal effects from other effects, and possibly model
 them separately, possibly even using multi-quarter information simultaneously.
 
+DFM:  3-day effects,  370-day effects,  TV-style rolling effect,  other issues from Barclay
+
 \paragraph{Proposal:}
 \textbf{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
 library with Python bindings under a liberal open source license (MIT).}
@@ -554,8 +556,18 @@ The requirements of a game-changing exoplanet inference system are the following
   our very successful \emcee\ \citep{emcee} and our continuing
   research into MCMC methods.
 \end{itemize}
+An example of the action of our prototype \Bart\ code is shown in \figurename~\ref{fig:bart}.
+\ssfigure{figures/bart.pdf}{0.70}{%
+The results of an experimental \Bart\ analysis on the long cadence light curve
+for the planet Kepler-6b.
+The grid of contour plots and histograms show the projections of the MCMC
+samples for the physical parameters of the planet (made under some standard prior PDF choices): semi-major axis $a$, radius
+$r$, mid-transit epoch $t_0$ (in days), and inclination $i$ (in degrees).
+The inset panel in the top right shows the data folded on the median period in
+the samples and 12 randomly drawn model light curves overplotted.
+\label{fig:bart}}
 
-\paragraph{A flexible, non-parametric limb darkening model}
+\paragraph{\Bart / flexible, non-parametric limb darkening model:}
 As mentioned above, most analyses of transiting exoplanets rely on the
 analytic limb darkening expressions of \citet{mandel}.
 These results are extremely restrictive on the form of limb darkening profile
@@ -598,13 +610,10 @@ Preliminary experiments show that arbitrary models can be computed to
 extremely high precision for the same computational cost as the standard
 \citet{mandel} models but with significantly more flexibility.
 
-\textit{Our proposal is to release an optimized Fortran or C library for
-computing light curves of arbitrary limb darkening models.}
 
-
-\paragraph{Model building \& parameter estimation}
-The current authors are specifically interested in the probabilistic modeling
-of observations of transiting exoplanets.
+\paragraph{\Bart / Model building and parameter estimation:}
+We are specifically interested in the probabilistic modeling
+of observations of transiting exoplanets; the limb-darkening work is designed with making such inferences more accurate (although, presumably, a bit less precise).
 The algorithm described in the previous section provides an efficient and
 flexible method of computing a \textit{likelihood function}.
 A likelihood function is a parameterization of the probability of observing a
@@ -647,24 +656,32 @@ the marginalized likelihood of the hierarchical parameters describing the
 prior distributions.
 This second use is necessary for \TheCreator\ project described in the next
 section.
-\ssfigure{figures/bart.pdf}{0.70}{%
-The results of an experimental \Bart\ analysis on the long cadence light curve
-for the planet Kepler-6b.
-The grid of contour plots and histograms show the projections of the MCMC
-samples for the physical parameters of the planet (made under some standard prior PDF choices): semi-major axis $a$, radius
-$r$, mid-transit epoch $t_0$ (in days), and inclination $i$ (in degrees).
-The inset panel in the top right shows the data folded on the median period in
-the samples and 12 randomly drawn model light curves overplotted.
-\label{fig:bart}}
+
+One key idea for both population modeling and for uptake by the community
 
 HOGG:  Key idea: User can choose parameterization...
 
 \paragraph{Enhanced goals:}
-False positive detection using LD discrepancies.
+False positive detection using LD discrepancies.  CITE BLENDER
 
 Sampling over model complexity.
 
-Astrometric exoplanets.
+Astrometric exoplanets.  \Gaia plans to release astrometry residuals on stars and binaries and stars+exoplanets.
+
+\paragraph{Proposal:}
+\textit{Our proposal is to release a complete, flexible package for
+  probabilistic exoplanet characterization.}  This package will
+include an optimized Fortran library for computing light curves of
+arbitrary limb darkening models, and fast, efficient MCMC sampling in
+Python.  The code will be easy to install and easy to use in the
+Python idiom.  Because it will be agnostic about parameterization, it
+will conform to the needs of many users.
+
+There are many enhancements to make to this basic plan, \emph{We
+  propose to make judgements about these and proceed as opportunities
+  warrant.}  We are excited about automatic false-positive detection,
+introducing more advanced sampling techniques, and preparing \Bart\ to
+make use of forthcoming \Gaia\ astrometric data.
 
 \section{Hierarchical population inference}
 
