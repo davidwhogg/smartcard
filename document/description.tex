@@ -16,7 +16,6 @@
 \input{hogg_nasa}
 \newcommand{\kplr}{\package{kplr}}
 \newcommand{\Untrendy}{\package{Untrendy}}
-\newcommand{\Turnstile}{\package{IronHorse}}
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
 \newcommand{\TheCreator}{\package{TheCreator}}
@@ -478,16 +477,20 @@ product along side the PDC and MAP-PDC results.
 understand, and succeed in building more principled causal models of some
 of the more complicated effects.}
 
-\section{Fast, approximate hypothesis testing}
-
-DFM:\  Explain what is currently done and how.  With citations.
-
-Hogg:\  Explain what \Turnstile\ will do in its first release.
-
-DFM:\  And demo figure.
-
-Hogg:\  Explain what future releases of \Turnstile\ might do.
-
+The key idea behind \Untrendy\ is that by removing all non-transit
+sources of variability, it makes transits much easier to find.
+\textbf{We propose to run \Untrendy\ on all Kepler lightcurves (the
+  entire KIC) and then search every one for periodic transits.  We
+  propose to publish all candidates.}
+This search will procede
+according to standard \Kepler-community methods such as the ``box
+least squares'' (DFM CITE), perhaps optimized by us for our particular
+hardware (think GPU) architectures.
+We will perform this search ``in
+the open'', sharing results with the community as we get them, but
+then writing up a statistically sound description of the entire
+process for those (like us) using the results to seed probabilistic
+analyses.
 
 \section{Probabilistic parameter estimation}
 
@@ -671,18 +674,18 @@ approximate schedule is the following
 Complete and release version~1.0 of \kplr\ API along with complete
 documentation.
 Release version~0.1
-of \Untrendy, \Turnstile, and \Bart, executing the first stages of
+of \Untrendy\ and \Bart, executing the first stages of
 approximation identified above, plus complete documentation.  Submit short
 papers describing these codes, comparing them with standard community
 practice, and showing first results.
-Execute \Untrendy\ and \Turnstile\ on the entire KIC;\
+Execute \Untrendy\ on the entire KIC, followed by transit-searching;\
 publication of all candidate transiting exoplanets, especially those
 previously unknown.  Execute \Bart\ on the best or most interesting of
 those companions, with an eye to exoplanet characterization and
 false-positive rejection.
 
 \paragraph{second year:}
-Submit papers describing the results of the \Untrendy, \Turnstile, and
+Submit papers describing the results of \Untrendy\ and
 \Bart\ from the first year.
 Complete and release version~0.1 of \TheCreator, executing the simplest
 meaningful graphical model, as described above, along with documentation.
@@ -690,7 +693,7 @@ Execute \Bart\ and \TheCreator\ on the complete set
 of exoplanet candidates geenerated in the first year.  Submit paper
 describing those results.
 With feedback from this full ``closed loop'', re-prioritize enhancements to
-\Untrendy\ and \Turnstile; ad  features to \Bart.
+\Untrendy; add features to \Bart.
 Complete and release Version~0.2 code for these packages, along with complete
 documentation.
 If the archived \Kepler\ data have changed or new relevant data sources have
@@ -711,7 +714,7 @@ documentation, and hosting.
 Again, if the archived \Kepler\ data have changed or new relevant data sources
 have appeared, upgrade and release version~1.2 of \kplr.
 Explore possible hand-off for sustainable maintainance of \kplr\ with the NASA archive teams.
-Release Version~1.0 for all four of \Untrendy, \Turnstile, \Bart, and
+Release Version~1.0 for all three of \Untrendy, \Bart, and
 \TheCreator, along with documentation and also (possibly very short) papers
 on arXiv or ASCL.
 
