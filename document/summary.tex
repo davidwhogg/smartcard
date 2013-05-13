@@ -7,7 +7,7 @@
 \setlength{\headheight}{2ex}
 \setlength{\headsep}{3ex}
 \input{hogg_nasa}
-\newcommand{\kplr}{\package{kplr.co}}
+\newcommand{\kplr}{\package{kplr}}
 \newcommand{\Untrendy}{\package{Untrendy}}
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
@@ -34,11 +34,13 @@ capabilities to the entire astrophysics community.  In particular,
 The project team will design, build, and release four non-trivial
 algorithmic methods (and corresponding software tools): The first is
 \kplr, an application programming interface to the public
-\Kepler\ data available at the Mikulski Archive at Space Telescope,
-making the data and \Kepler\ pipeline outputs easier to fetch and
-manipulate with automated software systems.  The second is \Untrendy,
-a system for flexibly but responsibly modeling the combination of tiny
-spacecraft photometric issues and stellar variability that makes every
+\Kepler\ data---and related and corresponding data from other
+investigators, surveys, and missions---available at the Mikulski
+Archive at Space Telescope and the Exoplanet Archive, making the data
+and \Kepler\ pipeline outputs easier to fetch and manipulate with
+automated software systems.  The second is \Untrendy, a system for
+flexibly but responsibly modeling the combination of tiny spacecraft
+photometric issues and stellar variability that makes every
 \Kepler\ target variable even in the calibrated data stream.  These
 effects, if unmodeled, are far larger than the exoplanet transits of
 greatest importance.  The third is \Bart, an inference package that
@@ -63,10 +65,16 @@ on the project team's expertise in fast, self-tuning MCMC to perform
 parameter estimation efficiently.  Part of its core design philosophy
 is flexibility in parameterization of systems; this makes it easy to
 propagate results---even from different systems with very different
-multiplicities---into population inference.  \TheCreator\ makes use of
-concepts from probabilistic graphical models (Bayesian networks) to
-incorporate ideas about causal mechanisms and quantitatively precise
-noise models into global population inferences.
+multiplicities---into population inference.  Also, the flexibility of
+the model, particularly as regards limb-darkening profiles for the
+host stars, makes it good for false-positive detection.
+\TheCreator\ makes use of concepts from probabilistic graphical models
+(Bayesian networks) to incorporate ideas about causal mechanisms and
+quantitatively precise noise models into global population inferences.
+Because it builds on the other components of the project, it has
+flexibility to use the heterogeneous data obtainable through \kplr,
+and work in different ``projections'' of the parameter space available
+through \Bart.
 
 Each of the four packages embodies a set of important ideas in data
 analysis and will be expressed in the form of easy-to-use,
