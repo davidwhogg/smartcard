@@ -539,14 +539,20 @@ Also, it's generally a good idea to have a \emph{community supported} code
 base instead of a single developer model.
 
 \paragraph{\Bart:}
-The key requirements of a game-changing 
-Main features of \Bart:
+This component of the proposal is a package of methods and code
+designed to analyze \emph{individual} exoplanet systems (stars), with
+one or more exoplanets causing transits or radial velocity variations
+or both.  It is designed to propagate full likelihood (or posterior
+probability) information forward to population synthesis projects
+(such as \TheCreator, below).
+The requirements of a game-changing exoplanet inference system are the following:
 \begin{itemize}
-\item Fast standalone Fortran library.
-\item User-friendly Python bindings with expressive model-building syntax.
-\item User-settable, flexible parameterization of systems.
-\item Flexible, non-parametric limb-darkening profile.
-\item Efficient sampling using \emcee\ \citep{emcee}.
+\item It must be fast.  In the case of \Bart, fastness is provided by a standalone Fortran library that computes the transit lightcurves and radial-velocity predictions.
+\item It must have user-friendly Python bindings and permit scientifically expressive model-building.  Adoption in the community for \Bart will be aided by its built-in flexibility about model parameter specification:  Systems can be parameterized with more observational parameters like times and periods, or more physical parameters like planet mass-densities and orbital angular momenta.
+\item It must be flexible about transit appearances, otherwise inferences about planet properties will be constrained with more code-delivered precision than is scientifically warranted.  \Bart\ achieves this goal through inclusion of a non-parametric limb-darkening profile.
+\item It must be efficient in sampling; here \Bart\ takes advantage of
+  our very successful \emcee\ \citep{emcee} and our continuing
+  research into MCMC methods.
 \end{itemize}
 
 \paragraph{A flexible, non-parametric limb darkening model}
@@ -657,6 +663,8 @@ HOGG:  Key idea: User can choose parameterization...
 False positive detection using LD discrepancies.
 
 Sampling over model complexity.
+
+Astrometric exoplanets.
 
 \section{Hierarchical population inference}
 
