@@ -47,4 +47,4 @@ for ax, s in zip([ax1, ax2, ax3], ["raw", "PDC corrected", "untrended"]):
 ax3.set_xlabel(r"time [KBJD]")
 
 fig.savefig("untrend_data.png")
-fig.savefig("../document/figures/untrend_data.pdf")
+fig.savefig("../document/figures/untrend_data.pdf", bbox_inches="tight")

@@ -499,7 +499,7 @@ The most exciting science to come from \Kepler\ recently has been in
 the \emph{characterization} of the exoplanet systems; the understand
 of extra-solar planetary systems in terms of planet sizes, distances,
 inferred compositions and expected surface temperatures.  These
-results depend on \emph{probabilistic inference} 
+results depend on \emph{probabilistic inference}
 
 Main features of \Bart:
 \begin{itemize}
@@ -665,7 +665,19 @@ PGMs are a visual representation of the conditional dependencies in a
 probability distribution or equivalently the generative procedure for the data
 as implied by the assumed model.
 An extremely general model for the \Kepler\ inference is problem is shown in
-
+\figurename~\ref{fig:full-pgm}.
+\ssfigure{figures/full-pgm.pdf}{0.4}{%
+The general probabilistic model describing the \Kepler\ hierarchical inference
+problem.
+At the top, the parameters of the global population of planet is indicated by
+$\Theta_\mathrm{p}$ and the global distribution of planetary systems in
+labeled $\Theta_\star$.
+The parameters of the planetary systems $\star_n$ and the parameters of the
+planets $p_n^m$ are then drawn from these global distributions.
+Finally, after applying the survey systematics $S$, the observations
+$\mathbf{X}_n$---light curves, radial velocities, etc.---are noisily drawn by
+``observing'' the physical system.
+\label{fig:full-pgm}}
 
 
 pgm intro
