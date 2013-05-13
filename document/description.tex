@@ -393,7 +393,7 @@ from the model fit in the previous step.
 Add break-point knots in at the detected discontinuity locations and return to the first IRLS
 step; rinse and repeat.  A demo of the version~0.1 method is shown in
 \figurename~\ref{fig:untrendy}.%
-\ssfigure{figures/untrend_data.pdf}{%
+\ssfigure{figures/untrend_data.pdf}{0.60}{%
 The long cadence observations of the star Kepler-10.
 There are two confirmed exoplanets in this system.
 \emph{Top:} the raw aperture photometry from the Kepler data reduction
@@ -494,11 +494,18 @@ analyses.
 
 \section{Probabilistic parameter estimation}
 
+The most exciting science to come from \Kepler\ recently has been in
+the \emph{characterization} of the exoplanet systems; the understand
+of extra-solar planetary systems in terms of planet sizes, distances,
+inferred compositions and expected surface temperatures.  These
+results depend on \emph{probabilistic inference} 
+
 Main features of \Bart:
 \begin{itemize}
-\item Flexible, non-parametric limb-darkening profile.
 \item Fast standalone Fortran library.
 \item User-friendly Python bindings with expressive model-building syntax.
+\item User-settable, flexible parameterization of systems.
+\item Flexible, non-parametric limb-darkening profile.
 \item Efficient sampling using \emcee\ \citep{emcee}.
 \end{itemize}
 
@@ -525,9 +532,6 @@ In particular, many astronomers are adopting Python as their main programming
 language instead of IDL.\
 Also, it's generally a good idea to have a \emph{community supported} code
 base instead of a single developer model.
-
-
-\citet{mandel}
 
 \paragraph{A flexible, non-parametric limb darkening model}
 As mentioned above, most analyses of transiting exoplanets rely on the
@@ -621,7 +625,7 @@ the marginalized likelihood of the hierarchical parameters describing the
 prior distributions.
 This second use is necessary for \TheCreator\ project described in the next
 section.
-\tbfigure{figures/bart.pdf}{%
+\ssfigure{figures/bart.pdf}{0.70}{%
 The results of an experimental \Bart\ analysis on the long cadence light curve
 for the planet Kepler-6b.
 The grid of contour plots and histograms show the projections of the MCMC
@@ -631,9 +635,12 @@ The inset panel in the top right shows the data folded on the median period in
 the samples and 12 randomly drawn model light curves overplotted.
 \label{fig:bart}}
 
+HOGG:  Key idea: User can choose parameterization...
+
 \paragraph{Enhanced goals:}
 False positive detection using LD discrepancies.
 
+Sampling over model complexity.
 
 \section{Hierarchical population inference}
 
@@ -671,14 +678,6 @@ Hogg:\  What will \TheCreator\ do?
 Need variable complexity sampling. Cite Brewer.
 
 
-\section{Side projects}
-
-GALEX project
-
-false-positive detection and characterization
-
-variable-star science
-
 \section{Management plan}
 
 This project is the PhD dissertation project of Co-I Foreman-Mackey;
@@ -692,10 +691,10 @@ small amount of support for an additional part-time graduate student
 and postdoc.  These are budgeted to support short-term scentific
 collaborations that make use of the software or improve it.  That is,
 some of the sub-parts of the project can be executed by new graduate
-students or postdocs at NYU.\
+students or postdocs at NYU.
 
 The project is budgeted for three years of project lifetime.  An
-approximate schedule is the following
+approximate schedule is the following:
 
 \paragraph{first year:}
 Complete and release version~1.0 of \kplr\ API along with complete
@@ -725,8 +724,6 @@ Complete and release Version~0.2 code for these packages, along with complete
 documentation.
 If the archived \Kepler\ data have changed or new relevant data sources have
 appeared, upgrade and release version~1.1 of \kplr.
-Start side projects on stellar variability, eclipsing binaries, transit-timing
-variations, or limb-darkening as appropriate.
 
 \paragraph{third year:}
 Following up best hints in results from \TheCreator\ in the second
@@ -735,7 +732,6 @@ models for competition.
 Re-run everything on the entire KIC to update the population analysis to
 incorporate all improvements.
 Submit papers describing improved software and new results.
-Complete side projects and submit papers.
 Make final decisions about final code versions, final code adjustments,
 documentation, and hosting.
 Again, if the archived \Kepler\ data have changed or new relevant data sources

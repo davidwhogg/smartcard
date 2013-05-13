@@ -82,17 +82,19 @@
 %----- side-to-side figure macro
 %------- make numbers add up to 94%
  \newlength{\figurewidth}
- \setlength{\figurewidth}{0.47\textwidth}
  \newlength{\captionwidth}
- \setlength{\captionwidth}{0.47\textwidth}
- \newcommand{\ssfigure}[2]{%
+ \newcommand{\ssfigure}[3]{%
+   \setlength{\figurewidth}{#2\textwidth}
+   \setlength{\captionwidth}{\textwidth}
+   \addtolength{\captionwidth}{-\figurewidth}
+   \addtolength{\captionwidth}{-0.02\figurewidth}
    \begin{figure}[htb]%
    \begin{tabular}{cc}%
      \begin{minipage}[c]{\figurewidth}%
        \resizebox{\figurewidth}{!}{\includegraphics{#1}}%
      \end{minipage} &%
      \begin{minipage}[c]{\captionwidth}%
-       \textsf{\caption[]{\footnotesize {#2}}}%
+       \textsf{\caption[]{\footnotesize {#3}}}%
      \end{minipage}%
    \end{tabular}%
    \end{figure}}
