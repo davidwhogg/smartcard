@@ -484,7 +484,7 @@ sources of variability, it makes transits much easier to find.
   propose to publish all candidates.}
 This search will procede
 according to standard \Kepler-community methods such as the ``box
-least squares'' (DFM CITE), perhaps optimized by us for our particular
+least squares'' \citep{box}, perhaps optimized by us for our particular
 hardware (think GPU) architectures.
 We will perform this search ``in
 the open'', sharing results with the community as we get them, but
@@ -689,10 +689,32 @@ $\Theta_\mathrm{p}$ and the global distribution of planetary systems in
 labeled $\Theta_\star$.
 The parameters of the planetary systems $\star_n$ and the parameters of the
 planets $p_n^m$ are then drawn from these global distributions.
-Finally, after applying the survey systematics $S$, the observations
-$\mathbf{X}_n$---light curves, radial velocities, etc.---are noisily drawn by
-``observing'' the physical system.
+Finally, after applying the survey systematics $S$ (this includes things like
+the selection function of the survey and other general systematic effects),
+the observations $\mathbf{X}_n$---light curves, radial velocities, etc.---are
+noisily drawn by ``observing'' the physical system.
 \label{fig:full-pgm}}
+The problem of learning about the population of exoplanets can be formulated
+in terms of a maximization of the marginalized likelihood function of
+$\Theta_p$ conditioned on \emph{all observations of all exoplanets}:
+\begin{eqnarray}
+p(\{\mathbf{X}_n\}\,|\,\Theta_p) = \int \prod_{n}
+p(\{p_n^m\},\,\star_n,\,\mathbf{X}_n\,|\,\Theta_p)
+\dd p_n^m \dd \star_n\quad.
+\end{eqnarray}
+The marginalization in this computation is most efficiently performed using
+MCMC.
+In particular, the results of an analysis using \Bart\ include the information
+necessary for accurately estimating the value of the marginalized likelihood.
+
+
+\paragraph{Current status}
+Some steps have been taken toward
+
+
+\paragraph{\TheCreator}
+
+
 
 
 pgm intro
@@ -814,6 +836,10 @@ Koch, D.~G., Borucki, W.~J., Rowe, J.~F., et al.\ 2010, \apjl,
 \bibitem[Kjurkchieva \etal(2013)]{crazyass2}
 Kjurkchieva, D., Dimitrov, D., Vladev, A., \& Yotov, V.\ 2013, \mnras,
 \textbf{1123}
+
+\bibitem[Kov{\'a}cs \etal(2002)]{box}
+Kov{\'a}cs, G., Zucker, S., \& Mazeh, T.\ 2002, \aap, 391, 369
+
 
 \bibitem[Mandel \& Agol(2002)]{mandel}
 Mandel, K., \& Agol, E.\ 2002, \apjl, \textbf{580}, L171
