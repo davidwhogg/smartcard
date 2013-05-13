@@ -526,7 +526,7 @@ There are, of course, a few exceptions.
 In particular, \project{EXOFAST} \citep{exofast}---and by extension
 \project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
 routines for simultaneously modeling light curves and radial velocity
-observations using a method called Differential Evolution MCMC.\@ 
+observations using a method called Differential Evolution MCMC.\@
 Since neither of these projects include a license, they can't (in a strict legal sense) be used
 by other research groups but it seems like the community (for now) ignores this fact and
 hopes for the best.
@@ -534,7 +534,7 @@ hopes for the best.
 Even so, there are numerous improvements that could be made on the existing
 tools.
 In particular, many astronomers are adopting Python as their main programming
-language instead of IDL.\@ 
+language instead of IDL.\@
 Also, it's generally a good idea to have a \emph{community supported} code
 base instead of a single developer model.
 
@@ -672,6 +672,8 @@ One of the main science goals of the \Kepler\ mission is to learn about the
 \emph{global population} exoplanets and answer questions like ``do planetary
 systems tend to form aligned in a disk?'', and ``what fraction of planets live
 in multiple planet systems?''
+In the literature, this is often referred to as studying the architecture of
+exoplanetary systems.
 This is an excellent example of a \emph{hierarchical inference problem}
  (CITE:\ Hogg ecc, Blei, other?).
 While the term ``hierarchical inference'' is not often used in the astronomy
@@ -702,6 +704,7 @@ the selection function of the survey and other general systematic effects),
 the observations $\mathbf{X}_n$---light curves, radial velocities, etc.---are
 noisily drawn by ``observing'' the physical system.
 \label{fig:full-pgm}}
+
 The problem of learning about the population of exoplanets can be formulated
 in terms of a maximization of the marginalized likelihood function of
 $\Theta_p$ conditioned on \emph{all observations of all exoplanets}:
@@ -717,7 +720,15 @@ necessary for accurately estimating the value of the marginalized likelihood.
 
 
 \paragraph{Current status}
-Some steps have been taken toward
+Some excellent steps have been taken toward modeling the population
+parameters \citep[][for example]{lissauer,tremaine,fang} with somewhat
+contradictory results depending on the methodology.
+For example...
+All of the architectural studies to date have relied on the assumption that it
+is possible to obtain a ``complete'' sample of exoplanetary systems by making
+hard cuts on the observed parameter space.
+As a result, these studies are required to be extremely conservative in their
+data selection procedure.
 
 
 \paragraph{\TheCreator}
@@ -821,6 +832,9 @@ Eastman, J., Gaudi, B.~S., \& Agol, E.\ 2013, \pasp, \textbf{125}, 83
 \bibitem[Eisenstein et al.(2005)]{bao}
 Eisenstein, D.~J., Zehavi, I., Hogg, D.~W., et al.\ 2005, \apj, 633, 560
 
+\bibitem[Fang \& Margot(2012)]{fang}
+Fang, J., \& Margot, J.-L.\ 2012, \apj, 761, 92
+
 \bibitem[Ford(2005)]{ford}
 Ford, E.~B.\ 2005, \aj, \textbf{129}, 1706
 
@@ -848,6 +862,8 @@ Kjurkchieva, D., Dimitrov, D., Vladev, A., \& Yotov, V.\ 2013, \mnras,
 \bibitem[Kov{\'a}cs \etal(2002)]{box}
 Kov{\'a}cs, G., Zucker, S., \& Mazeh, T.\ 2002, \aap, 391, 369
 
+\bibitem[Lissauer \etal(2011)]{lissauer}
+Lissauer, J.~J., Ragozzine, D., Fabrycky, D.~C., \etal\ 2011, \apjs, 197, 8
 
 \bibitem[Mandel \& Agol(2002)]{mandel}
 Mandel, K., \& Agol, E.\ 2002, \apjl, \textbf{580}, L171
@@ -860,6 +876,9 @@ Smith, J.~C., Stumpe, M.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 1000
 
 \bibitem[Stumpe \etal(2012)]{map-pdc1}
 Stumpe, M.~C., Smith, J.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 985
+
+\bibitem[Tremaine \& Dong(2012)]{tremaine}
+Tremaine, S., \& Dong, S.\ 2012, \aj, 143, 94
 
 \bibitem[Willman et al.(2005)]{wil1}
 Willman, B., Blanton, M.~R., West, A.~A., et al.\ 2005, \aj, 129, 2692
