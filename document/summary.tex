@@ -9,7 +9,6 @@
 \input{hogg_nasa}
 \newcommand{\kplr}{\package{kplr.co}}
 \newcommand{\Untrendy}{\package{Untrendy}}
-\newcommand{\Turnstile}{\package{IronHorse}}
 \newcommand{\Bart}{\package{Bart}}
 \newcommand{\emcee}{\package{emcee}}
 \newcommand{\TheCreator}{\package{TheCreator}}
@@ -29,10 +28,10 @@ to verify and improve upon the tremendously successful
 \Kepler-team-led analyses of the data, and to provide new inference
 capabilities to the entire astrophysics community.  In particular,
 \textbf{the proposal is to design, build, and release to the public
-  five modular, novel, easy-to-use tools for probabilistic inference
+  four modular, novel, easy-to-use tools for probabilistic inference
   of exoplanet populations in the \Kepler\ data.}
 
-The project team will design, build, and release five non-trivial
+The project team will design, build, and release four non-trivial
 algorithmic methods (and corresponding software tools): The first is
 \kplr, an application programming interface to the public
 \Kepler\ data available at the Mikulski Archive at Space Telescope,
@@ -42,21 +41,16 @@ a system for flexibly but responsibly modeling the combination of tiny
 spacecraft photometric issues and stellar variability that makes every
 \Kepler\ target variable even in the calibrated data stream.  These
 effects, if unmodeled, are far larger than the exoplanet transits of
-greatest importance.  The third is \Turnstile, a brute-force
-generative-modeling machinery that creates and tests enormous numbers
-of exoplanetary hypotheses against enormous numbers of
-\Kepler\ targets---each of which has enormous numbers of observations.
-This is how exoplanet candidates are found (or should be found).  The
-fourth is \Bart, an inference package that returns responsible,
-properly marginalized parameter estimates under parameterized (or
-non-parametric) prior probability density functions for exoplanet
-system properties.  The fifth is \TheCreator, a hierarchical modeling
-framework and software system that permits probabilistic inference of
-the true distribution of exoplanetary system parameters
-(``architecture'' in the lingo), starting at parameter estimation and
-including all the information coming not just from well measured
-systems but also from all the (numerous) marginal and null detections
-among the \Kepler\ targets.
+greatest importance.  The third is \Bart, an inference package that
+returns responsible, properly marginalized parameter estimates under
+parameterized (or non-parametric) prior probability density functions
+for exoplanet system properties.  The fourth is \TheCreator, a
+hierarchical modeling framework and software system that permits
+probabilistic inference of the true distribution of exoplanetary
+system parameters (``architecture'' in the lingo), starting at
+parameter estimation and including all the information coming not just
+from well measured systems but also from all the (numerous) marginal
+and null detections among the \Kepler\ targets.
 
 The common thread joining all of these projects is probabilistic
 inference.  The project team members are known for creating useful
@@ -64,21 +58,17 @@ tools and methods for principled inference, most notably with
 generative, justified, causal models and Markov Chain Monte Carlo
 (MCMC).  The \Untrendy\ system is novel because it is based on a model
 that is very flexible where it needs to be, but inflexible (relative
-to its competitors) where it doesn't.  The \Turnstile\ machinery can
-make discoveries that predecessors have missed because it makes
-principled approximations to full generative modeling of the data
-without the enormous computational cost.  It also capitalizes on
-current computer architecture (GPU) where it can.  The \Bart\ package
-capitalizes on the project team's expertise in fast, self-tuning MCMC
-to perform parameter estimation efficiently.  Part of its core design
-philosophy is flexibility in parameterization of systems; this makes
-it easy to propagate results---even from different systems with very
-different multiplicities---into population inference.
-\TheCreator\ makes use of concepts from probabilistic graphical models
-(Bayesian networks) to incorporate ideas about causal mechanisms and
-quantitatively precise noise models into global population inferences.
+to its competitors) where it doesn't.  The \Bart\ package capitalizes
+on the project team's expertise in fast, self-tuning MCMC to perform
+parameter estimation efficiently.  Part of its core design philosophy
+is flexibility in parameterization of systems; this makes it easy to
+propagate results---even from different systems with very different
+multiplicities---into population inference.  \TheCreator\ makes use of
+concepts from probabilistic graphical models (Bayesian networks) to
+incorporate ideas about causal mechanisms and quantitatively precise
+noise models into global population inferences.
 
-Each of the five packages embodies a set of important ideas in data
+Each of the four packages embodies a set of important ideas in data
 analysis and will be expressed in the form of easy-to-use,
 easy-to-modify, public, open-source software, released under an
 open-source license.  The idea is to make all results of the project
