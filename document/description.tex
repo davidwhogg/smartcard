@@ -491,6 +491,10 @@ the open'', sharing results with the community as we get them, but
 then writing up a statistically sound description of the entire
 process for those (like us) using the results to seed probabilistic
 analyses.
+(If any reviewer doubts our willingness to work out in the open, the
+full progress of the writing of this proposal, from outline to final
+form, with all comments and issues and history, is available at
+\url{https://github.com/davidwhogg/smartcard}.)
 
 
 \section{Probabilistic parameter estimation}
@@ -499,8 +503,43 @@ The most exciting science to come from \Kepler\ recently has been in
 the \emph{characterization} of the exoplanet systems; the understand
 of extra-solar planetary systems in terms of planet sizes, distances,
 inferred compositions and expected surface temperatures.  These
-results depend on \emph{probabilistic inference}
+results depend on \emph{probabilistic inference}.  The \Kepler\ and
+larger exoplanet communities have become very sophisticated, making
+use of justifiable likelihood functions, reasonable priors, Bayesian
+inference, marginalization over nuisance parameters, and MCMC
+sampling.  What we are contributing here is \emph{good engineering}
+that will make all of these activities easier, higher performing, and
+more useful.  We also add some important new capabilities.  Our key
+goals are to propagate our new engineering and capabilities in the
+form of useful tools and sustainable practices.
 
+\paragraph{Standard practice:}
+The exoplanet community has long understood and been open to data analysis
+using rigorous probabilistic inference \citep[][for example]{ford}.
+All recent methods of planetary parameter estimation use MCMC (or similar) to
+propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
+kepler5,kepler4}.
+Despite the fact that a large fraction of exoplaneteers use these kinds of techniques, there is no standard
+implementation for exoplanet model-building and analysis.
+In fact, few of the published analysis papers are accompanied by openly visible or available source code at all, let alone useful, reuseable tools.
+There are, of course, a few exceptions.
+In particular, \project{EXOFAST} \citep{exofast}---and by extension
+\project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
+routines for simultaneously modeling light curves and radial velocity
+observations using a method called Differential Evolution MCMC.\@ 
+Since neither of these projects include a license, they can't (in a strict legal sense) be used
+by other research groups but it seems like the community (for now) ignores this fact and
+hopes for the best.
+(One of what the NSF might call ``broader impacts'' of this project could be that it will help to propagate thoughtful licensing decisions into the community.)
+Even so, there are numerous improvements that could be made on the existing
+tools.
+In particular, many astronomers are adopting Python as their main programming
+language instead of IDL.\@ 
+Also, it's generally a good idea to have a \emph{community supported} code
+base instead of a single developer model.
+
+\paragraph{\Bart:}
+The key requirements of a game-changing 
 Main features of \Bart:
 \begin{itemize}
 \item Fast standalone Fortran library.
@@ -509,30 +548,6 @@ Main features of \Bart:
 \item Flexible, non-parametric limb-darkening profile.
 \item Efficient sampling using \emcee\ \citep{emcee}.
 \end{itemize}
-
-\paragraph{Standard methods for parameter estimation}
-The exoplanet community has long understood and been open to data analysis
-using rigorous probabilistic inference \citep[][for example]{ford}.
-All recent methods of planetary parameter estimation use MCMC (or similar) to
-propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
-kepler5,kepler4}.
-Despite the fact that everyone uses the same techniques, there is no standard
-implementation of exoplanet model building and analysis.
-In fact, few of the published analysis papers are accompanied be source code.
-There are, of course, a few exceptions.
-In particular, \project{EXOFAST} \citep{exofast}---and by extension
-\project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
-routines for simultaneously modeling light curves and radial velocity
-observations using a method called Differential Evolution MCMC.%
-Since neither of these projects include a license, they can't legally be used
-by other research groups but it seems like the community ignores this fact and
-hopes for the best.
-Even so, there are numerous improvements that could be made on the existing
-tools.
-In particular, many astronomers are adopting Python as their main programming
-language instead of IDL.\
-Also, it's generally a good idea to have a \emph{community supported} code
-base instead of a single developer model.
 
 \paragraph{A flexible, non-parametric limb darkening model}
 As mentioned above, most analyses of transiting exoplanets rely on the
