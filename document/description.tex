@@ -788,7 +788,7 @@ In particular, the results of an analysis using \Bart\ include the information
 necessary for accurately estimating the value of the marginalized likelihood.
 
 
-\paragraph{Current status}
+\paragraph{Standard practice:}
 Some excellent steps have been taken toward modeling the population
 parameters \citep[][for example]{lissauer,tremaine,fang} with somewhat
 contradictory results depending on the methodology.
@@ -809,10 +809,11 @@ is possible to obtain a ``complete'' sample of exoplanetary systems by making
 hard cuts on the observed parameter space.
 As a result, these studies are required to be extremely conservative when
 selecting data.
-It is possible to relax this constraint by modeling the selection function of
-the survey.
-This is beneficial for two main reasons: 1.\ it increases the amount of data
-available for the analysis, and 2.\ if there are problems with the assumed
+
+In principle, it is possible to relax this constraint by modeling the selection function of
+the survey, though this has not yet been done for the \Kepler\ mission.
+This kind of ``selection modeling'' is beneficial for two main reasons: Firstly, it increases the amount of data
+available for the analysis, and second, if there are problems with the assumed
 completeness estimates (that are based on heuristics anyways) then a flexible
 enough model will be able to capture these problems.
 A full probabilistic model of the exoplanet population also provides a
@@ -820,7 +821,7 @@ mechanism for taking the observational and systematic uncertainties into
 account.
 
 
-\paragraph{\TheCreator}
+\paragraph{\TheCreator:}
 We propose to build a general tool---called \TheCreator---for performing
 hierarchical inference in the context of exoplanet population modeling.
 This will build on and rely heavily on the efficient samplings provided by
@@ -836,8 +837,57 @@ demonstrate a hierarchical method for learning the distribution of planet
 eccentricities given a set of synthetic radial velocity observations.
 
 
-\paragraph{Enhanced goals}
-Need variable complexity sampling. Cite Brewer.
+\paragraph{Enhanced goals:}
+Since we are at the very beginning of the specification of this project, it
+is essentially all ``enhanced goals'' at this point:
+\begin{itemize}
+\item
+TODO: key is to model the data, not statistics of the data (CITE VARIOUS)
+\item
+We need to fully confront the problem of sampling in models of
+variable complexity (Cite Brewer).  It is both the case that we need
+to transmit information about marginal detections and non-detections,
+and that we have
+\item
+TODO Independent-planet assumptions.
+\item
+TODO Related to this, figure out flexible parameterizations for
+priors that handle non-independence of the planets in multi-planet
+systems.
+\item
+TODO Related to this, it is possible that advances in understandings
+of planetary dynamics or approximations thereto will lead to useful
+``dynamical priors'' that can be applied to avoid modeling systems or
+families of systems that would not be stable over long time scales.
+\item
+TODO Analysis in terms of planet compositions; connections to
+physical models and solar-system models.
+\item
+TODO Gather together all relevant data and build within
+\Bart\ likelihoods for all of them.
+\end{itemize}
+
+
+\paragraph{Proposal:}
+Fundamentally, \emph{we propose to bring full hierarchical
+  probabilistic inference to exoplanet data, including the
+  \Kepler\ data.}  We plan to build and release a general tool for
+such inference.  \emph{We also propose to use this tool to perform
+  simple hierarchical analyses in models of increasing complexity.}
+Our first inferences will be in extremely simplified models, such as
+those in the literature at present, which treat the population as
+being determined by a few multiplicity and inclination parameters, but
+we intend to get to more realistic models as the project proceeds.  We
+also propose to make it an early goal to strongly rule out and learn
+from the ``independent-planet'' straw-man model that underpins many
+current analyses, though must certainly be wrong.
+
+Once planet-independence is broken, one of the key goals of this
+project is to \emph{develop parameterizations for priors over
+  exoplanetary systems (``architecture'') that permit planet
+  dependence but are still very flexible or non-parametric}.  We
+propose to develop these and use them to model the full data set we
+have collected for our simpler analyses.
 
 
 \section{Management plan}
