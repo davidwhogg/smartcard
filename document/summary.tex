@@ -4,9 +4,11 @@
 \usepackage{epsfig}
 \usepackage{graphicx}
 \newcommand{\sectionname}{Section}
-\setlength{\headheight}{2ex}
-\setlength{\headsep}{3ex}
 \input{hogg_nasa}
+\addtolength{\textheight}{\headheight}
+\addtolength{\textheight}{\headsep}
+\setlength{\headheight}{0ex}
+\setlength{\headsep}{0ex}
 \newcommand{\kplr}{\package{kplr}}
 \newcommand{\Untrendy}{\package{Untrendy}}
 \newcommand{\Bart}{\package{Bart}}
@@ -14,8 +16,7 @@
 \newcommand{\TheCreator}{\package{TheCreator}}
 \newcommand{\KIC}{\textsl{KIC}}
 \newcommand{\KOI}{\textsl{KOI}}
-\pagestyle{myheadings}
-\markright{\textsf{\small Hogg \& Foreman-Mackey / probabilistic modeling of Kepler data}}
+\pagestyle{empty}
 \begin{document}
 
 The \Kepler\ observatory has provided the most important and
