@@ -634,12 +634,39 @@ False positive detection using LD discrepancies.
 
 \section{Hierarchical population inference}
 
+One of the main science goals of the \Kepler\ mission is to learn about the
+\emph{global population} exoplanets and answer questions like ``do planetary
+systems tend to form aligned in a disk?'', and ``what fraction of planets live
+in multiple planet systems?''
+This is an excellent example of a \emph{hierarchical inference problem}
+ (CITE:\ Hogg ecc, Blei, other?).
+While the term ``hierarchical inference'' is not often used in the astronomy
+literature, many astrophysical research questions can be posed this way and
+techniques from the computer science literature---where hierarchical inference
+is an active research problem---can be applied.
+The basic structure of a hierarchical analysis involves determining the
+structure and parameters of the \emph{prior} probability distribution
+functions conditioned on observations of an \emph{ensemble} of independent
+systems.
+An illustrative way of representing an inference problem like this is a
+\emph{probabilistic graphical model} (PGM).
+PGMs are a visual representation of the conditional dependencies in a
+probability distribution or equivalently the generative procedure for the data
+as implied by the assumed model.
+An extremely general model for the \Kepler\ inference is problem is shown in
+
+
+
 pgm intro
 
 DFM:\  Explain what is currently done, perhaps concentrating on Tremaine
 paper and competitors.  Also we should touch on theory here.
 
 Hogg:\  What will \TheCreator\ do?
+
+\paragraph{Enhanced goals}
+Need variable complexity sampling. Cite Brewer.
+
 
 \section{Side projects}
 
