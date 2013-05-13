@@ -711,7 +711,7 @@ $\Theta_p$ conditioned on \emph{all observations of all exoplanets}:
 \begin{eqnarray}
 p(\{\mathbf{X}_n\}\,|\,\Theta_p) = \int \prod_{n}
 p(\{p_n^m\},\,\star_n,\,\mathbf{X}_n\,|\,\Theta_p)
-\dd p_n^m \dd \star_n\quad.
+\dd p_n^m \dd\!\star_n\quad.
 \end{eqnarray}
 The marginalization in this computation is most efficiently performed using
 MCMC.
@@ -723,25 +723,44 @@ necessary for accurately estimating the value of the marginalized likelihood.
 Some excellent steps have been taken toward modeling the population
 parameters \citep[][for example]{lissauer,tremaine,fang} with somewhat
 contradictory results depending on the methodology.
-For example...
+For example, \citet{fang} conclude that the distribution of \Kepler\ planet
+candidates strongly implies that systems with multiple planets tend to lie in
+relatively thin disks while \citet{tremaine}---using the same
+dataset---conclude that there isn't enough information in the \Kepler\ dataset
+to constrain the inclination distribution.
+The inclusion of results from radial velocity surveys seem to being the
+results into better agreement but the incompatibility between results is
+puzzling.
+The main difference between these two procedures is that \citet{fang} model
+the data by comparing statistics on simulated populations of exoplanets
+ (samples from a uniform prior in the parameters) and \citet{tremaine}
+directly model statistics on the individual light curves.
 All of the architectural studies to date have relied on the assumption that it
 is possible to obtain a ``complete'' sample of exoplanetary systems by making
 hard cuts on the observed parameter space.
-As a result, these studies are required to be extremely conservative in their
-data selection procedure.
+As a result, these studies are required to be extremely conservative when
+selecting data.
+It is possible to relax this constraint by modeling the selection function of
+the survey.
+This is beneficial for two main reasons: 1.\ it increases the amount of data
+available for the analysis, and 2.\ if there are problems with the assumed
+completeness estimates (that are based on heuristics anyways) then a flexible
+enough model will be able to capture these problems.
+A full probabilistic model of the exoplanet population also provides a
+mechanism for taking the observational and systematic uncertainties into
+account.
 
 
 \paragraph{\TheCreator}
-
-
-
-
-pgm intro
-
-DFM:\  Explain what is currently done, perhaps concentrating on Tremaine
-paper and competitors.  Also we should touch on theory here.
+We propose to build a general tool---called \TheCreator---for performing
+hierarchical inference in the context of exoplanet population modeling.
+This will build on and rely heavily on the efficient samplings provided by
+\Bart.
+With extensive experience in the field of hierarchical inference
+\citep{xd,hogg-ecc,stargal}.
 
 Hogg:\  What will \TheCreator\ do?
+
 
 \paragraph{Enhanced goals}
 Need variable complexity sampling. Cite Brewer.
@@ -823,6 +842,10 @@ Belokurov, V., Zucker, D.~B., Evans, N.~W., et al.\ 2006, \apjl, 642, L137
 Borucki, W.~J., Koch, D.~G., Brown, T.~M., \etal\ 2010, \apjl,
 \textbf{713}, L126
 
+\bibitem[Bovy Jo \etal(2011)]{xd}
+Bovy Jo, Hogg, D.~W., \& Roweis, S.~T.\ 2011, Annals of Applied Statistics,
+5, 1657
+
 \bibitem[Dressing \& Charbonneau(2013)]{dressing}
 Dressing, C.~D., \& Charbonneau, D.\ 2013, \apj, \textbf{767}, 95
 
@@ -831,6 +854,9 @@ Eastman, J., Gaudi, B.~S., \& Agol, E.\ 2013, \pasp, \textbf{125}, 83
 
 \bibitem[Eisenstein et al.(2005)]{bao}
 Eisenstein, D.~J., Zehavi, I., Hogg, D.~W., et al.\ 2005, \apj, 633, 560
+
+\bibitem[Fadely \etal(2012)]{stargal}
+Fadely, R., Hogg, D.~W., \& Willman, B.\ 2012, \apj, 760, 15
 
 \bibitem[Fang \& Margot(2012)]{fang}
 Fang, J., \& Margot, J.-L.\ 2012, \apj, 761, 92
@@ -850,6 +876,9 @@ Gim{\'e}nez, A.\ 2006, \aap, \textbf{450}, 1231
 
 \bibitem[Grillmair \& Dionatos(2006)]{gd1}
 Grillmair, C.~J., \& Dionatos, O.\ 2006, \apjl, 643, L17
+
+\bibitem[Hogg \etal(2010)]{hogg-ecc}
+Hogg, D.~W., Myers, A.~D., \& Bovy, J.\ 2010, \apj, 725, 2166
 
 \bibitem[Koch \etal(2010)]{kepler5}
 Koch, D.~G., Borucki, W.~J., Rowe, J.~F., et al.\ 2010, \apjl,
