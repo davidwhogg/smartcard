@@ -343,23 +343,23 @@ The key features of \Untrendy\ are as follows:
   algorithm.  It has the locality and robustness of the
   windowed median but
   it obtains locality by using a spline basis for the trends.  It obtains
-  robustness with iteratively reweighted least squares (IRLS; HOGG CITATION).
-\item The algorithm automatically finds discontinuities---SPSDs---and inserts
+  robustness with iteratively reweighted least squares \citep[IRLS; for
+  example][]{blind}.
+\item The algorithm automatically finds discontinuities and inserts
   them into the model as change-points.
   It performs this magic by projecting the residuals away from a smooth fit
   onto a sliding discontinuity basis ``eigenfunction'' or matched filter.
 \item The algorithm is agnostic about the \emph{origin} of variability; it
-  aggressively tries to model the combined effect of all lightcurve variability
+  aggressively tries to model the combined effect of all light curve variability
   on multi-day time-scales.
   The goal is production of a clean ``transit-only'' de-trended lightcurve.
 \end{itemize}
 
-The proposed version~0.1 algorithm involves an iterative procedure with two distinct
-steps.
+The proposed version~0.1 algorithm involves an iterative procedure with two
+distinct steps.
 The first step fits a cubic spline model (with one knot every few days; this
 probably works best for denser sampling than the median filter model) using
-iteratively re-weighted least-squares (IRLS;\ Hogg: some sort of citation?) to
-the \Kepler\ median normalized aperture photometry.
+IRLS to the \Kepler\ median normalized aperture photometry.
 Discontinuities are detected using a matched filter on the residuals
 from the model fit in the previous step.
 Add break-point knots in at the detected discontinuity locations and return to the first IRLS
@@ -379,7 +379,6 @@ Note the change of units on the y-axis; the PDC procedure clearly makes good
 progress towards removing the main systematic trends in the data.
 \emph{Bottom:} the light curve after untrending.
 The units on the y-axis are the same as the middle panel.
-The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
 IRLS is a good choice for \Untrendy\ because it is extremely robust to
@@ -421,7 +420,7 @@ correlated noise and doesn't
 correctly propagate the uncertainty.
 A prospect for improving this procedure would be to model the data
 using a flexible non-parametric probabilistic model like a Gaussian Process
- (DFM CITE Rasmussen).
+ \citep{gp}.
 Applying a Gaussian process to a dataset as large as a \Kepler\ light curve is
 an interesting problem in computer science, but since most of the power in the
 systematics is at short time lag, it will be possible to take advantage of
@@ -933,6 +932,9 @@ on arXiv or ASCL.
 \bibitem[Barclay \etal(2013)]{barclay}
 Barclay, T., Burke, C.~J., Howell, S.~B., \etal\ 2013, \apj, {768}, 101
 
+\bibitem[Barron \etal(2008)]{blind}
+Barron, J.~T., Hogg, D.~W., Lang, D., \& Roweis, S.\ 2008, \aj, 136, 1490
+
 \bibitem[Belokurov et al.(2006)]{field}
 Belokurov, V., Zucker, D.~B., Evans, N.~W., et al.\ 2006, \apjl, 642, L137
 
@@ -999,6 +1001,10 @@ Oppenheimer, B.~R., Baranec, C., Beichman, C., et al.\ 2013, \apj, 768, 24
 
 \bibitem[Padmanabhan et al.(2008)]{ubercal}
 Padmanabhan, N., Schlegel, D.~J., Finkbeiner, D.~P., \etal\ 2008, \apj, 674, 1217
+
+\bibitem[Rasmussen \& Williams(2006)]{gp}
+Rasmussen, C.~E., \& Williams, C.~K.~I.\ 2006, \emph{Gaussian Processes for
+Machine Learning}, The MIT Press
 
 \bibitem[Smith \etal(2012)]{map-pdc2}
 Smith, J.~C., Stumpe, M.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 1000
