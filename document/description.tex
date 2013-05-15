@@ -515,8 +515,7 @@ This component of the proposal is a package of methods and code
 designed to analyze \emph{individual} exoplanet systems (stars), with
 one or more exoplanets causing transits or radial velocity variations
 or both.  It is designed to propagate full likelihood (or posterior
-probability) information forward to population synthesis projects
-(such as \TheCreator, below).
+probability) information forward to population synthesis projects.
 The requirements of a game-changing exoplanet inference system are the following:
 \begin{itemize}
 \item It must be fast.  In the case of \Bart, fastness is provided by a standalone Fortran library that computes the transit lightcurves and radial-velocity predictions.
@@ -595,13 +594,11 @@ in this proposal, development has begun---on \project{GitHub} at
 the software.
 
 The basic \Bart\ work flow will take (as input) any or all of the following
-\begin{itemize}
-\item light curves (short and/or long cadence and potentially from other
+(1)~light curves (short and/or long cadence and potentially from other
 instruments),
-\item radial velocity measurements,
-\item astronometric constraints, and
-\item parameterized models of the prior probabilities on the model parameters.
-\end{itemize}
+(2)~radial velocity measurements,
+(3)~astrometric constraints, and
+(4)~parameterized models of the prior probabilities on the model parameters.
 The results will be in the form of samples from the posterior probability
 distribution for the parameters given the ensemble of data.
 These samples can then be used to estimate the correctly marginalized
@@ -669,7 +666,6 @@ likelihood functions for hierarcical inference will do very well.
 Finally, the \Gaia\ footprint will include the \Kepler\ and
 \TESS\ surveys, so even from a NASA-partisan perspective this would be
 of great value.
-
 
 \paragraph{Proposal:}
 \emph{Our proposal is to release a complete, flexible package for
