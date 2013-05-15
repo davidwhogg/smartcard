@@ -54,78 +54,74 @@ and give new tools to the entire community to increase the scientific
 return from the \Kepler\ data (and many related and future data sets).
 
 The first reason that it makes sense to re-consider the \Kepler\ data
-from the ground up is the simple point that it is valuable to have
+from the ground up is that it is valuable to have
 multiple eyes on the problem.  We bring different prejudices,
-different intuitions, and different expertise than exists on the
+intuitions, and expertise than exists on the
 \Kepler\ team.  In addition, we can analyze the \Kepler\ data in a
-more open-ended way since we do not bear the responsibility of
-delivering results according to existing schedules and requirements.
+more open-ended way; we do not bear the responsibility of
+mission management.
 That said, we very much hope to create methods and code that make the
 \Kepler\ team products more valuable and easier to deliver.
 
-The second reason it makes sense for us to take an independent look at
-the \Kepler\ data is that we will bring a strong probabilistic,
+The second reason it makes sense for us to take an independent look
+is that we bring a strong probabilistic,
 causal, generative model approach to everything we do.  In each
 component of this project, we are trying to write down a probability
-for the data given the parameters, and in each component we are trying
-to have the relationship of the parameters to the predictions obey
-deep ideas we have about the physical or causal processes that
-generate the data.  For certain kinds of (endearing) fanatics---or
+for the data given the parameters, and to structure this
+according to
+the ideas we have about the physical or causal processes that
+generate the data.  For certain kinds of fanatics---or
 perhaps more correctly, under certain kinds of restrictive
 assumptions---these probabilistic approaches to data analysis are
-guaranteed to succeed over more heuristic methods.  We have god on our
-side, in this sense.  But because we are free from project
-requirements, we can take a more principled approach to the data
-analysis and see if that delivers better results.  If it does (because
-we are proposing to generate public, open-source, easy-to-use code)
+guaranteed to succeed over more heuristic methods.
+If we can take a principled approach, and also
+generate public, open-source, easy-to-use code,
 \emph{everybody wins.}
 
 Finally, the most important reason to bring new people and new ideas
 to the \Kepler\ data is that the \Kepler\ data are so damned
 important.  The vast majority of known exoplanets are
-\Kepler\ discoveries (CITE), and each \Kepler\ discovery brings with
-it so much important information about each planetary system (CITE).
+\Kepler\ discoveries, and each discovery brings with
+it so much important information about the planetary system.
 The data set has included many multiple-planet systems, and supported
-preliminary studies of population statistics, such as multiplicity and
-inclination distributions (CITE).  These studies have been made
+preliminary studies of population statistics.  These studies have been made
 possible in part by the scale and in part by the simplicity of the
 \Kepler\ experiment; it has created a statistically useable sample.
 Although \Kepler\ is just the first step of \NASA's exoplanet journey,
 it is the best data set in it's class right now, and will retain
-unique capabilities for many years to come.  Furthermore, many future
-data sets (for example that from \TESS;\ CITE), produce data that are
+a unique role for many years.  Furthermore, future
+data sets (for example that from \TESS;\ CITE) produce data that are
 \Kepler-like in many ways.  \emph{If we can take the most valuable
   data set in exoplanetary astrophysics and make it substantially more
   valuable with an ADAP-scale project, we can deliver to
   \NASA\ outstanding science per dollar.}
 
 Even if you are convinced that the data need to be re-analyzed, why
-should they be reanalyzed by this team?  Although the proposers do not
+should they be reanalyzed by \emph{this team?}  Although we do not
 have a long history in exoplanet science, we do have some experience,
 breaking ground in the area of hierarchical modeling of exoplanet
-populations (CITE Hogg), and telescope light-field modeling for
+populations \citep{hogg-ecc}, and telescope light-field modeling for
 exoplanet direct detection and spectroscopy (CITE Oppenheimer).  Much
-more importantly, the proposal team has enormous experience in two
-areas that are crucial if we are going to squeeze more information out
+more importantly, we have experience in two
+areas that are crucial for squeezing information out
 of the \Kepler\ data stream: We have great experience with calibration
 and sensitive statistical analysis of enormous astrophysical data
-sests (CITE some eg papers), and we are among the world leaders in
-probabilistic modeling of astrophysical data sets (CITE some eg
-papers).
+sests and we are among the world leaders in
+probabilistic modeling of astrophysical data sets.
 
 On the inference side of this,
-one example is that Co-I Foreman-Mackey is the lead developer of \emcee\
+Co-I Foreman-Mackey is the lead developer of \emcee\
 package \citep{emcee} for fast, self-tuning Markov-Chain Monte Carlo sampling.
 This is by far the fastest-growing MCMC package in the astrophysics community
  (at time of writing it is getting about seven citations per month in the
 refereed literature).
 On the calibration side of this,
-one example is that Co-I Hogg was responsible (along with collaborators) for
+Co-I Hogg was responsible (along with collaborators) for
 the precise self-calibration of the \observatory{Sloan Digital Sky Survey}
 imaging data \citep{ubercal}, which in turn led (almost directly)
 to discoveries such as ultra-faint Milky Way companion Willman I
  \citep{wil1} and many other substructures \citep[for example,][]{wil2, field, gd1} and the detection of the baryon acoustic feature
-in the large-scale structure \citep{bao}.  These two
+in the large-scale structure \citep{bao}.  These
 strengths---calibration and probabilistic modeling---are not unique to
 the proposing team, but their combination is unusual and puts us in a
 very strong position to deliver extremely valuable new methods to the
@@ -134,26 +130,20 @@ very strong position to deliver extremely valuable new methods to the
 \section{Tools for easy access to \Kepler\ data}
 
 The official source of Kepler data is the
-\observatory{Mikulski Archive for Space Telescopes} (\MAST).
+\observatory{Mikulski Archive for Space Telescopes}
+(\MAST; \url{http://archive.stsci.edu/kepler/data\_search/search.php}).
 \MAST\ also includes complete catalogs of stellar parameters, \Kepler\
 ``Object of Interest'' (KOI) parameters, and the measured parameters of
 confirmed planets in the \Kepler\ field.
-Another catalog of exoplanet parameters is the
-\observatory{NASA Exoplanet Archive}%
-\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/}}.
+Another source is the
+\observatory{NASA Exoplanet Archive} (\url{http://exoplanetarchive.ipac.caltech.edu/}).
 The \EA\ hosts a complete mirror of the \MAST\ \Kepler\ tables but
 also includes results from other exoplanet studies.
-The standard method for accessing data from these catalogs is through a Web
-form%
-\footnote{\url{http://archive.stsci.edu/kepler/data\_search/search.php}}%
-\footnote{\url{http://exoplanetarchive.ipac.caltech.edu/applications/ExoTables%
-/upload.html}}
+The standard method for accessing data from these archives is via Web
+form,
 but both services also offer programmatic access via an Application
 Programming Interface (API).
-An API is required technoogy for automated data analysis;
-it is also generally useful to have easy access to data from a standard
-scientific programming environment because it lets an interested user apply
-standard or standardized analysis tools to new datasets easily.
+An API is required technoogy for automated data analysis.
 
 In general, all programming languages that are commonly used for scientific
 analyses (C, C++, Java, Python, R, IDL) have
@@ -161,18 +151,16 @@ libraries designed to interact with web services using HTTP requests so it is
 possible to access the \Kepler\ data from any language.
 That said, HTTP tools tend to be very general;
 for any particular \Kepler\ query that a user wants to make,
-a complex URL must be constructed ``by hand'' (hard-coded or expert-system
-generated), and then the structured text returned by the Web server must be
-parsed with another equally hard-coded custom set of tools.
-Individual hand-construction of a useful API from HTTP requests can therefore
-be time consuming and error prone.
+a complex URL must be constructed ``by hand'' (hard-coded or
+expert-system-generated), and then the structured text returned by the Web server must be
+parsed with another equally hard-coded custom tool.
+Individual hand-construction of a useful API can therefore
+be time consuming and error-prone.
 More importantly, it represents repeated work that will be done (and probably
 already \emph{has} been done) many times over in the community.
 One consequence is duplication of effort; another is that many who would
-benefit strongly from an API nonetheless resort to using the HTML web form
+benefit strongly from an API nonetheless resort to using the Web form
 and downloading and importing the data piecemeal by hand.
-This can be a significant obstacle for the development of automated data
-analyses.
 
 DFM:  TODO:  Maybe comment on JSON.
 
@@ -181,26 +169,25 @@ We propose to build a Python library to provide easy data access directly
 from the Python programming environment.
 Python is a good choice for this for several reasons:
 Many astronomers have already adopted Python as the main
-programming language (CITE dotastro?) in their work, and many more are
+programming language in their work, and many more are
 converting to Python.
 There are many powerful astronomy-specific tools that are becoming part of
 the standard scientific stack---especially \package{AstroPy}
  (\url{http://www.astropy.org/}).
 Also, Python has many tools---such as \package{iPython}
- (\url{http://ipython.org/}) and the \package{iPython} notebook
- (\url{http://ipython.org/notebook.html})---for interactive data exploration.
-Python capabilities are also good skills for graduate students to learn
-because they are equally valuable in academia and in non-academic
+ (\url{http://ipython.org/}) and the \package{iPython} notebook---%
+for interactive data exploration.
+Python is also a good skill for a graduate students to learn
+because it is equally valuable in academia and in non-academic
 environments (dot-coms, finance).
 
 Our proposed interface to the \Kepler\ data should satisfy at least the
 following requirements:
-The proposed interface should satisfy at least the following requirements:
 \begin{itemize}
-\item The interface should be general enough that any request that could
+\item The API should be general enough that any request that could
 possibly be made from the web form should be possible.
 \item Common tasks (like searching for a particular planet or the top 10
-largest KOIs, for example) should be easy.
+brightest KOIs, for example) should be easy.
 \item The results should be automatically parsed into a Python object with the
 correct types so that it can be easily integrated with existing tools.
 \item The results syntax should be consistent for different data types.
@@ -211,12 +198,10 @@ These requirements are designed to maximize adoption within the Python
 exoplaneteer community.
 Our experience with the \emcee\ Markov-Chain Monte Carlo sampling package,
 and the brand we have developed with that package and other projects,
-suggests that we can get very high ``market penetration'' if we meet these
+suggests that we will get very high ``market penetration'' if we meet these
 requirements.
 
-Below is an example of the proposed syntax for the module.
-This code could be run from the interactive Python prompt or from within a
-script.
+Here is an example of the proposed syntax for the module:
 \begin{lstlisting}
 import kplr
 client = kplr.API()
@@ -239,7 +224,6 @@ for d in kepler10b.data:
 # Find the 10 largest KOIs.
 kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
-
 The development of this tool has started on \project{GitHub}%
 \footnote{\url{https://github.com/dfm/kplr}},
 along with documentation and example code.
@@ -255,10 +239,10 @@ pip install kplr
 
 \paragraph{Proposal:}
 \emph{We propose to finish building the \kplr\ API code and its documentation.
-We propose to keep it released and maintained for easy installation and use.
+We propose to keep it released and maintained for easy installation and use.}
 We propose to upgrade \kplr\ continuously as the \MAST\ and \EA\ data contents and
 HTTP-request and returned-data formats evolve,
-and to include new data sources as they emerge.}
+and to include new data sources as they emerge.
 In particular%
 ---and importantly for \Bart\ and \TheCreator\ (below)---%
 we propose to extend \kplr\ to access and interoperate with
@@ -268,25 +252,24 @@ the \Kepler\ satellite.
 
 By the end of the project,
 we expect the \kplr\ API to be a mature and widely-used interface,
-for all of the reasons given above
- (notably the customer-oriented requirements and the widespread use of Python
-in the community).
-It makes sense to explore methods for long-term stewardship of the code.
+for all of the reasons given above;
+it makes sense to explore methods for long-term stewardship of the code.
 \emph{We propose to explore (at the end of this project) with the \MAST\ and \EA\ teams the possibility of
 transfer of the \kplr\ code and documentation ownership.}
+
 
 \section{De-trending}
 
 For complicated reasons related to crowded-field photometry, flat-fielding,
-spacecraft temperature issues, stellar abberation, parallax, proper motion,
+spacecraft temperature issues and thrust activity, stellar abberation, parallax, proper motion,
 and intrinsic stellar variability, a typical \Kepler\ lightcurve shows
 variability at the sub-percent level even when there is no transit.
 For context, the transits of greatest interest induce brightness dips at the
 $10^{-4}$ to $10^{-5}$ level.
 Most of the non-transit effects lead to smooth light-curve variations, but in addition
-there are also discontinuities at the \Kepler\ quarter boundaries (when the
-spacecraft attitude is re-set) and (more challenging) poorly understood Sudden Pixel
-Sensitivity Dropouts (SPSDs), which lead to essentially discontinuous jumps.
+there are discontinuities at the \Kepler\ quarter boundaries (when the
+spacecraft attitude is re-set) and poorly understood Sudden Pixel
+Sensitivity Dropouts (SPSDs), which lead to discontinuous jumps.
 The principled thing for an exoplanet searcher to do is to \emph{simultaneously}
 fit all of these ``trend'' and SPSD effects in a highly parameterized model,
 along with all possible exoplanet signals.
@@ -297,63 +280,54 @@ continuum-estimating procedures to the data.
 The continuum estimate is divided out to ``de-trend'' the lightcurve.
 In what follows, we will propose a highly effective and somewhat principled
 approach to the problem of de-trending, and a set of ideas about improving it.
-As with all components of this proposal, our solution involves delivering to the
-community open-source code and documentation.
+As with all components of this proposal, our solution involves delivering
+open-source code and documentation.
 
 \paragraph{Standard practice:}
-The \Kepler\ pipeline produces calibrated lightcurves, and then partially
+The \Kepler\ pipeline produces calibrated lightcurves, and partially
 detrended ``PDC'' outputs that have much of the trends removed.
-However, For most precision experiments, the light curves corrected using PDC
+However, For most precision experiments, the PDC-corrected light curves
 are not sufficiently de-trended.
 It is standard practice to normalize fluxes by a
 running windowed median with a width of a few days \citep{dressing} or a
 polynomial fit to the out-of-transit flux values \citep[regions chosen by
-hand][]{autokep}.
-These methods are surprisingly effective; it shows that most effects---with
+hand;][]{autokep}.
+These methods are surprisingly effective; they show that most effects---with
 the exception of the SPSDs---take place on multi-day time-scales.
-Using the median is extremely robust to outliers; if the median window is
-wide enough in time, this procedure doesn't significantly affect any (shorter
-time-scale) transit signal.
+The median is robust to outliers; if the median window is
+wide enough, standard procedures don't significantly affect any
+transit signal.
 
-Both of these procedures run into serious trouble when they encounter a SPSD
+Both of these procedures run into serious trouble however when they encounter a SPSD
 or any other sharp discontinuity.
 The implicit background model must be smooth even across discontinuities; it
 will introduce significant structured residuals at SPSDs.
 The most responsible procedures in current practice discard the data
 near the SPSDs but no literature source is clear on how these points are
 identified in practice.
-(One further comment is that any investigator interested in long-timescale stellar variability
-should not use anything as simplistic as a windowed median.)
 
 A more sophisticated method is the ``Bayesian'' MAP-PDC method
 \citep{map-pdc1,map-pdc2}.
-It uses co-trending with surrounding stars to remove systematic trends that
-are correlated between nearby sources; that is, it capitalizes on spatial
-continuity of the spacecraft-induced variability of sources.
-It also has some capability to capture and model SPSDs, although this is not
+It capitalizes on spatial
+continuity of the spacecraft-induced variability of sources and
+has some capability to capture and model SPSDs, although this is not
 a published aspect of the method (at time of writing).
 The MAP-PDC will apparently be included in the ``next'' official release of the
 \Kepler\ pipeline but it is not yet available to us for analysis and comparison.
 Because the MAP-PDC explicitly tries to model spacecraft-induced effects, it
 has the advantage that it is expected to preserve (that is, not model and
-remove) as much of the true intrinsic stellar variations (as, say, a running
-median does).
+remove) as much of the true intrinsic stellar variations.
 Of course this advantage is also a disadvantage for many exoplanet hunters:
 Any method that preserves stellar variability places a burden on the exoplanet
 scientist to simultaneously model the exoplanet transits and the stellar
-variability.
-Since most kinds of variable stars (even well-behaved RR Lyrae and the like)
+variability!
+Since most kinds of variable stars (even well-behaved periodic variables)
 don't have good probabilistic generative models, many exoplaneteers are better
 off with methods that remove all stellar variability and leave a lightcurve
-that can be modeled by exoplanet transit alone.
-
-% DFM:  WHERE TO PUT THIS CLAIM
-%      claim in the literature (with reference to a non-existent
-%      Kolodziejczak 2012 paper) that PDC in the Kepler pipeline 8.0 will deal
-%      with this but it's not included as part of the standard de-trending.
+that can be modeled by exoplanet transit alone; that's our approach.
 
 \paragraph{\Untrendy:}
-Our algorithm and implementation---\Untrendy---takes a
+Our algorithm and implementation takes a
 different approach.
 Using only a single quarter of data as input, the algorithm attempts to
 remove all systematic variations---spacecraft, calibration, photometric, and
@@ -367,15 +341,14 @@ reproducing the lowest signal-to-noise discoveries in the Kepler catalog
 The key features of \Untrendy are as follows:
 \begin{itemize}
 \item The algorithm is very scalable and local relative to the MAP-PDC
-  algorithm.
-  In its sensitivity to the data, it is similar to a more robust version of the
-  windowed median.
-  It obtains locality by using a spline basis for the trends; it obtains
-  locality with iteratively reweighted least squares (IRLS; HOGG CITATION).
+  algorithm.  It has the locality and robustness of the 
+  windowed median but
+  it obtains locality by using a spline basis for the trends.  It obtains
+  robustness with iteratively reweighted least squares (IRLS; HOGG CITATION).
 \item The algorithm automatically finds discontinuities---SPSDs---and inserts
   them into the model as change-points.
   It performs this magic by projecting the residuals away from a smooth fit
-  onto a sliding discontinuity basis ``eigenfunction''.
+  onto a sliding discontinuity basis ``eigenfunction'' or matched filter.
 \item The algorithm is agnostic about the \emph{origin} of variability; it
   aggressively tries to model the combined effect of all lightcurve variability
   on multi-day time-scales.
@@ -399,7 +372,7 @@ There are two confirmed exoplanets in this system.
 \emph{Top:} the raw aperture photometry from the Kepler data reduction
 pipeline.
 For plotting purposes, each quarter was normalized by the median flux in the
-quarter and then 1 was subtracted to show the variation around the median.
+quarter and then unity was subtracted to show the variation around the median.
 \emph{Middle:} the PDC corrected fluxes.
 Again, the fluxes were normalized by the median and then shifted to zero
 median.
@@ -410,23 +383,23 @@ The units on the y-axis are the same as the middle panel.
 The results are way better\ldots WAY.%
 \label{fig:untrendy}}
 
-IRLS is a good choice for this purpose because it is extremely robust to
-outliers, but without excluding them from consideration entirely; that is, it
+IRLS is a good choice for \Untrendy\ because it is extremely robust to
+outliers, but does not exclude them from consideration entirely; that is, it
 obtains all the robustness value of sigma-clipping or medianing, without
 rendering outliers completely uninformative in the fit.
 Of great value in early rinse--repeat rounds (when the SPSDs have not all be identified),
-the IRLS optimization is also be insensitive to the outliers caused by the
+the IRLS optimization is also insensitive to the
 discontinuities until the model is given more flexibility (in the form of
 added knots) at these positions.
 
 The choice of a cubic spline model is
-justified---and preferable to a windowed median model---for several reasons:
-Firstly, it is significantly simpler (in general) that the median or PDC models.
-The number of free parameters in the model is only the total number of knots
-in the spline (the number of free parameters in a running median is sometimes
-thought of as being ``zero'' but it is in fact very large by any reasonable
-accounting; it might be as large as the number of data points in some sense).
-Second, the spline model can have variable complexity (or flexibility) at
+preferable to a windowed median model:
+Firstly, it has significantly fewer degrees of freedom than the median or PDC models.
+The number of free parameters is just the total number of knots
+in the spline (the number of free parameters in a running median is
+very large by any
+accounting).
+Second, the spline model can have variable flexibility at
 different points---a fact that we are taking advantage of to correct for
 SPSDs.
 Third, spline models can be evaluated extremely efficiently; a model
@@ -438,42 +411,43 @@ happens as outlier pixels enter and leave the running window.
 
 \paragraph{Enhanced goals:}
 While the version~0.1 version of \Untrendy\ described above is a realistic and
-quickly obtainable first step towards better modeling and detection of
-exoplanets in the Kepler data stream, it leaves the probabilistically
+quickly attainable first step towards better modeling and detection of
+exoplanets, it leaves the probabilistically
 righteous among us a little unsatisfied.
 The cubic spline model suggested above is only a very rough approximation to
-the physical (causal) model that we have of the data and by applying this
-point estimated model we introduce significantly correlated noise and don't
-correctly propagate the uncertainty introduced by the modeling procedure.
-An exiting prospect for improving this procedure would be to model the data
+any physical model of the data.
+
+By applying this
+point-estimate model we introduce correlated noise and don't
+correctly propagate the consequent uncertainty.
+An exciting prospect for improving this procedure would be to model the data
 using a flexible non-parametric probabilistic model like a Gaussian Process
  (CITE STUFF).
 Applying a Gaussian process to a dataset as large as a Kepler light curve is
 an interesting problem in computer science but since most of the power in the
 systematics is at short time lag, it would be possible to take advantage of
-the sparsity of the problem for efficiency (Iain Murray?).
+the sparsity of the problem for efficiency.
 
-Another interesting idea would be to---as in the MAP-PDC algorithm---take
-advantage of correlations between the systematic variations of nearby sources.
-In particular, a qualitative study of the some Kepler targets has shown that
-the locations of discontinuities tend to be the same for sources that are
-nearby on the detector.
+Another interesting idea would be to---as in the MAP-PDC
+algorithm---take advantage of correlations between the systematic
+variations of nearby sources.  In particular, SPSDs and other
+systematics tend to be the same or related for sources that are nearby
+on the detector.
 
 One remarkable aspect of the spacecraft-induced lightcurve variability is
 a remarkable repeatability for some stars from year to year; with the
 first quarters looking all very similar, and the second, and so on.
-This indicates that a good causal model for the variability could probably
+This indicates that a good physical model for the variability could probably
 spearate spacecraft thermal effects from other effects, and possibly model
 them separately, possibly even using multi-quarter information simultaneously.
 
-DFM:  3-day effects,  370-day effects,  TV-style rolling effect,  other issues from Barclay
+There are known 3-day (thruster) and 370-day (sidereal orbit) periods
+in the data; \Untrendy should know about these and fit them actively.
 
 \paragraph{Proposal:}
 \emph{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
 library with Python bindings under a liberal open source license (MIT).}
-This algorithm could be easily incorporated into any analysis where a running
-median is currently in use.
-It would also be a complimentary addition to the standard Kepler data
+This would be a complimentary addition to the standard Kepler data
 product along side the PDC and MAP-PDC results.
 \emph{We propose to follow with more advanced releases as we explore,
 understand, and succeed in building more principled causal models of some
@@ -502,7 +476,7 @@ form, with all comments and issues and history, is available at
 \section{Probabilistic parameter estimation}
 
 The most exciting science to come from \Kepler\ recently has been in
-the \emph{characterization} of the exoplanet systems; the understand
+the \emph{characterization} of the exoplanet systems---the understand
 of extra-solar planetary systems in terms of planet sizes, distances,
 inferred compositions and expected surface temperatures.  These
 results depend on \emph{probabilistic inference}.  The \Kepler\ and
@@ -511,13 +485,11 @@ use of justifiable likelihood functions, reasonable priors, Bayesian
 inference, marginalization over nuisance parameters, and MCMC
 sampling.  What we are contributing here is \emph{good engineering}
 that will make all of these activities easier, higher performing, and
-more useful.  We also add some important new capabilities.  Our key
-goals are to propagate our new engineering and capabilities in the
-form of useful tools and sustainable practices.
+more useful.  We also add some important new capabilities (and, of course, release everything open-source).
 
 \paragraph{Standard practice:}
 The exoplanet community has long understood and been open to data analysis
-using rigorous probabilistic inference \citep[][for example]{ford}.
+using rigorous probabilistic inference \citep[for example,][]{ford}.
 All recent methods of planetary parameter estimation use MCMC (or similar) to
 propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
 kepler5,kepler4}.
@@ -532,13 +504,11 @@ observations using a method called Differential Evolution MCMC.\@
 Since neither of these projects include a license, they can't (in a strict legal sense) be used
 by other research groups but it seems like the community (for now) ignores this fact and
 hopes for the best.
-(One of what the NSF might call ``broader impacts'' of this project could be that it will help to propagate thoughtful licensing decisions into the community.)
-Even so, there are numerous improvements that could be made on the existing
-tools.
+(One of what the Other Astrophysics Agency might call ``broader impacts'' of this project could be that it will help to propagate thoughtful licensing decisions into the community.)
+Even so, there are also improvements to be made.
 In particular, many astronomers are adopting Python as their main programming
-language instead of IDL.\@
-Also, it's generally a good idea to have a \emph{community supported} code
-base instead of a single developer model.
+language, and it is a good idea to have a \emph{community supported} code
+base instead of the ascendent single-developer model.
 
 \paragraph{\Bart:}
 This component of the proposal is a package of methods and code
