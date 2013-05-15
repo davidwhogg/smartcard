@@ -7,6 +7,7 @@
 \definecolor{linkcolor}{rgb}{0,0,0.25}
 \hypersetup{colorlinks=true,linkcolor=linkcolor,citecolor=linkcolor,
             filecolor=linkcolor,urlcolor=linkcolor}
+\newcommand{\hurl}[1]{{\scriptsize\url{#1}}}
 
 \usepackage{epsfig}
 \usepackage{graphicx}
@@ -131,12 +132,12 @@ very strong position to deliver extremely valuable new methods to the
 
 The official source of \Kepler\ data is the
 \observatory{Mikulski Archive for Space Telescopes}
-(\MAST; \url{http://archive.stsci.edu/kepler/data\_search/search.php}).
+(\MAST; \hurl{http://archive.stsci.edu/kepler/data\_search/search.php}).
 \MAST\ also includes complete catalogs of stellar parameters, \Kepler\
 ``Object of Interest'' (KOI) parameters, and the measured parameters of
 confirmed planets in the \Kepler\ field.
 Another source is the
-\observatory{NASA Exoplanet Archive} (\url{http://exoplanetarchive.ipac.caltech.edu/}).
+\observatory{NASA Exoplanet Archive} (\hurl{http://exoplanetarchive.ipac.caltech.edu/}).
 The \EA\ hosts a complete mirror of the \MAST\ \Kepler\ tables but
 also includes results from other exoplanet studies.
 The standard method for accessing data from these archives is via Web
@@ -173,9 +174,9 @@ programming language in their work, and many more are
 converting to Python.
 There are many powerful astronomy-specific tools that are becoming part of
 the standard scientific stack---especially \package{AstroPy}
- (\url{http://www.astropy.org/}).
+ (\hurl{http://www.astropy.org/}).
 Also, Python has many tools---such as \package{iPython}
- (\url{http://ipython.org/}) and the \package{iPython} notebook---%
+ (\hurl{http://ipython.org/}) and the \package{iPython} notebook---%
 for interactive data exploration.
 Python is also a good skill for a graduate students to learn
 because it is equally valuable in academia and in non-academic
@@ -225,14 +226,14 @@ for d in kepler10b.data:
 kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
 The development of this tool has started on \project{GitHub}
-(\url{https://github.com/dfm/kplr}),
+(\hurl{https://github.com/dfm/kplr}),
 along with documentation and example code.
 A pre-release version is already available under the liberal MIT open source
 license.
 
 The code installs trivially on computers using the standard Python build
 systems. The recommended installation method uses \project{pip}
-(\url{http://www.pip-installer.org/}); the command is simply
+(\hurl{http://www.pip-installer.org/}); the command is simply
 \begin{lstlisting}
 pip install kplr
 \end{lstlisting}
@@ -470,7 +471,7 @@ analyses.
 (If any reviewer doubts our willingness to work out in the open, the
 full progress of the writing of this proposal, from outline to final
 form, with all comments and issues and history, is available at
-\url{https://github.com/davidwhogg/smartcard}.)
+\hurl{https://github.com/davidwhogg/smartcard}.)
 
 
 \section{Probabilistic parameter estimation}
@@ -590,7 +591,7 @@ build and release an open-source tool for modeling transit data built on the
 model described above and harnessing the power of the \emcee\ sampler.
 While the finished product will depend on all of the tools discussed earlier
 in this proposal, development has begun---on \project{GitHub} at
-\url{https://github.com/dfm/bart}---on an experimental pre-release version of
+\hurl{https://github.com/dfm/bart}---on an experimental pre-release version of
 the software.
 
 The basic \Bart\ work flow will take (as input) any or all of the following
@@ -625,7 +626,7 @@ the likelihood function, MCMC sampling, and inference.}
 \paragraph{Enhanced goals:}
 Though we have working prototype code (shown in
 \figurename~\ref{fig:bart} and available on the web at
-\url{https://github.com/dfm/bart}), there are many many areas where we
+\hurl{https://github.com/dfm/bart}), there are many many areas where we
 would like to explore extensions and improvements.  What follows are
 some examples:
 
