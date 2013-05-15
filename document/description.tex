@@ -163,8 +163,6 @@ One consequence is duplication of effort; another is that many who would
 benefit strongly from an API nonetheless resort to using the Web form
 and downloading and importing the data piecemeal by hand.
 
-DFM:  TODO:  Maybe comment on JSON.
-
 \paragraph{\kplr\ interface:}
 We propose to build a Python library to provide easy data access directly
 from the Python programming environment.
@@ -342,7 +340,7 @@ reproducing the lowest signal-to-noise discoveries in the \Kepler\ catalog
 The key features of \Untrendy are as follows:
 \begin{itemize}
 \item The algorithm is very scalable and local relative to the MAP-PDC
-  algorithm.  It has the locality and robustness of the 
+  algorithm.  It has the locality and robustness of the
   windowed median but
   it obtains locality by using a spline basis for the trends.  It obtains
   robustness with iteratively reweighted least squares (IRLS; HOGG CITATION).
@@ -555,7 +553,7 @@ Since the solution of the overlapping area of occulting disks is extremely
 inexpensive to compute, it seems like a good idea to integrate the light curve
 shape numerically.
 In the usual way of thinking, the fraction of the stellar flux
-that is occulted by a transiting planet is given by an 
+that is occulted by a transiting planet is given by an
 area integral of a smooth, analytic approximation to limb-darkening function $I(r)$.
 The \Bart\ approach is to write $I(r)$ as a piecewise constant function
 with breakpoints at arbitrary radii $r_n$.  The occulted flux becomes a
@@ -837,7 +835,7 @@ migration of planets.
 \item
 Above all, we need to not only gather together all relevant data
 (photometric, dynamical, and astrometric); we need to build (within
-\Bart) likelihood functionss for all of them.
+\Bart) likelihood functions for all of them.
 \end{itemize}
 
 
