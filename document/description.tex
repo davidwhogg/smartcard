@@ -379,16 +379,14 @@ the IRLS optimization is also insensitive to the
 discontinuities until the model is given more flexibility (in the form of
 added knots) at these positions.
 
-The choice of a cubic spline model is
-preferable to a windowed median model:
-Firstly, it has significantly fewer degrees of freedom than the median or PDC models.
+The cubic spline brings advantages:
+Firstly, it has fewer degrees of freedom than the median or PDC models.
 The number of free parameters is just the total number of knots
 in the spline (the number of free parameters in a running median is
-very large by any
+large by any
 accounting).
-Second, the spline model can have variable flexibility at
-different points---a fact that we are taking advantage of to correct for
-SPSDs.
+Second, the spline model can have variable flexibility---a
+fact that we are taking advantage of to correct for SPSDs.
 Third, spline models can be evaluated extremely efficiently; a model
 like the one that we propose here is not significantly more computationally
 complex than a median filter model.
@@ -456,9 +454,9 @@ the open'', sharing results with the community as we get them, but
 then writing up a statistically sound description of the entire
 process for those (like us) using the results to seed probabilistic
 analyses.
-(If any reviewer doubts our willingness to work out in the open, the
-full progress of the writing of this proposal, from outline to final
-form, with all comments and issues and history, is available at
+(If anyone doubts our willingness to work in the open, the
+full writing of this proposal, from outline to final
+form, with all comments and issues and history, is online at
 \hurl{https://github.com/davidwhogg/smartcard}.)
 
 
@@ -474,19 +472,18 @@ use of justifiable likelihood functions, reasonable priors, Bayesian
 inference, marginalization over nuisance parameters, and MCMC
 sampling.  What we are contributing here is \emph{good engineering}
 that will make all of these activities easier, higher performing, and
-more useful.  We also add some important new capabilities (and, of course, release everything open-source).
+more useful.  And, of course, in open-source code.
 
 \paragraph{Standard practice:}
-The exoplanet community has long understood and been open to data analysis
-using rigorous probabilistic inference \citep[for example,][]{gregory,ford}.
+The exoplanet community has been very open to
+rigorous probabilistic inference \citep[for example,][]{gregory,ford}.
 All recent methods of planetary parameter estimation use MCMC (or similar) to
-propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
+propagate uncertainties \citep[][to name only a few]{barclay,dressing,%
 kepler5,kepler4}.
 Despite the fact that a large fraction of exoplaneteers use these kinds of techniques, there is no standard
 implementation for exoplanet model-building and analysis.
-In fact, few of the published analysis papers are accompanied by openly visible or available source code at all, let alone useful, reuseable tools.
-There are, of course, a few exceptions.
-In particular, \project{EXOFAST} \citep{exofast}---and by extension
+Few of the published analysis papers are accompanied by openly visible or available source code at all, let alone useful, reuseable tools.
+There are, of course, exceptions: \project{EXOFAST} \citep{exofast}---and by extension
 \project{TAP}/\project{autoKep} \citep{autokep}---provides a set of IDL
 routines for simultaneously modeling light curves and radial velocity
 observations using a method called Differential Evolution MCMC.\@
@@ -494,13 +491,9 @@ Since neither of these projects include a license, they can't (in a strict legal
 by other research groups but it seems like the community (for now) ignores this fact and
 hopes for the best.
 (One of what the Other Astrophysics Agency might call ``broader impacts'' of this project could be that it will help to propagate thoughtful licensing decisions into the community.)
-Even so, there are also improvements to be made.
-In particular, many astronomers are adopting Python as their main programming
-language, and it is a good idea to have a \emph{community supported} code
-base instead of the ascendent single-developer model.
 
 \paragraph{\Bart:}
-This component of the proposal is a package of methods and code
+This component of the proposal is a package of methods and documented open-source code
 designed to analyze \emph{individual} exoplanet systems (stars), with
 one or more exoplanets causing transits or radial velocity variations
 or both.  It is designed to propagate full likelihood (or posterior
@@ -554,11 +547,11 @@ extremely high precision for the same computational cost as the standard
 Priors on the step function can be used to restrict the flexibility as needed.
 
 \paragraph{\Bart\ / Model building and parameter estimation:}
-We are specifically interested in the probabilistic modeling
+We are interested in probabilistic modeling
 of observations of transiting exoplanets; the limb-darkening work is designed with making such inferences more accurate (although, presumably, a bit less precise).
 The algorithm described in the previous section provides an efficient and
-flexible method of computing a \textit{likelihood function}.
-A likelihood function is a parameterization of the probability of observing a
+flexible method of computing a \textit{likelihood function}, which for us
+is a parameterization of the probability of observing a
 set of data given a set of model parameters and a model of the observational
 noise.
 As a first step, it is probably reasonable to assume that the uncertainties in
@@ -567,7 +560,7 @@ The independence assumption is certainly not true because of correlations
 introduced by the \Untrendy\ algorithm but there are various ways of dealing
 with this using more flexible noise models or wavelet methods \citep{wavelet}.
 
-Some of the more recent analyses of \Kepler\ data have relied on Markov chain
+Some analyses of \Kepler\ data have relied on Markov chain
 Monte Carlo (MCMC) to perform correct probabilistic inference in the face of
 noisy data.
 We have substantial expertise in the domain of MCMC methods
@@ -919,7 +912,7 @@ Again, if the archived \Kepler\ data have changed or new relevant data sources
 have appeared, upgrade and release version~1.2 of \kplr.
 Explore possible hand-off for sustainable maintainance of \kplr\ with the NASA archive teams.
 Release Version~1.0 for all three of \Untrendy, \Bart, and
-\TheCreator, along with documentation and also (possibly very short) papers
+\TheCreator, along with documentation and also short papers
 on arXiv or ASCL.
 
 \clearpage
