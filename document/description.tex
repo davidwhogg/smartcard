@@ -129,7 +129,7 @@ very strong position to deliver extremely valuable new methods to the
 
 \section{Tools for easy access to \Kepler\ data}
 
-The official source of Kepler data is the
+The official source of \Kepler\ data is the
 \observatory{Mikulski Archive for Space Telescopes}
 (\MAST; \url{http://archive.stsci.edu/kepler/data\_search/search.php}).
 \MAST\ also includes complete catalogs of stellar parameters, \Kepler\
@@ -206,7 +206,7 @@ Here is an example of the proposed syntax for the module:
 import kplr
 client = kplr.API()
 
-# Get the listing for the confirmed planet Kepler-10 b
+# Get the listing for the confirmed planet \Kepler-10 b
 kepler10b = client.planet("10b")
 print(kepler10b)
 # <kplr.Planet("Kepler-10 b")>
@@ -335,7 +335,7 @@ intrinsic stellar---without affecting the strength or shape of any existing
 transit signal.
 It also properly captures and accounts for SPSDs.
 Initial experiments have produced extremely promising results even when
-reproducing the lowest signal-to-noise discoveries in the Kepler catalog
+reproducing the lowest signal-to-noise discoveries in the \Kepler\ catalog
 (see \figurename~\ref{fig:untrendy}).
 
 The key features of \Untrendy are as follows:
@@ -367,9 +367,9 @@ Add break-point knots in at the detected discontinuity locations and return to t
 step; rinse and repeat.  A demo of the version~0.1 method is shown in
 \figurename~\ref{fig:untrendy}.%
 \ssfigure{figures/untrend_data.pdf}{0.60}{%
-The long cadence observations of the star Kepler-10.
+The long cadence observations of the star \Kepler-10.
 There are two confirmed exoplanets in this system.
-\emph{Top:} the raw aperture photometry from the Kepler data reduction
+\emph{Top:} the raw aperture photometry from the \Kepler\ data reduction
 pipeline.
 For plotting purposes, each quarter was normalized by the median flux in the
 quarter and then unity was subtracted to show the variation around the median.
@@ -423,7 +423,7 @@ correctly propagate the consequent uncertainty.
 An exciting prospect for improving this procedure would be to model the data
 using a flexible non-parametric probabilistic model like a Gaussian Process
  (CITE STUFF).
-Applying a Gaussian process to a dataset as large as a Kepler light curve is
+Applying a Gaussian process to a dataset as large as a \Kepler\ light curve is
 an interesting problem in computer science but since most of the power in the
 systematics is at short time lag, it would be possible to take advantage of
 the sparsity of the problem for efficiency.
@@ -447,7 +447,7 @@ in the data; \Untrendy should know about these and fit them actively.
 \paragraph{Proposal:}
 \emph{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
 library with Python bindings under a liberal open source license (MIT).}
-This would be a complimentary addition to the standard Kepler data
+This would be a complimentary addition to the standard \Kepler\ data
 product along side the PDC and MAP-PDC results.
 \emph{We propose to follow with more advanced releases as we explore,
 understand, and succeed in building more principled causal models of some
@@ -455,7 +455,7 @@ of the more complicated effects.}
 
 The key idea behind \Untrendy\ is that by removing all non-transit
 sources of variability, it makes transits much easier to find.
-\emph{We propose to run \Untrendy\ on all Kepler lightcurves (the
+\emph{We propose to run \Untrendy\ on all \Kepler\ lightcurves (the
   entire KIC) and then search every one for periodic transits.  We
   propose to publish all candidates.}
 This search will procede
@@ -519,7 +519,7 @@ probability) information forward to population synthesis projects.
 The requirements of a game-changing exoplanet inference system are the following:
 \begin{itemize}
 \item It must be fast.  In the case of \Bart, fastness is provided by a standalone Fortran library that computes the transit lightcurves and radial-velocity predictions.
-\item It must have user-friendly Python bindings and permit scientifically expressive model-building.  Adoption in the community for \Bart will be aided by its built-in flexibility about model parameter specification:  Systems can be parameterized with more observational parameters like times and periods, or more physical parameters like planet mass-densities and orbital angular momenta.
+\item It must have user-friendly Python bindings and permit scientifically expressive model-building.  Adoption in the community for \Bart\ will be aided by its built-in flexibility about model parameter specification:  Systems can be parameterized with more observational parameters like times and periods, or more physical parameters like planet mass-densities and orbital angular momenta.
 \item It must be flexible about transit appearances, otherwise inferences about planet properties will be constrained with more code-delivered precision than is scientifically warranted.  \Bart\ achieves this goal through inclusion of a non-parametric limb-darkening profile.
 \item It must be efficient in sampling; here \Bart\ takes advantage of
   our very successful \emcee\ \citep{emcee} and our continuing
@@ -528,7 +528,7 @@ The requirements of a game-changing exoplanet inference system are the following
 An example of the action of our prototype \Bart\ code is shown in \figurename~\ref{fig:bart}.
 \ssfigure{figures/bart.pdf}{0.70}{%
 The results of an experimental \Bart\ analysis on the long cadence light curve
-for the planet Kepler-6b.
+for the planet \Kepler-6b.
 The grid of contour plots and histograms show the projections of the MCMC
 samples for the physical parameters of the planet (made under some standard prior PDF choices): semi-major axis $a$, radius
 $r$, mid-transit epoch $t_0$ (in days), and inclination $i$ (in degrees).
@@ -536,7 +536,7 @@ The inset panel in the top right shows the data folded on the median period in
 the samples and 12 randomly drawn model light curves overplotted.
 \label{fig:bart}}
 
-\paragraph{\Bart / flexible, non-parametric limb darkening model:}
+\paragraph{\Bart\ / flexible, non-parametric limb darkening model:}
 As mentioned above, most analyses rely on the
 analytic limb darkening expressions of \citet{mandel}.
 These results are extremely restrictive on the form of limb darkening profile
@@ -556,7 +556,7 @@ shape numerically.
 In the usual way of thinking, the fraction of the stellar flux
 that is occulted by a transiting planet is given by an 
 area integral of a smooth, analytic approximation to limb-darkening function $I(r)$.
-The \Bart approach is to write $I(r)$ as a piecewise constant function
+The \Bart\ approach is to write $I(r)$ as a piecewise constant function
 with breakpoints at arbitrary radii $r_n$.  The occulted flux becomes a
 weighted sum of simple geometric areas.
 Preliminary experiments show that arbitrary limb-darkening models can be computed to
@@ -564,7 +564,7 @@ extremely high precision for the same computational cost as the standard
 \citet{mandel} models but with significantly more flexibility.
 Priors on the step function can be used to restrict the flexibility as needed.
 
-\paragraph{\Bart / Model building and parameter estimation:}
+\paragraph{\Bart\ / Model building and parameter estimation:}
 We are specifically interested in the probabilistic modeling
 of observations of transiting exoplanets; the limb-darkening work is designed with making such inferences more accurate (although, presumably, a bit less precise).
 The algorithm described in the previous section provides an efficient and
@@ -579,7 +579,7 @@ introduced by the \Untrendy\ algorithm but there are various ways of dealing
 with this using more flexible noise models or wavelet methods (DFM:\ cite some
 Winn paper).
 
-Some of the more recent analyses of Kepler data have relied on Markov chain
+Some of the more recent analyses of \Kepler\ data have relied on Markov chain
 Monte Carlo (MCMC) to perform correct probabilistic inference in the face of
 noisy data.
 We have substantial expertise in the domain of MCMC methods \citep{emcee} (HOW
