@@ -13,7 +13,7 @@
 \usepackage{graphicx}
 \newcommand{\sectionname}{Section}
 \setlength{\headheight}{2ex}
-\setlength{\headsep}{3ex}
+\setlength{\headsep}{2ex}
 \input{hogg_nasa}
 \newcommand{\kplr}{\package{kplr}}
 \newcommand{\Untrendy}{\package{Untrendy}}
@@ -23,7 +23,7 @@
 \newcommand{\dd}{\,\mathrm{d}}
 \newcommand{\bvec}[1]{\mathbf{#1}}
 \pagestyle{myheadings}
-\markright{\textsf{\small Hogg \& Foreman-Mackey / %
+\markright{\textsf{\footnotesize Hogg \& Foreman-Mackey / %
                    End-to-end probabilistic modeling of Kepler data}}
 
 \usepackage{listings}
@@ -98,7 +98,7 @@ data sets (for example that from \TESS) produce data that are
   \NASA\ outstanding science per dollar.}
 
 Even if you are convinced that the data need to be re-analyzed, why
-should they be reanalyzed by \emph{this team?}  Although we do not
+\emph{this team?}  Although we do not
 have a long history in exoplanet science, we do have some experience,
 breaking ground in the area of hierarchical modeling of exoplanet
 populations \citep{hogg-ecc}, and telescope light-field modeling for
@@ -147,8 +147,8 @@ Programming Interface (API).
 An API is required technoogy for automated data analysis.
 
 In general, all programming languages that are commonly used for scientific
-analyses (C, C++, Java, Python, R, IDL) have
-libraries designed to interact with web services using HTTP requests so it is
+analyses (C, C++, IDL, Java, Python, R) have
+libraries to interact with web services; it is
 possible to access the \Kepler\ data from any language.
 That said, HTTP tools tend to be very general;
 for any particular \Kepler\ query that a user wants to make,
@@ -180,8 +180,7 @@ Python is also a good skill for a graduate students to learn
 because it is equally valuable in academia and in non-academic
 environments (dot-coms, finance).
 
-Our proposed interface to the \Kepler\ data should satisfy at least the
-following requirements:
+Our proposed interface to the \Kepler\ data should satisfy the following:
 \begin{itemize}
 \item The API should be general enough that any request that could
 possibly be made from the web form should be possible.
@@ -198,9 +197,7 @@ exoplaneteer community.
 Our experience with the \emcee\ Markov-Chain Monte Carlo sampling package,
 and the brand we have developed with that package and other projects,
 suggests that we will get very high ``market penetration'' if we meet these
-requirements.
-
-Here is an example of the proposed syntax for the module:
+requirements.  Here is an example of the proposed syntax for the module:
 \begin{lstlisting}
 import kplr
 client = kplr.API()
@@ -226,15 +223,11 @@ kois = client.kois(sort=("planet_radius", -1), limit=10)
 The development of this tool has started on \project{GitHub}
 (\hurl{https://github.com/dfm/kplr}),
 along with documentation and example code.
-A pre-release version is already available under the liberal MIT open source
+A pre-release version is already available under the liberal MIT
 license.
-
 The code installs trivially on computers using the standard Python build
-systems. The recommended installation method uses \project{pip}
-(\hurl{http://www.pip-installer.org/}); the command is simply
-\begin{lstlisting}
-pip install kplr
-\end{lstlisting}
+systems; recommended is the \project{pip} 
+(\hurl{http://www.pip-installer.org/}) one-liner ``\texttt{pip install kplr}''.
 
 \paragraph{Proposal:}
 \emph{We propose to finish building the \kplr\ API code and its documentation.
@@ -259,18 +252,18 @@ transfer of the \kplr\ code and documentation ownership.}
 
 \section{De-trending}
 
-For complicated reasons related to crowded-field photometry, flat-fielding,
+For reasons related to crowded-field photometry, flat-fielding,
 spacecraft temperature issues and thrust activity, stellar abberation, parallax, proper motion,
-and intrinsic stellar variability, a typical \Kepler\ lightcurve shows
-variability at the sub-percent level even when there is no transit.
-For context, the transits of greatest interest induce brightness dips at the
-$10^{-4}$ to $10^{-5}$ level.
-Most of the non-transit effects lead to smooth light-curve variations, but in addition
+and intrinsic stellar variability, all typical \Kepler\ lightcurves show
+variability at the sub-percent level.
+(For context, the transits of greatest interest induce brightness dips at the
+$10^{-4}$ to $10^{-5}$ level.)
+In addition,
 there are discontinuities at the \Kepler\ quarter boundaries (when the
-spacecraft attitude is re-set) and poorly understood Sudden Pixel
-Sensitivity Dropouts (SPSDs), which lead to discontinuous jumps.
+spacecraft attitude is re-set) and ``sudden pixel
+sensitivity dropouts'' (SPSDs), which lead to jumps.
 The principled thing for an exoplanet searcher to do is to \emph{simultaneously}
-fit all of these ``trend'' and SPSD effects in a highly parameterized model,
+fit all of these trend and SPSD effects in a highly parameterized model,
 along with all possible exoplanet signals.
 However, because these effects are very hard to model interpretably, and since
 all these sources of variability are essentially \emph{nuisances} to the
@@ -336,8 +329,7 @@ It also properly captures and accounts for SPSDs.
 Initial experiments have produced extremely promising results even when
 reproducing the lowest signal-to-noise discoveries in the \Kepler\ catalog
 (see \figurename~\ref{fig:untrendy}).
-
-The key features of \Untrendy\ are as follows:
+The key features are:
 \begin{itemize}
 \item The algorithm is very scalable and local relative to the MAP-PDC
   algorithm.  It has the locality and robustness of the
@@ -445,7 +437,7 @@ in the data; \Untrendy\ should know about these and fit them actively.
 \end{itemize}
 
 \paragraph{Proposal:}
-\emph{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
+\emph{We propose to release version~0.1 of \Untrendy\ as a standalone C
 library with Python bindings under a liberal open source license (MIT).}
 This would be a complimentary addition to the standard \Kepler\ data
 product along side the PDC and MAP-PDC results.
@@ -805,17 +797,15 @@ However, we have shown in previous work that we can perform an importance
 sampling that permits us to use posterior samplings in the internal parts
 of a hierarchical model very efficiently \citep{hogg-ecc}.
 
-We have only just started this project; here are the directions we propose to go:
-\begin{itemize}
-\item
 The absolutely most crucial element of \TheCreator\ is that it models
 \emph{the data} not \emph{statistics of the data}.  That is, the prior
 PDFs in \TheCreator\ are PDFs for exoplanet system parameters, which
 in turn are parameters for the likelihood function in \Bart\ acting on
 the data directly.  By integrating \Bart\ samplings in \TheCreator, we
 will be the first team in astrophysics to be modeling the whole
-exoplanet population, constrained by the lightcurve photometric points
+exoplanet population, constrained by the photometric points
 directly.
+\begin{itemize}
 \item
 \TheCreator\ needs to fully confront the problem of sampling in models
 of variable complexity (Cite Brewer).  It is both the case that we
@@ -891,7 +881,7 @@ collaborations that make use of the software or improve it.
 The project is budgeted for three years of project lifetime:
 
 \paragraph{first year:}
-Complete and release version~1.0 of \kplr\ API along with complete
+Complete and release version~1.0 of \kplr\ API along with
 documentation.
 Release version~0.1
 of \Untrendy\ and \Bart, executing the first stages of
