@@ -112,20 +112,19 @@ probabilistic modeling of astrophysical data sets.
 
 On the inference side of this,
 Co-I Foreman-Mackey is the lead developer of \emcee\
-package \citep{emcee} for fast, self-tuning Markov-Chain Monte Carlo sampling.
+\citep{emcee}, a self-tuning Markov-Chain Monte Carlo sampling.
 This is by far the fastest-growing MCMC package in the astrophysics community
- (at time of writing it is getting about seven citations per month in the
-refereed literature).
+ (at time of writing it is getting about seven citations per month).
 On the calibration side of this,
-Co-I Hogg was responsible (along with collaborators) for
+Co-I Hogg had co-responsibility for
 the precise self-calibration of the \observatory{Sloan Digital Sky Survey}
-imaging data \citep{ubercal}, which in turn led (almost directly)
+imaging data \citep{ubercal}, which in turn led
 to discoveries such as ultra-faint Milky Way companion Willman I
- \citep{wil1} and many other substructures \citep[for example,][]{wil2, field, gd1} and the detection of the baryon acoustic feature
+ \citep{wil1} and many other substructures \citep[for example,][]{wil2, field, gd1}, and the detection of the baryon acoustic feature
 in the large-scale structure \citep{bao}.  These
 strengths---calibration and probabilistic modeling---are not unique to
-the proposing team, but their combination is unusual and puts us in a
-very strong position to deliver extremely valuable new methods to the
+the proposing team, but their combination puts us in a
+very strong position to deliver valuable new methods to the
 \Kepler\ team and larger community.
 
 \section{Tools for easy access to \Kepler\ data}
@@ -144,7 +143,7 @@ The standard method for accessing data from these archives is via Web
 form,
 but both services also offer programmatic access via an Application
 Programming Interface (API).
-An API is required technoogy for automated data analysis.
+An API is required technology for automated data analysis.
 
 In general, all programming languages that are commonly used for scientific
 analyses (C, C++, IDL, Java, Python, R) have
@@ -155,10 +154,9 @@ for any particular \Kepler\ query that a user wants to make,
 a complex URL must be constructed ``by hand'' (hard-coded or
 expert-system-generated), and then the structured text returned by the Web server must be
 parsed with another equally hard-coded custom tool.
-Individual hand-construction of a useful API can therefore
-be time consuming and error-prone.
-More importantly, it represents repeated work that will be done (and probably
-already \emph{has} been done) many times over in the community.
+Individual hand-construction of a useful API is
+be time consuming, error-prone, and
+represents repeated work in the community.
 One consequence is duplication of effort; another is that many who would
 benefit strongly from an API nonetheless resort to using the Web form
 and downloading and importing the data piecemeal by hand.
@@ -206,7 +204,6 @@ client = kplr.API()
 kepler10b = client.planet("10b")
 print(kepler10b)
 # <kplr.Planet("Kepler-10 b")>
-
 print(kepler10b.period)
 # 0.8374903
 
@@ -217,7 +214,7 @@ for d in kepler10b.data:
     # Analyse the dataset using d.time, d.sapflux, etc.
     # Plot using matplotlib or whatever.
 
-# Find the 10 largest KOIs.
+# Find the 10 largest KOIs by planet radius.
 kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
 The development of this tool has started on \project{GitHub}
