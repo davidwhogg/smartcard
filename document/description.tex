@@ -224,15 +224,15 @@ for d in kepler10b.data:
 # Find the 10 largest KOIs.
 kois = client.kois(sort=("planet_radius", -1), limit=10)
 \end{lstlisting}
-The development of this tool has started on \project{GitHub}%
-\footnote{\url{https://github.com/dfm/kplr}},
+The development of this tool has started on \project{GitHub}
+(\url{https://github.com/dfm/kplr}),
 along with documentation and example code.
 A pre-release version is already available under the liberal MIT open source
 license.
 
 The code installs trivially on computers using the standard Python build
-systems. The recommended installation method uses \project{pip}\footnote{%
-\url{http://www.pip-installer.org/}} and the command is simply
+systems. The recommended installation method uses \project{pip}
+(\url{http://www.pip-installer.org/}); the command is simply
 \begin{lstlisting}
 pip install kplr
 \end{lstlisting}
