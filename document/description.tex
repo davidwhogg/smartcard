@@ -694,14 +694,14 @@ One of the main science goals of the \Kepler\ mission is to learn about the
 \emph{global population} exoplanets and answer questions like ``do planetary
 systems tend to form aligned in a disk?'', and ``what fraction of planets live
 in multiple planet systems?''
-In the literature, this is often referred to as studying the architecture of
-exoplanetary systems.
-This is an excellent example of a \emph{hierarchical inference problem}
+These ``architecture'' studies are (in principle)
+excellent examples of \emph{hierarchical inference problem}
  (CITE:\ Hogg ecc, Blei, other?).
 While the term ``hierarchical inference'' is not often used in the astronomy
 literature, many astrophysical research questions can be posed this way and
 techniques from the computer science literature---where hierarchical inference
 is an active research problem---can be applied.
+
 The basic structure of a hierarchical analysis involves determining the
 structure and parameters of the \emph{prior} probability distribution
 functions conditioned on observations of an \emph{ensemble} of independent
@@ -740,6 +740,24 @@ MCMC.
 In particular, the results of an analysis using \Bart\ include the information
 necessary for accurately estimating the value of the marginalized likelihood.
 
+The principal idea of the hierarchical inference is that the
+high-level population parameters (semi-major-axis distribution
+parameters, for example) get connected (through probability
+distributions) directly to the low-level data (\Kepler\ photometry, in
+this case).
+This connection can only happen if the \emph{selection
+  functions}---for \Kepler\ to observe a star and for a planetary
+system to make it through our search filters---are part of the model,
+preferably with parameters.
+Typically selection functions are determined (point-estimated) using fake
+data or data insertions and then used to re-weight the data in population
+analyses.
+In a better hierarchical analysis, the selection functions are fit and marginalized
+out in the inference, constrained by both fake data (and data insertions) and the
+real data on which the population inference is being performed.
+This procedure properly captures all information about the selection function
+available in the superset including the real and fake data, and also properly
+propagates uncertainty in the selection function into final inferences.
 
 \paragraph{Standard practice:}
 Some important first steps have been taken toward modeling the population
@@ -763,16 +781,6 @@ hard cuts on the observed parameter space.
 As a result, these studies are required to be extremely conservative when
 selecting data.
 
-In principle, it is possible to relax this constraint by modeling the selection function of
-the survey, though this has not yet been done for the \Kepler\ mission.
-This kind of ``selection modeling'' is beneficial for two main reasons: Firstly, it increases the amount of data
-available for the analysis, and second, if there are problems with the assumed
-completeness estimates (that are based on heuristics anyways) then a flexible
-enough model will be able to capture these problems.
-A full probabilistic model of the exoplanet population also provides a
-mechanism for taking the observational and systematic uncertainties into
-account.
-
 
 \paragraph{\TheCreator:}
 We propose to build a general tool---called \TheCreator---for performing
@@ -790,10 +798,15 @@ A simple example of this technique is described in \citet{hogg-ecc} where we
 demonstrate a hierarchical method for learning the distribution of planet
 eccentricities given a set of synthetic radial velocity observations.
 
+Hierarchical inference requires likelihood tools for the internal parts
+of the graphical model.
+\Bart\ provides \emph{posterior} samplings, which
+are not identical to likelihood functions.
+However, we have shown in previous work that we can perform an importance
+sampling that permits us to use posterior samplings in the internal parts
+of a hierarchical model very efficiently \citep{hogg-ecc}.
 
-\paragraph{Enhanced goals:}
-Since we are at the very beginning of the specification of this project, it
-is essentially all ``enhanced goals'' at this point:
+We have only just started this project; here are the directions we propose to go:
 \begin{itemize}
 \item
 The absolutely most crucial element of \TheCreator\ is that it models
@@ -864,7 +877,7 @@ propose to develop these and use them to model the full data set we
 have collected for our simpler analyses.
 
 
-\section{Management plan}
+\section{Management plan and schedule}
 
 This project is the PhD dissertation project of Co-I Foreman-Mackey;
 in this sense Foreman-Mackey is the scientific lead of the project,
@@ -873,14 +886,10 @@ experiments and code enhancements.  PI Hogg is the faculty advisor on
 this dissertation; in this sense Hogg is the management lead of the
 project, ensuring that deadlines get met, papers get written, and code
 gets properly documented and released.  The budget also includes a
-small amount of support for an additional part-time graduate student
-and postdoc.  These are budgeted to support short-term scentific
-collaborations that make use of the software or improve it.  That is,
-some of the sub-parts of the project can be executed by new graduate
-students or postdocs at NYU.
-
-The project is budgeted for three years of project lifetime.  An
-approximate schedule is the following:
+small amount of support for an additional part-time 
+postdoc.  These are budgeted to support short-term scentific
+collaborations that make use of the software or improve it.
+The project is budgeted for three years of project lifetime:
 
 \paragraph{first year:}
 Complete and release version~1.0 of \kplr\ API along with complete
