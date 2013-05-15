@@ -538,48 +538,32 @@ the samples and 12 randomly drawn model light curves overplotted.
 \label{fig:bart}}
 
 \paragraph{\Bart / flexible, non-parametric limb darkening model:}
-As mentioned above, most analyses of transiting exoplanets rely on the
+As mentioned above, most analyses rely on the
 analytic limb darkening expressions of \citet{mandel}.
 These results are extremely restrictive on the form of limb darkening profile
 that can be used and the results are still relatively expensive to compute
-because they rely heavily on special functions whose values must be computed
-numerically.
+because they rely heavily on special functions.
 More recently, \citet{crazyass1} and \citet{crazyass2} have proposed
 alternative methods for computing the light curve of a planet transiting a
-star with a more general limb darkening profile.
-The algorithm proposed by \citet{crazyass1} requires the summation of many
-high-order special functions.
-DFM:\ do they make claims about efficiency?
-The second method \citep{crazyass2} involves a numerical integration for
+star with a more general limb darkening profile; these also require
+either the summation of many
+high-order special functions or else a numerical integration for
 all but the simplest profiles.
 
 \Bart\ will take a brute force approach.
 Since the solution of the overlapping area of occulting disks is extremely
 inexpensive to compute, it seems like a good idea to integrate the light curve
 shape numerically.
-Following the notation of \citet{mandel}, the fraction of the stellar flux
-that is occulted by a transiting planet is given---in the general case---by
-the area integral
-\begin{eqnarray}
-\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(\bvec{r}) \dd^2 \bvec{A}
-\end{eqnarray}
-where $I(\bvec{r})$ is the (properly normalized) limb darkening profile and
-$\bvec{A}_\mathrm{occ}$ is the occulted area.
-Assuming that $I(\bvec{r}) \equiv I(r)$ is radially symmetric, this integral
-simplifies to
-\begin{eqnarray}
-\lambda & = & \int_{\bvec{A}_\mathrm{occ}} I(r) \, r \dd r \dd \theta \quad.
-\end{eqnarray}
-Finally, if we write $I(r)$ as a piecewise constant function with values $I_n$
-with breakpoints at arbitrary radii $r_n$, the occulted flux is simply
-\begin{eqnarray}
-\lambda & = & \sum_n w_n \, I_n
-\end{eqnarray}
-where the $w_n$ are just differences of non-limb darkened solutions.
-Preliminary experiments show that arbitrary models can be computed to
+In the usual way of thinking, the fraction of the stellar flux
+that is occulted by a transiting planet is given by an 
+area integral of a smooth, analytic approximation to limb-darkening function $I(r)$.
+The \Bart approach is to write $I(r)$ as a piecewise constant function
+with breakpoints at arbitrary radii $r_n$.  The occulted flux becomes a
+weighted sum of simple geometric areas.
+Preliminary experiments show that arbitrary limb-darkening models can be computed to
 extremely high precision for the same computational cost as the standard
 \citet{mandel} models but with significantly more flexibility.
-
+Priors on the step function can be used to restrict the flexibility as needed.
 
 \paragraph{\Bart / Model building and parameter estimation:}
 We are specifically interested in the probabilistic modeling
