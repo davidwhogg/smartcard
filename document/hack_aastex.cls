@@ -1071,7 +1071,8 @@
 }%
 \renewcommand\section{%
  \@startsection{section}{1}%
-  {\z@}{5ex\@plus.5ex}{1ex\@plus.2ex}{\normalsize\bfseries}%
+  {\z@}{2ex\@plus.5ex}{1ex\@plus.2ex}{\normalsize\bfseries}%
+%%  {\z@}{5ex\@plus.5ex}{1ex\@plus.2ex}{\normalsize\bfseries}% % HACK
 }%
 \def\thesection{\@arabic{\c@section}}%
 \def\clear@section@page{}%
