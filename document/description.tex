@@ -482,7 +482,7 @@ more useful.  We also add some important new capabilities (and, of course, relea
 
 \paragraph{Standard practice:}
 The exoplanet community has long understood and been open to data analysis
-using rigorous probabilistic inference \citep[for example,][]{ford}.
+using rigorous probabilistic inference \citep[for example,][]{gregory,ford}.
 All recent methods of planetary parameter estimation use MCMC (or similar) to
 propagate the uncertainties \citep[][to name only a few]{barclay,dressing,%
 kepler5,kepler4}.
@@ -569,14 +569,14 @@ As a first step, it is probably reasonable to assume that the uncertainties in
 the \Kepler\ data are Gaussian and independent.
 The independence assumption is certainly not true because of correlations
 introduced by the \Untrendy\ algorithm but there are various ways of dealing
-with this using more flexible noise models or wavelet methods (DFM:\ cite some
-Winn paper).
+with this using more flexible noise models or wavelet methods \citep{wavelet}.
 
 Some of the more recent analyses of \Kepler\ data have relied on Markov chain
 Monte Carlo (MCMC) to perform correct probabilistic inference in the face of
 noisy data.
-We have substantial expertise in the domain of MCMC methods \citep{emcee} (HOW
-ABOUT SOME OTHER CITATIONS TOO:\ Hou etc.) and our open source MCMC
+We have substantial expertise in the domain of MCMC methods
+\citep{hou,emcee,brewer}
+and our open source MCMC
 implementation has already been used by several groups in the field.
 Building on our experience releasing and supporting \emcee, we propose to
 build and release an open-source tool for modeling transit data built on the
@@ -878,7 +878,7 @@ experiments and code enhancements.  PI Hogg is the faculty advisor on
 this dissertation; in this sense Hogg is the management lead of the
 project, ensuring that deadlines get met, papers get written, and code
 gets properly documented and released.  The budget also includes a
-small amount of support for an additional part-time 
+small amount of support for an additional part-time
 postdoc.  These are budgeted to support short-term scentific
 collaborations that make use of the software or improve it.
 The project is budgeted for three years of project lifetime:
@@ -947,6 +947,13 @@ Borucki, W.~J., Koch, D.~G., Brown, T.~M., \etal\ 2010, \apjl, {713}, L126
 Bovy Jo, Hogg, D.~W., \& Roweis, S.~T.\ 2011, Annals of Applied Statistics,
 5, 1657
 
+\bibitem[Brewer et al.(2012)]{brewer}
+Brewer, B.~J., Foreman-Mackey, D., \& Hogg, D.~W.\ 2012, arXiv:1211.5805
+
+
+\bibitem[Carter \& Winn(2009)]{wavelet}
+Carter, J.~A., \& Winn, J.~N.\ 2009, \apj, 704, 51
+
 \bibitem[Dressing \& Charbonneau(2013)]{dressing}
 Dressing, C.~D., \& Charbonneau, D.\ 2013, \apj, {767}, 95
 
@@ -975,11 +982,18 @@ Gazak, J.~Z., Johnson, J.~A., Tonry, J., \etal\ 2012, Advances in Astronomy
 \bibitem[Gim{\'e}nez(2006)]{crazyass1}
 Gim{\'e}nez, A.\ 2006, \aap, {450}, 1231
 
+\bibitem[Gregory(2005)]{gregory}
+Gregory, P.~C.\ 2005, \apj, 631, 1198
+
 \bibitem[Grillmair \& Dionatos(2006)]{gd1}
 Grillmair, C.~J., \& Dionatos, O.\ 2006, \apjl, 643, L17
 
 \bibitem[Hogg \etal(2010)]{hogg-ecc}
 Hogg, D.~W., Myers, A.~D., \& Bovy, J.\ 2010, \apj, 725, 2166
+
+\bibitem[Hou \etal(2012)]{hou}
+Hou, F., Goodman, J., Hogg, D.~W., Weare, J., \& Schwab, C.\ 2012, \apj, 745, 198
+
 
 \bibitem[Koch \etal(2010)]{kepler5}
 Koch, D.~G., Borucki, W.~J., Rowe, J.~F., et al.\ 2010, \apjl,
