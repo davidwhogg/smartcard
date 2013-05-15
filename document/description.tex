@@ -226,8 +226,8 @@ along with documentation and example code.
 A pre-release version is already available under the liberal MIT
 license.
 The code installs trivially on computers using the standard Python build
-systems. The recommended installation method is a one-liner using \project{pip}
-(\hurl{http://www.pip-installer.org/}) ``\texttt{pip install kplr}''.
+systems; recommended is the \project{pip} 
+(\hurl{http://www.pip-installer.org/}) one-liner ``\texttt{pip install kplr}''.
 
 \paragraph{Proposal:}
 \emph{We propose to finish building the \kplr\ API code and its documentation.
@@ -252,10 +252,10 @@ transfer of the \kplr\ code and documentation ownership.}
 
 \section{De-trending}
 
-For complicated reasons related to crowded-field photometry, flat-fielding,
+For reasons related to crowded-field photometry, flat-fielding,
 spacecraft temperature issues and thrust activity, stellar abberation, parallax, proper motion,
-and intrinsic stellar variability, a typical \Kepler\ lightcurve shows
-variability at the sub-percent level even when there is no transit.
+and intrinsic stellar variability, all typical \Kepler\ lightcurves show
+variability at the sub-percent level.
 For context, the transits of greatest interest induce brightness dips at the
 $10^{-4}$ to $10^{-5}$ level.
 Most of the non-transit effects lead to smooth light-curve variations, but in addition
@@ -329,8 +329,7 @@ It also properly captures and accounts for SPSDs.
 Initial experiments have produced extremely promising results even when
 reproducing the lowest signal-to-noise discoveries in the \Kepler\ catalog
 (see \figurename~\ref{fig:untrendy}).
-
-The key features of \Untrendy\ are as follows:
+The key features are:
 \begin{itemize}
 \item The algorithm is very scalable and local relative to the MAP-PDC
   algorithm.  It has the locality and robustness of the
@@ -438,7 +437,7 @@ in the data; \Untrendy\ should know about these and fit them actively.
 \end{itemize}
 
 \paragraph{Proposal:}
-\emph{We propose to release a implementation of version~0.1 of \Untrendy\ as a standalone C
+\emph{We propose to release version~0.1 of \Untrendy\ as a standalone C
 library with Python bindings under a liberal open source license (MIT).}
 This would be a complimentary addition to the standard \Kepler\ data
 product along side the PDC and MAP-PDC results.
@@ -798,17 +797,15 @@ However, we have shown in previous work that we can perform an importance
 sampling that permits us to use posterior samplings in the internal parts
 of a hierarchical model very efficiently \citep{hogg-ecc}.
 
-We have only just started this project; here are the directions we propose to go:
-\begin{itemize}
-\item
 The absolutely most crucial element of \TheCreator\ is that it models
 \emph{the data} not \emph{statistics of the data}.  That is, the prior
 PDFs in \TheCreator\ are PDFs for exoplanet system parameters, which
 in turn are parameters for the likelihood function in \Bart\ acting on
 the data directly.  By integrating \Bart\ samplings in \TheCreator, we
 will be the first team in astrophysics to be modeling the whole
-exoplanet population, constrained by the lightcurve photometric points
+exoplanet population, constrained by the photometric points
 directly.
+\begin{itemize}
 \item
 \TheCreator\ needs to fully confront the problem of sampling in models
 of variable complexity (Cite Brewer).  It is both the case that we
@@ -884,7 +881,7 @@ collaborations that make use of the software or improve it.
 The project is budgeted for three years of project lifetime:
 
 \paragraph{first year:}
-Complete and release version~1.0 of \kplr\ API along with complete
+Complete and release version~1.0 of \kplr\ API along with
 documentation.
 Release version~0.1
 of \Untrendy\ and \Bart, executing the first stages of
