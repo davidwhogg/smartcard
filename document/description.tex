@@ -297,13 +297,13 @@ The median is robust to outliers; if the median window is
 wide enough, standard procedures don't significantly affect any
 transit signal.
 
-Both of these procedures run into serious trouble however when they encounter a SPSD
-or any other sharp discontinuity.
+Both of these procedures run into serious trouble however when they encounter
+any sharp discontinuity.
 The implicit background model must be smooth even across discontinuities; it
-will introduce significant structured residuals at SPSDs.
+will introduce significant structured residuals.
 The most responsible procedures in current practice discard the data
-near the SPSDs but no literature source is clear on how these points are
-identified in practice.
+near the discontinuities but no literature source is clear on how these points
+are identified in practice.
 
 A more sophisticated method is the ``Bayesian'' MAP-PDC method
 \citep{map-pdc1,map-pdc2}.
@@ -337,7 +337,7 @@ Initial experiments have produced extremely promising results even when
 reproducing the lowest signal-to-noise discoveries in the \Kepler\ catalog
 (see \figurename~\ref{fig:untrendy}).
 
-The key features of \Untrendy are as follows:
+The key features of \Untrendy\ are as follows:
 \begin{itemize}
 \item The algorithm is very scalable and local relative to the MAP-PDC
   algorithm.  It has the locality and robustness of the
