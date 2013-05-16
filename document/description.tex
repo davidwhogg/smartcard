@@ -155,8 +155,8 @@ for any particular \Kepler\ query that a user wants to make,
 a complex URL must be constructed ``by hand'' (hard-coded or
 expert-system-generated), and then the structured text returned by the Web server must be
 parsed with another equally hard-coded custom tool.
-Individual hand-construction of a useful API is
-be time consuming, error-prone, and
+Individual hand-construction of a useful API call
+is time consuming, error-prone, and
 represents repeated work in the community.
 One consequence is duplication of effort; another is that many who would
 benefit strongly from an API nonetheless resort to using the Web form
@@ -302,7 +302,7 @@ It capitalizes on spatial
 continuity of the spacecraft-induced variability of sources and
 has some capability to capture and model SPSDs, although this is not
 a published aspect of the method (at time of writing).
-The MAP-PDC will apparently be included in the next official release of the
+The MAP-PDC light curves will be included in the next official release of the
 \Kepler\ pipeline but it is not yet available to us for analysis and comparison.
 Because the MAP-PDC explicitly tries to model spacecraft-induced effects, it
 has the advantage that it is expected to preserve (that is, not model and
@@ -365,7 +365,7 @@ Again, the fluxes were normalized by the median and then shifted to zero
 median.
 Note the change of units on the y-axis; the PDC procedure clearly makes good
 progress towards removing the main systematic trends in the data.
-\emph{Bottom:} the lightcurve after execution of \Untrendy version 0.1.
+\emph{Bottom:} the lightcurve after execution of \Untrendy\ version 0.1.
 The units on the y-axis are the same as the middle panel.
 \label{fig:untrendy}}
 
@@ -517,7 +517,7 @@ the samples and 12 randomly drawn model lightcurves overplotted.
 \label{fig:bart}}
 
 \paragraph{\Bart\ / flexible, non-parametric limb darkening model:}
-As mentioned above, most analyses rely on the
+Most analyses rely on the
 analytic limb darkening expressions of \citet{mandel}.
 These results are extremely restrictive on the form of limb darkening profile
 that can be used and the results are still relatively expensive to compute
@@ -690,7 +690,7 @@ An illustrative way of representing an inference problem like this is a
 A PGM is a visual representation of the conditional dependencies in a
 probability distribution or equivalently the generative procedure for the data
 as implied by the assumed model.
-A general model for the \Kepler\ inference is problem is shown in
+A general model for the \Kepler\ inference problem is shown in
 \figurename~\ref{fig:full-pgm}.
 \ssfigure{figures/full-pgm.pdf}{0.4}{%
 The general probabilistic model describing the \Kepler\ hierarchical inference
