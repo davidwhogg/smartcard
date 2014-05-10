@@ -2,6 +2,7 @@
 
 \documentclass[letterpaper,12pt,preprint]{hack_aastex}
 
+\usepackage{amsmath}
 \usepackage{color}
 \usepackage[pagebackref=false]{hyperref}
 \definecolor{linkcolor}{rgb}{0,0,0.25}
@@ -21,7 +22,7 @@
 \newcommand{\emcee}{\package{emcee}}
 \newcommand{\TheCreator}{\package{TheCreator}}
 \newcommand{\dd}{\,\mathrm{d}}
-\newcommand{\bvec}[1]{\mathbf{#1}}
+\newcommand{\bvec}[1]{{\ensuremath{{\boldsymbol{#1}}}}}
 \pagestyle{myheadings}
 \markright{\textsf{\footnotesize Hogg \& Foreman-Mackey / %
                    End-to-end probabilistic modeling of Kepler data}}
@@ -54,6 +55,44 @@ Data from NASA Exoplanet Archive.
 \label{fig:planet-properties}}
 
 \section{A data-driven model of the \Kepler\ pixels}
+
+Despite the impressive precision, \Kepler's photometry is plagued by
+substantial ``systematics'' due to instrumental effects (pointing shifts,
+temperature variations, \etc) and real astrophysical signals (stellar
+variability, transiting exoplanets, \etc).
+It is of significant scientific interest to separate these two types of
+signals and much progress has been made towards removing instrumental
+systematics while robustly retaining the astrophysical effects (CITE PDC, ARC,
+\etc).
+These algorithms are all based on a fundamental \emph{causal} argument: the
+signals that are common across nearby targets must be due to instrumental
+variations because there can be no causal connection between the astrophysical
+objects.
+The idea is simple but a lot of the work that goes into implementing these
+models involves combating over-fitting.
+
+We propose to implement a method based on the same argument that models the
+instrumental effects \emph{at the pixel level} instead of in the photometry.
+This method makes a prediction for the variability caused by the instrument in
+a specific pixel at a specific time by using the pixel time series of similar
+nearby (but causally disconnected) targets at different times.
+This prediction can then be used to remove or model the systematics in various
+ways but our current thinking is that this model is best used TODO photometry
+of prediction.
+
+We'll model the flux due to systematic variations in pixel $k$ of target
+$n$ at time $t$ as
+\begin{eqnarray}
+f_{nk}(t) &=& \bvec{c}^\mathrm{T}\cdot\bvec{f}_{\sim n}(t) + c_0
+              + \epsilon_{nk}(t)
+\end{eqnarray}
+where $\bvec{f}_{\sim n}$ is the vector of some $K$ pixels around nearby
+targets (not including $n$), $\bvec{c}$ is a vector of linear weights, $c_0$
+is a constant DC level and $\epsilon_{nk}$ represents the stochastic pixel
+noise.
+There are many choices that must be made to evaluate this model but the main
+ones are: (a) the number of pixels $K$ should be used in $\bvec{f}_{\sim n}$,
+and (b) how should $\bvec{c}$ and $c_0$ are chosen.
 
 \section{Optimized aperture photometry}
 
