@@ -83,16 +83,21 @@ of prediction.
 We'll model the flux due to systematic variations in pixel $k$ of target
 $n$ at time $t$ as
 \begin{eqnarray}
-f_{nk}(t) &=& \bvec{c}^\mathrm{T}\cdot\bvec{f}_{\sim n}(t) + c_0
+f_{nk}(t) &=& \bvec{c}_{nk}^\mathrm{T}\cdot\bvec{f}_{\sim n}(t)
               + \epsilon_{nk}(t)
 \end{eqnarray}
 where $\bvec{f}_{\sim n}$ is the vector of some $K$ pixels around nearby
-targets (not including $n$), $\bvec{c}$ is a vector of linear weights, $c_0$
-is a constant DC level and $\epsilon_{nk}$ represents the stochastic pixel
-noise.
+targets (not including $n$), $\bvec{c}_{nk}$ is a vector of linear weights,
+and $\epsilon_{nk}$ represents the stochastic pixel noise.
 There are many choices that must be made to evaluate this model but the main
 ones are: (a) the number of pixels $K$ should be used in $\bvec{f}_{\sim n}$,
-and (b) how should $\bvec{c}$ and $c_0$ are chosen.
+and (b) how the weights $\bvec{c}_{nk}$ are chosen.
+Motivated by the standard techniques in the machine learning literature, we
+advocate for a very large value of $K$ and use other techniques to regularize
+and avoid over-fitting.
+In particular, we choose to fit the coefficients $\bvec{c}$ using the light
+curve in this pixel but at \emph{different times} $t^\prime$ where
+$|t-t^\prime| > \Delta$.
 
 \section{Optimized aperture photometry}
 
