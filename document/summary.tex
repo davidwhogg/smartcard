@@ -12,15 +12,12 @@
 \pagestyle{empty}
 \begin{document}
 
-The \Kepler\ Satellite data have been used to find thousands of exoplanets;
-it has generated unprecedented discoveries, measurements, and insights.
-In particular, it has found good evidence for rocky planets in or near the
-habitable zones of low-mass stars.
-It has yet, however, to find a true Earth Analog, or Earth-like planet on a
+The \Kepler\ Satellite data have been used to find thousands of exoplanets.
+In particular, many small, rocky planets have been found.
+We have yet, however, to find a true Earth Analog, or Earth-like planet on a
 year-ish orbit around a Sun-like star.
 This is not for lack of photons:
-It is both the case that transiting Earth Analogs are expected to be rare, and
-that these discoveries are the most challenging:
+These discoveries will be exceedingly challenging:
 There is a small number of transits within the Mission lifetime,
 uncalibrated variation in spacecraft (s/c) temperature and pointing,
 and intrinsic stellar variability.
@@ -30,9 +27,9 @@ We also \textbf{propose to run these software systems on the \Kepler\ Data,
 providing back to the entire community value-added data} that are more valuable
 for almost any scientific question.
 
-The first---the \PLM---is a data-driven, pixel-level, self-calibration of the
+The first---the \PLM---is a data-driven self-calibration of the
 \Kepler\ Data pixel values.  
-The idea is that (because the design of the \Kepler\ Satellite is so simple)
+The idea is that (because the design of the Satellite is so simple)
 the s/c variability lives in a low-dimensionality space of pointing,
 temperature, focus, and maybe some integrals or derivatives of those.
 Inasmuch as these variations imprint on the pixels, they should be shared among
@@ -43,15 +40,14 @@ train-and-test framework and strong regularization to avoid over-fitting.
 This model can potentially model out essentially all of the s/c-induced
 variability in \Kepler\ Data lightcurves.
 
-The second---the \OWL---is a method for generating rigid, frequentist
+The second---the \OWL---is a method for generating frequentist
 photometric estimators that are optimized for signal-to-noise in the presence
 of correlated pixel noise.
-The only reason that independently read-out pixels \emph{effectively} show
-covariant noise is that the contribution of starlight they see is a function
-of s/c position, focus, and temperature.
-This covariant noise (whatever is left in the data after the \PLM\ 
-regression) can be measured empirically in the data; the \OWL\ finds a
-(odd-shaped, soft) aperture that is orthogonal to the strongest eigenimages
+Independently read-out pixels \emph{effectively} show
+covariant noise because the fluxes they see are deterministic functions
+of s/c positional, focus, and temperature ``noise''.
+This covariant noise can be measured empirically in the data; the \OWL\ finds a
+(soft) aperture that is orthogonal to the principal ``eigenimages''
 of correlated noise.
 
 The third---\George---is a replacement for the standard \Kepler\ Data
