@@ -99,6 +99,21 @@ In particular, we choose to fit the coefficients $\bvec{c}$ using the light
 curve in this pixel but at \emph{different times} $t^\prime$ where
 $|t-t^\prime| > \Delta$.
 
+\ssfigure{figures/kepler-20-plm.pdf}{0.60}{%
+A comparison of photometric methods applied to quarter 9 of target Kepler-20,
+a variable exoplanet host with 5 known transiting exoplanets.
+This star is known to exhibit significant stellar variability and we chose it
+as an example because the presearch data conditioning algorithm clearly
+over-fits the signals.
+With sensible choices for the hyperparameters of our data-driven model, the
+resulting light curve retains more of the interesting astrophysical signals
+and does not affect the transit depths.
+\emph{Top:} the simple aperture photometry (black points) with the data-driven
+prediction for the instrumental effects.
+\emph{Middle:} the data-driven photometric light curve.
+\emph{Bottom:} the presearch data conditioned light curve.
+\label{fig:plm}}
+
 \section{Optimized aperture photometry}
 
 \section{Flexible, non-parametric modeling of light curve variations}
