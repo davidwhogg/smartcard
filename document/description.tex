@@ -115,6 +115,28 @@ prediction for the instrumental effects.
 
 \section{Optimized aperture photometry}
 
+The astronomical community tends to think in terms of stellar flux estimators
+(or photometric estimators) that are weighted linear sums of pixels.
+If you have an image of an isolated star and you know it's position in the
+image, the point-spread function, the approximate brightness of the star, and
+all the parameters of the pixel-level noise model, it is possible to obtain a
+photometric estimate of the star of this form (weighted linear sum of pixels)
+that is optimized for signal-to-noise.
+The estimator is a kind of ``matched filter''.
+This result has been known for a long time (CITE THINGS).
+
+Below (when we talk about \kpsf) we are going to consider more radical
+photometric estimators.
+But even within the restriction to estimators based on weighted linear sums,
+there are advances to be made.
+In the case of \Kepler\ the opportunities come from the fact that the data
+are taken in an extremely uniform, homogeneous mode, but at the same time not
+\emph{perfectly} homogeneous.
+That is, the pointing of \Kepler\ is stable only at the hundredth-of-a-pixel
+level (or maybe thousandth; we don't precisely know), and it undergoes
+temperature and focus variations as it adjusts for attitude changes required
+for data downlink operations.
+
 \section{Flexible, non-parametric modeling of light curve variations}
 
 \section{The \Kepler\ focal plane}
