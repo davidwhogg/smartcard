@@ -10,20 +10,65 @@
 \setlength{\headheight}{0ex}
 \setlength{\headsep}{0ex}
 \newcommand{\kplr}{\package{kplr}}
-\newcommand{\Untrendy}{\package{Untrendy}}
-\newcommand{\Bart}{\package{Bart}}
+\newcommand{\PLM}{\package{PLM}}
+\newcommand{\OWL}{\package{OWL}}
+\newcommand{\George}{\package{George}}
+\newcommand{\kpsf}{\package{kpsf}}
 \newcommand{\emcee}{\package{emcee}}
-\newcommand{\TheCreator}{\package{TheCreator}}
 \newcommand{\KIC}{\textsl{KIC}}
 \newcommand{\KOI}{\textsl{KOI}}
 \pagestyle{empty}
 \begin{document}
 
-The \Kepler\ observatory has provided the most important and
-scientifically productive data set ever for the study of exoplanets;
-it has yielded enormous numbers of new exoplanets and exoplanetary
-systems; it has generated unprecedented discoveries, measurements, and
-insights in the domain of exoplanet science.  This proposal is to
+The \Kepler\ Satellite data have been used to find thousands of exoplanets;
+it has generated unprecedented discoveries, measurements, and insights.
+In particular, it has found good evidence for rocky planets in or near the
+habitable zones of low-mass stars.
+It has yet, however, to find a true Earth Analog, or Earth-like planet on a
+year-ish orbit around a Sun-like star.
+This is not for lack of photons:
+It is both the case that transiting Earth Analogs are expected to be rare, and
+that these discoveries are the most challenging:
+There is a small number of transits within the Mission lifetime,
+uncalibrated variation in spacecraft (s/c) temperature and pointing,
+and intrinsic stellar variability.
+Here we \textbf{propose to create four software systems}, each of which will
+address one or more of these challenges.
+We also \textbf{propose to run these software systems on the \Kepler\ Data,
+providing back to the entire community value-added data} that are more valuable
+for almost any scientific question.
+
+The first---the \PLM---is a data-driven, pixel-level, self-calibration of the
+\Kepler\ Data pixel values.  
+The idea is that (because the design of the \Kepler\ Satellite is so simple)
+the s/c variability lives in a low-dimensionality space of pointing,
+temperature, focus, and maybe some integrals or derivatives of those.
+Inasmuch as these variations imprint on the pixels, they should be shared among
+collections of pixels.
+The \PLM\ builds a predictive model for every one of the $10^6$-ish pixels at
+every one of the $10^5$-ish read-out epochs, using a combination of a
+train-and-test framework and strong regularization to avoid over-fitting.
+This model can potentially model out essentially all of the s/c-induced
+variability in \Kepler\ Data lightcurves.
+
+The second---the \OWL---is a method for generating rigid, frequentist
+photometric estimators that are optimized for signal-to-noise in the presence
+of correlated pixel noise.
+The only reason that pixels...
+
+The third---\George---is 
+
+The fourth is \kpsf
+
+Each of the four packages is not just code for \Kepler\ but also embodies
+important ideas in data analysis.
+Each will be released as easy-to-use, easy-to-modify, public, open-source
+software, released under the MIT open-source license.
+The idea is to make all results of the project easily useable, reproducible, and
+extendable by anyone.
+
+\end{document}
+
 systematically re-analyze all of the \Kepler\ data from the ground up,
 to verify and improve upon the tremendously successful
 \Kepler-team-led analyses of the data, and to provide new inference
@@ -75,11 +120,5 @@ Because it builds on the other components of the project, it has
 flexibility to use the heterogeneous data obtainable through \kplr,
 and work in different ``projections'' of the parameter space available
 through \Bart.
-
-Each of the four packages embodies a set of important ideas in data
-analysis and will be expressed in the form of easy-to-use,
-easy-to-modify, public, open-source software, released under an
-open-source license.  The idea is to make all results of the project
-easily reproducible and extendable by anyone.
 
 \end{document}
