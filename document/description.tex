@@ -37,13 +37,31 @@
     stringstyle=\color[rgb]{0.627,0.126,0.941},
 }
 
+\newcommand{\documentname}{\textsl{Proposal}}
+
 \begin{document}
 
 \section{Introduction?}
 
-[todo] \Kepler\ rocks.
+By discovering thousands of transiting exoplanets, the NASA \Kepler\ Mission has
+transformed the study of extra-Solar planets (exoplanets).
+In addition to system discoveries, \Kepler\ has enabled
+extremely precise measurements,
+in which we can see planet--planet interactions (CITE), direct emission from
+hot planets (CITE), and even relativistic effects (CITE).
 
-[todo] Small planets seem to be rocky.  Several habitable planets known.  None around a Sun-like star.  Why not?  Cite \figurename~\ref{fig:planet-properties}.
+Most importantly from the perspective of this \documentname,
+\Kepler\ data have revealed large populations of very small planets,
+Earth radius and smaller (CITE).
+We now know that most or all of these small planets are almost certainly rocky
+(CITE).
+Some of these rocky planets even orbit in the putative ``habitable zones'' of
+their parent stars, as determined by expected average insolation
+(we don't yet know anything about small-planet atmospheres).
+In \figurename~\ref{fig:planet-properties} we show the distribution of known
+planets in radius ratio (planet-to-star) and orbital period, with the location
+of Earth shown.
+This is promising for the study of Earth analogs!
 
 \ssfigure{figures/planet_properties.pdf}{0.60}{%
 The properties of confirmed and candidate exoplanets from \Kepler.
@@ -53,7 +71,47 @@ lower-mass (cooler, fainter) stars and are therefore not true Earth analogs,
 in terms of size, period, and temperature (or insolation).
 \label{fig:planet-properties}}
 
-[todo] We think these things will be rare, but there is a good chance the \Kepler\ data contains one, transiting.
+That said, no \emph{true} Earth analog is yet known.
+The known rocky, plausibly habitable exoplanets have all been found around
+stars lower mass (and cooler) than the Sun.
+They are easier to find around low-mass stars, of course,
+because the radius ratio is more favorable, and the habitable zone orbits
+correspond to shorter periods.
+It also appears to be the case that the abundance of rocky planets around
+low-mass stars is higher than that around G-type stars (CITE).
+
+That said, the \Kepler\ data \emph{are} good enough to detect true Earth
+analogs.
+There are thousands of G-type stars in the \Kepler\ dataset
+that are bright enough (in a photon-counting sense) that an Earth-sized
+transiting planet on a year-ish period orbit ought to be detectable at good
+confidence.
+In a project underway now, we are checking whether it is likely---given transit
+probabilities under random system inclinations and extrapolations of the
+exoplanet population to Earth properties---that the dataset includes a
+transiting Earth analog among these thousands of targets.
+Some studies say yes (CITE Petigura).
+Either way, it would be a crime against all of astronomy if the \Kepler\ data
+set is not searched for Earth analogs with tools capable of saturating the
+photon-statistics bounds on discovery and inference.
+
+Here we propose to build these tools.
+We propose four tools, each capable of increasing the sensitivity and
+statistical power of the \Kepler\ mission.
+The tools will enable the most sensitive search for Earth analogs ever
+conducted.
+They will also have wide applicability to other missions, projects, and
+objectives.
+This is a project that the NASA ADAP program was born to support.
+
+Why is finding an Earth analog so hard?
+Why not just loop over periods and phases and start chi-squared fitting?
+Fundamentally, the reason is that the \Kepler\ Mission is so very very good:
+Never before has photometry been performed at this level of precision (part
+in $10^{5}$ or better in terms of raw photon precision);
+sure enough, at this unprecedented precision, unprecedented astronomical
+issues arise.
+
 
 [todo] There are photons to do it, but various issues:  Calibration, telescope variations, stellar stochastic variability, lack of understanding of the full system.
 
