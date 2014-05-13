@@ -41,9 +41,9 @@
 
 \section{Introduction?}
 
-Figure
+[todo] \Kepler\ rocks.
 
-\figurename~\ref{fig:planet-properties}.
+[todo] Small planets seem to be rocky.  Several habitable planets known.  None around a Sun-like star.  Why not?  Cite \figurename~\ref{fig:planet-properties}.
 
 \ssfigure{figures/planet_properties.pdf}{0.60}{%
 The properties of confirmed and candidate exoplanets from \Kepler.
@@ -52,6 +52,10 @@ The candidates near the location of Earth (labeled by grey lines) are orbiting
 lower-mass (cooler, fainter) stars and are therefore not true Earth analogs,
 in terms of size, period, and temperature (or insolation).
 \label{fig:planet-properties}}
+
+[todo] We think these things will be rare, but there is a good chance the \Kepler\ data contains one, transiting.
+
+[todo] There are photons to do it, but various issues:  Calibration, telescope variations, stellar stochastic variability, lack of understanding of the full system.
 
 \section{A data-driven model of the \Kepler\ pixels}
 
@@ -113,6 +117,8 @@ prediction for the instrumental effects.
 \emph{Bottom:} the presearch data conditioned light curve.
 \label{fig:plm}}
 
+[todo] What, precisely, do we propose?
+
 \section{Optimized aperture photometry}
 
 The astronomical community tends to think in terms of stellar flux estimators
@@ -139,19 +145,55 @@ for data downlink operations.
 
 If we think of the ``jitter'' or small unknown displacements of the angular
 position of the satellite and the optics in focus or temperature changes as a
-kind of ``noise'', the 
+kind of ``noise'', then even though the individual pixel read-outs are
+independent, the variance in the pixel space obtains non-trivial covariances:
+The pointing and PSF variance maps onto a correlated pixel variance.
+
+[todo] imagine we can estimate mean and covariance in a pixel patch
+
+[todo] then we can make a signal-to-noise optimal photometric estimator
+
+[todo] decisions about how to estimate mean and covariance.  Some ideas.
+
+[todo] decisions about how to constrain or regularize the weights.  Some ideas.
+
+[todo] include a figure that shows success.
+
+[todo] what, precisely, do we propose?
 
 \section{Flexible, non-parametric modeling of light curve variations}
 
+[todo] Why are stochastic stellar variations a killer?  In what sense do they make naive $\chi^2$ fitting bad?
+
+[todo] What is a non-parametric model?  What is a Gaussian Process?
+
+[todo] What does the GP likelihood look like?
+
+[todo] What are the hyperparameters and how can we set them; what do they do?
+
+[todo] How does this relate to search and what searches are we going to do?
+
+[todo] what, precisely, do we propose?
+
 \section{The \Kepler\ focal plane}
+
+[todo] Reminder of the importance of a LF, both for frequentists and Bayesians.
+
+[todo] A full probability for the data given parameters would look like a causal model, with PSF, flat-field and so on.  Refer out to demos in the white paper.
+
+[todo] What baby steps have we taken so far and what kinds of decisions will there be?
+
+[todo] How does this interact with the \PLM\ and the \OWL?  Is it in concert or conflict?  Modify summary to be consistent.
+
+[todo] what, precisely, do we propose?
 
 \section{Management plan and schedule}
 
-In the first year, we do OWL and George.  Start search.
+[todo] In the first year, we do OWL and George.  Start search.
 
-In the second year, we do PLM.  Finish search.
+[todo] In the second year, we do PLM.  Finish search.
 
-In the third year we do kpsf and re-run search.
+[todo] In the third year we do kpsf and re-run search.
 
 \clearpage
 \begin{thebibliography}{}\raggedright%
