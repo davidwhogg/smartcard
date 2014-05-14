@@ -112,8 +112,9 @@ in $10^{5}$ or better in terms of raw photon precision);
 sure enough, at this unprecedented precision, unprecedented astronomical
 issues arise.
 
-
 [todo] There are photons to do it, but various issues:  Calibration, telescope variations, stellar stochastic variability, lack of understanding of the full system.
+
+[todo] We should say something about how \Kepler\ operates:  Fixed pointing for three-month periods.  Insensitivity to flat-field and PSF.  But imperfect.
 
 \section{A data-driven model of the \Kepler\ pixels}
 
@@ -207,9 +208,80 @@ kind of ``noise'', then even though the individual pixel read-outs are
 independent, the variance in the pixel space obtains non-trivial covariances:
 The pointing and PSF variance maps onto a correlated pixel variance.
 
-[todo] imagine we can estimate mean and covariance in a pixel patch
+Ideally, we would model these using knowledge of the \Kepler\ PSF and
+pointing jitter.
+Unfortunately, neither of these things is precisely known at present (but see
+our \kpsf\ proposal below).
+They aren't known, but there are a lot of data!
+It turns out that we can determine the ``s/c jitter noise'' (really a pointing,
+focus, and temperature noise) empirically;
+we can measure the empirical mean and variance of the pixels in the patch of
+imaging centered on each relevant star.
 
-[todo] then we can make a signal-to-noise optimal photometric estimator
+If you think of a read-out pixel patch from exposure $n$ taken at time
+$t_n$ as being a little data ``vector'' $d_n$ (19 pixels or a 19-vector
+in the example shown in \figurename~\ref{fig:owl}), then we can obtain an
+empirical mean $\mu$ (19-vector) and an empirical covariance $C$ ($19\times 19$
+symmetric, positive definite matrix).
+If the mean and covariance are well estimated---that is, if they
+represent the true mean jittered PSF and the true covariance of the
+pixel values around that mean---and if the covariance is dominated by
+telescope and detector noise sources---that is, not intrinsic
+variability of the star---then these estimated quantities $\mu$ and
+$C$ can be used to construct optimal weights for linear photometric
+estimators on the data.
+These estimators are truly novel:
+They are signal-to-noise-optimized estimators in the presence of noise coming
+from spacecraft positional jitter and other effects that correlate pixel noise.
+However, they are also simple generalizations of the ``matched filter''
+estimators used to perform optimal photometry and optimal spectroscopic
+extraction (CITE).
+We show an example in \figurename~\ref{fig:owl}.
+We propose here to build a software package called ``the \OWL'' that constructs
+these estimators.
+We also propose to explore the decision space that we allude to below.
+
+%% HOGG put fig:owl here
+%% Include the usual figure and the ``d'' figure
+%% Long caption
+
+It turns out that there are many photometric estimators constructable as
+optimizations of some estimate of signal-to-noise; for this reason we call 
+the outputs of the \OWL\ ``optimized'' rather than ``optimal'' estimators;
+no estimator is optimal for all purposes.
+One class of decisions is related to how we estimate the empirical mean $\mu$
+and covariance $C$:
+Do we clip outliers?
+Do we consider variations on all time-scales?
+Do we somehow include or exclude intrinsic stellar variability?
+
+Another class of decisions is related to regularization or control of the
+photometric aperture.
+In the results shown in \figurename~\ref{fig:owl} we permitted an arbitrarly
+shaped and weighted aperture in pixel space.
+It would be possible to restrict the aperture to have a round shape, or a
+top-hat shape, or a Gaussian, or whatever.
+For each such choice---and each method of estimating $\mu$ and $C$---there is
+an optimal aperture for performing photometry.
+All these choices need to be explored.
+
+The output of the \OWL\ is a new photometric aperture, which can be used to
+create photometry that is perfectly analogous to the existing \Kepler\
+photometry.
+The existing photometry is obtained through an optimized aperture, but that
+aperture is optimized using a theoretical point-spread function, ideas about
+field crowding, and assumptions of minimal s/c jitter.
+The \OWL\ produces photometry that is either higher in signal-to-noise or else
+detrended from s/c movements, or (in excellent cases) both.
+That is, the \OWL\ photometry, built as it is with a data-driven optimization,
+is expected to be better than any existing \Kepler\ product.
+
+One key idea of this \documentname\ is that the \OWL\ plays very well the \PLM.
+That is, as the \PLM\ does a better and better job of calibrating the
+instrument (and the \PLM\ effectively calibrates out some parts of the s/c
+jitter noise)...HOGG
+
+...to the 
 
 [todo] decisions about how to estimate mean and covariance.  Some ideas.
 
@@ -217,7 +289,7 @@ The pointing and PSF variance maps onto a correlated pixel variance.
 
 [todo] include a figure that shows success.
 
-[todo] what, precisely, do we propose?
+[todo] what, precisely, do we propose?  Finish \OWL\ software, explore choice space, produce useful \Kepler\ alternative photometry, release code and documentation, write a paper (or maybe two).
 
 \section{Flexible, non-parametric modeling of light curve variations}
 
