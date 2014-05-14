@@ -124,6 +124,23 @@ issues arise.
 
 [todo] We should say something about how \Kepler\ operates:  Fixed pointing for three-month periods.  Insensitivity to flat-field and PSF.  But imperfect.
 
+For context for what follows:
+The \Kepler\ mission operates in an extremely simple mode that is designed to
+make it insensitive to residual calibration issues in its optics and detector.
+For example, it spends three-month periods with its pointing locked down to
+much better than pixel precision.
+This permits precise photometry without full understanding of the flat-field
+or PSF.
+Exposures are typically 30~min;
+for each target star, not all of the pixels are downloaded every exposure.
+Instead, to preserve bandwidth, only a small pixel patch is downloaded for each
+star.
+Finally, within the downloaded pixel patch, the official \Kepler\ photometry
+is based on a straight sum of just a few pixels more-or-less centered on the
+star.
+As we hope to explain in this \documentname, there is low-hanging fruit to be
+picked to make \Kepler's light curves more precise.
+
 \section{A data-driven model of the \Kepler\ pixels}
 
 Despite the impressive precision, \Kepler's photometry is plagued by
@@ -290,14 +307,6 @@ instrument (and the \PLM\ effectively calibrates out some parts of the s/c
 jitter noise), the empirical covariance seen by the \OWL\ will either be
 smaller in amplitude or else informed by the \PLM\ model directly....HOGG
 
-...to the 
-
-[todo] decisions about how to estimate mean and covariance.  Some ideas.
-
-[todo] decisions about how to constrain or regularize the weights.  Some ideas.
-
-[todo] include a figure that shows success.
-
 [todo] what, precisely, do we propose?  Finish \OWL\ software, explore choice space, produce useful \Kepler\ alternative photometry, release code and documentation, write a paper (or maybe two).
 
 \section{Flexible, non-parametric modeling of light curve variations}
@@ -339,6 +348,13 @@ parameters (7 physical and 2 hyperparameters for the noise model).
 [todo] In the second year, we do PLM, let by postdoc.  Finish search.
 
 [todo] In the third year we do kpsf, led by postdoc.  and re-run search.
+
+All code will be released under the MIT open-source license.
+This is a simple license that permits reuse, modification, and re-release of
+the code.
+We also keep all code available on the Web and licensed at every stage of
+the project, so in fact the community can intervene, comment, or build on our
+work at any stage in the development process.
 
 \clearpage
 \begin{thebibliography}{}\raggedright%
