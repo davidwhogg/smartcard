@@ -271,7 +271,7 @@ We also propose to explore the decision space that we allude to below.
 %% Long caption
 
 It turns out that there are many photometric estimators constructable as
-optimizations of some estimate of signal-to-noise; for this reason we call 
+optimizations of some estimate of signal-to-noise; for this reason we call
 the outputs of the \OWL\ ``optimized'' rather than ``optimal'' estimators;
 no estimator is optimal for all purposes.
 One class of decisions is related to how we estimate the empirical mean $\mu$
@@ -331,6 +331,29 @@ parameters (7 physical and 2 hyperparameters for the noise model).
 
 \section{The \Kepler\ focal plane}
 
+In a perfect world where we could infer a full physical, time-dependent model
+of \Kepler's focal plane, the \PLM\ and \OWL\ procedures would be obviated.
+In practice, this is a very difficult problem and data-driven models might
+continue to be the best method for measuring ultra-precise relative photometry
+for isolated stars.
+That being said, there are some places where a robust model of the focal
+plane---including the flat field and the point spread function, for
+example---is necessary.
+There are, for example, some blended sources in the \Kepler\ field-of-view and
+de-blending the light curves requires a full likelihood model (\citealt{psf}).
+Studies of full-pipeline recovery reliability (\citealt{inject}) involve
+injecting transit signals at the pixel level.
+This operation is only as reliable as our model of the focal plane.
+If the next-generation \Kepler\ mission is approved, the pointing of the
+telescope will be much less stable than during the original mission.
+In this case, a model of the focal plane will be useful for measuring
+photometry of the stars as they drift.
+
+In order to improve these procedures and (possibly) generate more precise
+light curves, we propose to build a full probabilistic generative model for
+the flat field and point spread function of the \Kepler\ detector.
+
+
 [todo] Reminder of the importance of a LF, both for frequentists and Bayesians.
 
 [todo] A full probability for the data given parameters would look like a causal model, with PSF, flat-field and so on.  Refer out to demos in the white paper.
@@ -359,9 +382,15 @@ work at any stage in the development process.
 \clearpage
 \begin{thebibliography}{}\raggedright%
 
+\bibitem[Christiansen \etal(2013)]{inject}
+Christiansen, J.~L., Clarke, B.~D., Burke, C.~J., et al.\ 2013, \apjs, 207, 35
+
 \bibitem[Petigura \etal(2013)]{petigura}
 Petigura, E.~A., Howard, A.~W., \& Marcy, G.~W.\ 2013,
 Proceedings of the National Academy of Science, 110, 19273
+
+\bibitem[Rappaport \etal(2014)]{psf}
+Rappaport, S., Barclay, T., DeVore, J., \etal\ 2014, \apj, 784, 40
 
 \end{thebibliography}
 
