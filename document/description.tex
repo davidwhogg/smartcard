@@ -5,7 +5,7 @@
 % - finish zeroth draft
 % - get all citations in
 % - get all figures in
-% - search document for all HOGG CITE todo etc.
+% - search document for all HOGG CITE todo TODO etc.
 % - make sure budget and timeline are consistent.
 
 \documentclass[letterpaper,12pt,preprint]{hack_aastex}
@@ -141,6 +141,12 @@ star.
 As we hope to explain in this \documentname, there is low-hanging fruit to be
 picked to make \Kepler's light curves more precise.
 
+Everything in this \documentname\ is about \Kepler, but of course everything we
+propose will be released open-source (as is everything done in our group).
+That means that everything we propose here that is useful for \Kepler\ will
+also be useful for the \textsl{K2} extended mission, that was just (2014 May 15)
+approved for funding in the NASA Response to the 2014 Senior Review.
+
 \section{A data-driven model of the \Kepler\ pixels}
 
 Despite the impressive precision, \Kepler's photometry is plagued by
@@ -179,12 +185,19 @@ and $\epsilon_{nk}$ represents the stochastic pixel noise.
 There are many choices that must be made to evaluate this model but the main
 ones are: (a) the number of pixels $K$ should be used in $\bvec{f}_{\sim n}$,
 and (b) how the weights $\bvec{c}_{nk}$ are chosen.
+
+In principle, as $K$ gets large, the model will tend to over-fit the data.
 Motivated by the standard techniques in the machine learning literature, we
-advocate for a very large value of $K$ and use other techniques to regularize
+advocate for a very large value of $K$ but to use other techniques to regularize
 and avoid over-fitting.
 In particular, we choose to fit the coefficients $\bvec{c}$ using the light
 curve in this pixel but at \emph{different times} $t^\prime$ where
 $|t-t^\prime| > \Delta$.
+That is, we use a ``train-and-test'' framework to control model freedom.
+We also use some Gaussian regularization that draws weakly controlled parameters
+towards zero.
+\figurename~\ref{fig:plm} shows an example, in comparison with standard \Kepler
+data products.
 
 \ssfigure{figures/kepler-20-plm.pdf}{0.60}{%
 A comparison of photometric methods applied to quarter 9 of target Kepler-20,
@@ -195,13 +208,34 @@ over-fits the signals.
 With sensible choices for the hyperparameters of our data-driven model, the
 resulting light curve retains more of the interesting astrophysical signals
 and does not affect the transit depths.
-\emph{Top:} the simple aperture photometry (black points) with the data-driven
+\emph{Top:} The \Kepler\ simple aperture photometry (black points) with the data-driven
 prediction for the instrumental effects.
-\emph{Middle:} the data-driven photometric light curve.
-\emph{Bottom:} the presearch data conditioned light curve.
+\emph{Middle:} Our data-driven photometric light curve, which removes instrumental effects but preserves stellar variability and transit depths.
+\emph{Bottom:} The \Kepler\ presearch data conditioning light curve, which over-fits the data, removing real variability.
 \label{fig:plm}}
 
-[todo] What, precisely, do we propose?
+The \PLM\ produces a prediction for every pixel under the assumption
+(effectively) of a non-variable sky.
+How do we plan to use this prediction?
+There are several options, including subtracting it away or dividing it out.
+Our plan is to photometer the data according to the \Kepler\ SAP prescription,
+and then also photometer the \PLM\ prediction of the data, and present the
+ratio of these as the \PLM\ photometry.
+In detail, this is what \figurename~\ref{fig:plm} shows.
+(We have shown a variable star in \figurename~\ref{fig:plm}, to emphasize that
+the \PLM\ preserves intrinsic variability and delivers very different results
+from the official \Kepler\ ``detrending'' PDC pipeline.)
+
+Here we propose to build the \PLM\ and work through the choices of
+train-and-test subsampling, regularization, and $K$ to find high-quality
+options for the \Kepler\ data.
+We propose to run it on a significant fraction of the
+\Kepler\ data (at least all the Sun-like stars).
+We also propose to release the code in a very useable form (for example, ``input
+a \Kepler\ target and get back the \PLM\ photometry'') so that it can be used
+by anyone in the community.
+In what follows, we will propose further to use the \PLM\ model and photometry
+as inputs to our photometric estimator codes and variability modeling codes.
 
 \section{Optimized aperture photometry}
 
@@ -266,9 +300,22 @@ We propose here to build a software package called ``the \OWL'' that constructs
 these estimators.
 We also propose to explore the decision space that we allude to below.
 
-%% HOGG put fig:owl here
-%% Include the usual figure and the ``d'' figure
-%% Long caption
+\ssfiguretwo{figures/kic_03335426_05_images_dopw.png}%
+            {figures/kic_03335426_05_diff_photometry.png}{0.60}{%
+An example of the \OWL\ photometry acting on one quarter of \Kepler\ data
+on one target star.
+In the top panel, one of the optimized soft photometric apertures is shown,
+in comparison with the standard \Kepler\ SAP aperture.
+In the bottom panel the photometric lightcurves are shown.
+The curves marked ``DOWL'', ``DOPW'', and ``DTSA'' are different versions of the
+\OWL\ method.
+\OWL\ removes the trends completely from the data,
+revealing a low-level rotation-period variability (presumably from star spots).
+The removal of the trends comes at some cost in pixel-to-pixel variability,
+because the soft aperture created by the \OWL\ is forced to be orthogonal to
+substantial positional jitter noise.
+These results are very preliminary, but they demonstrate feasibility.
+\label{fig:owl}}
 
 It turns out that there are many photometric estimators constructable as
 optimizations of some estimate of signal-to-noise; for this reason we call
@@ -299,7 +346,9 @@ field crowding, and assumptions of minimal s/c jitter.
 The \OWL\ produces photometry that is either higher in signal-to-noise or else
 detrended from s/c movements, or (in excellent cases) both.
 That is, the \OWL\ photometry, built as it is with a data-driven optimization,
-is expected to be better than any existing \Kepler\ product.
+is expected to be better than any existing \Kepler\ product,
+at least for isolated stars that are low in intrinsic variability
+(more on this below).
 
 One key idea of this \documentname\ is that the \OWL\ plays very well the \PLM.
 That is, as the \PLM\ does a better and better job of calibrating the

@@ -110,6 +110,23 @@
    \end{tabular}%
    \end{figure}}
 
+ \newcommand{\ssfiguretwo}[4]{%
+   \setlength{\figurewidth}{#3\textwidth}
+   \setlength{\captionwidth}{\textwidth}
+   \addtolength{\captionwidth}{-\figurewidth}
+   \addtolength{\captionwidth}{-0.02\figurewidth}
+   \begin{figure}[htb]%
+   \begin{tabular}{cc}%
+     \begin{minipage}[c]{\figurewidth}%
+       \resizebox{\figurewidth}{!}{\includegraphics{#1}}\\
+       \resizebox{\figurewidth}{!}{\includegraphics{#2}}%
+     \end{minipage} &%
+     \begin{minipage}[c]{\captionwidth}%
+       \textsf{\caption[]{\footnotesize {#4}}}%
+     \end{minipage}%
+   \end{tabular}%
+   \end{figure}}
+
 %----- top-bottom figure macro
  \newlength{\figureheight}
  \setlength{\figureheight}{0.75\textheight}
