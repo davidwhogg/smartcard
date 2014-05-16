@@ -1,12 +1,5 @@
 % this file is part of the Smart Card project.
 
-% to-do
-% -----
-% - DFM: ADD content where necessary; you have room to add.
-% - DFM: PUT IN all citations where you find CITE.
-% - DFM: REVISE anything written that is unclear or doesn't flow.
-% - DFM: GIVE to Carole-Anne for submission.
-
 \documentclass[letterpaper,12pt,preprint]{hack_aastex}
 
 \usepackage{amsmath}
@@ -56,14 +49,15 @@ By discovering thousands of transiting exoplanets, the NASA \Kepler\ Mission has
 transformed the study of extra-Solar planets (exoplanets).
 In addition to system discoveries, \Kepler\ has enabled
 extremely precise measurements,
-in which we can see planet--planet interactions (CITE), direct emission from
-hot planets (CITE), and even relativistic effects (CITE).
+in which we can---to only name a few---determine eccentricites
+(\citealt{photoecc}), see planet--planet interactions (e.g.~\citealt{carter}),
+and reflected star light (e.g.~\citealt{demory}).
 
 Most importantly from the perspective of this \documentname,
 \Kepler\ data have revealed large populations of very small planets,
-Earth radius and smaller (CITE).
-We now know that most or all of these small planets are almost certainly rocky
-(CITE).
+near Earth radius and smaller (\citealt{kois, petigura}).
+We now know that many of these small planets are almost certainly rocky
+(\citealt{lopez}).
 Some of these rocky planets even orbit in the putative ``habitable zones'' of
 their parent stars, as determined by expected average insolation
 (we don't yet know anything about small-planet atmospheres).
@@ -86,8 +80,8 @@ stars lower mass (and cooler) than the Sun.
 They are easier to find around low-mass stars, of course,
 because the radius ratio is more favorable, and the habitable zone orbits
 correspond to shorter periods.
-It also appears to be the case that the abundance of rocky planets around
-low-mass stars is higher than that around G-type stars (CITE).
+% It also appears to be the case that the abundance of rocky planets around
+% low-mass stars is higher than that around G-type stars (CITE).
 
 That said, the \Kepler\ data \emph{are} good enough to detect true Earth
 analogs.
@@ -99,7 +93,7 @@ In a project underway now, we are checking whether it is likely---given transit
 probabilities under random system inclinations and extrapolations of the
 exoplanet population to Earth properties---that the dataset includes a
 transiting Earth analog among these thousands of targets.
-Some studies say yes (CITE Petigura).
+Some studies say yes (\citealt{petigura}).
 Either way, it would be a crime against all of astronomy if the \Kepler\ data
 set is not searched for Earth analogs with tools capable of saturating the
 photon-statistics bounds on discovery and inference.
@@ -169,8 +163,8 @@ temperature variations, \etc) and real astrophysical signals (stellar
 variability, transiting exoplanets, \etc).
 It is of significant scientific interest to separate these two types of
 signals and much progress has been made towards removing instrumental
-systematics while robustly retaining the astrophysical effects (CITE PDC, ARC,
-\etc).
+systematics while robustly retaining the astrophysical effects
+(\citealt{pdc1, pdc2, arc}).
 These algorithms are all based on a fundamental \emph{causal} argument: the
 signals that are common across nearby targets must be due to instrumental
 variations because there can be no causal connection between the astrophysical
@@ -208,8 +202,8 @@ $|t-t^\prime| > \Delta$.
 That is, we use a ``train-and-test'' framework to control model freedom.
 We also use some Gaussian regularization that draws weakly controlled parameters
 towards zero.
-\figurename~\ref{fig:plm} shows an example, in comparison with standard \Kepler
-data products.
+\figurename~\ref{fig:plm} shows an example, in comparison with standard
+\Kepler\ data products.
 
 \ssfigure{figures/kepler-20-plm.pdf}{0.60}{%
 A comparison of photometric methods applied to quarter 9 of target Kepler-20,
@@ -261,7 +255,7 @@ all the parameters of the pixel-level noise model, it is possible to obtain a
 photometric estimate of the star of this form (weighted linear sum of pixels)
 that is optimized for signal-to-noise.
 The estimator is a kind of ``matched filter''.
-This result has been known for a long time (CITE THINGS).
+This result has been known for a long time (\citealt{matched-filter}).
 
 Below (when we talk about \kpsf) we are going to consider more radical
 photometric estimators.
@@ -308,7 +302,7 @@ They are signal-to-noise-optimized estimators in the presence of noise coming
 from spacecraft positional jitter and other effects that correlate pixel noise.
 However, they are also simple generalizations of the ``matched filter''
 estimators used to perform optimal photometry and optimal spectroscopic
-extraction (CITE).
+extraction (\citealt{matched-filter}).
 We show an example in \figurename~\ref{fig:owl}.
 We propose here to build a software package called ``the \OWL'' that constructs
 these estimators.
@@ -396,20 +390,23 @@ but for us it is noise or a nuisance.
 
 In the \Kepler\ exoplanet community, the standard approach to this problem is
 to either filter the data (for example, subtract out or divide out a running
-boxcar median of the data; CITE)
+boxcar median of the data; e.g.~\citealt{dressing})
 or else fit flexible models (such as polynomials)
-to small patches of the data around the transits (CITE).
-These approaches have been fairly successful, but they suffer from a number
+to small patches of the data around the transits (e.g.~\citealt{carter}).
+These approaches have been successful, but they suffer from a number
 of issues when it comes to measurement:
 If the filtering or fitting happens \emph{prior} to transit search or inference,
 then the uncertainty induced by the filtering or modeling is not propagated
 correctly into the transit results.
+These methods will also always introduce correlated noise that can bias
+inferences (\citealt{cw})
 If the fitting happens simultaneously with the transit inference, uncertainty
 can be propagated but there are issues of under-fitting or inappropriate model
 choice that are difficult to address.
 
 We propose to build a code---\George---that addresses these issues using the
-mature technology of Gaussian Processes (CITE).
+mature technology of Gaussian Processes
+(\citealt{rw, gibson-gp, evans, arc}).
 One way of thinking about a Gaussian Process is that it provides a prior PDF
 over an infinite dimensional \emph{function space} of all possible stochastic
 stellar variability histories.
@@ -462,7 +459,10 @@ any other model parameters.
 The worst thing about Gaussian Processes is that they involve performing
 non-trivial operations on enormous matrices;
 we are involved in a project to make these linear algebra operations much
-faster than they have been made previously (CITE siva).
+faster than they have been made previously (\citealt{fastgp}).
+This project makes Gaussian Process regression possible at the scale of
+\Kepler\ light curves without making restrictive assumptions about the
+covariance structure or interpolating missing data.
 
 We propose to build \George,
 a general-purpose code for performing exoplanet transit
@@ -495,8 +495,8 @@ de-blending the light curves requires a full likelihood model (\citealt{psf}).
 Studies of full-pipeline recovery reliability (\citealt{inject}) involve
 injecting transit signals at the pixel level.
 This operation is only as reliable as our model of the focal plane.
-If the next-generation \Kepler\ mission is approved, the pointing of the
-telescope will be much less stable than during the original mission.
+During the (recently approved) next-generation \Kepler\ mission, the pointing
+of the telescope will be much less stable than during the original mission.
 In this case, a model of the focal plane will be useful for measuring
 photometry of the stars as they drift.
 
@@ -514,7 +514,8 @@ data set given the parameters.
 This is the object on which fitting and inference would be based.
 
 We have only tried tiny steps towards this model, but they are very promising.
-In a white paper we wrote, we looked at a few of the issues (CITE),
+In a white paper we wrote, we looked at a few of the issues
+(\citealt{whitepaper}),
 and we have done some experiments subsequently.
 It looks like we can obtain an extremely good PSF model,
 principally because the data are so extremely high in signal-to-noise.
@@ -544,7 +545,7 @@ This all may sound ambitious!
 But the PI (along with Dustin Lang at CMU) has been building models of this
 kind in a framework and
 codebase---\project{The Tractor}---that is under development for modeling
-\project{SDSS}, \project{WISE}, and \project{CFHTLS} data.
+\project{SDSS}, \project{WISE}, and \project{CFHTLS} data (\citealt{unwise}).
 
 In principle, the light curves returned by such a model will be the best that
 can possibly be made; there are frequentist bounds and Bayesian principles
@@ -613,8 +614,51 @@ adoption of the code in scientific projects of all kinds.
 \clearpage
 \begin{thebibliography}{}\raggedright%
 
+\bibitem[Ambikasaran \etal(2014)]{fastgp}
+Ambikasaran, S., Foreman-Mackey, D., Greengard, L., Hogg, D.~W.,
+\& O'Neil, M.\ 2014, arXiv:1403.6015
+
+\bibitem[Rasmussen \& Williams(2006)]{rw}
+Rasmussen, C.~E. \& Williams, C.~K.~I.,
+\emph{Gaussian Processes for Machine Learning}, MIT, 2006
+
+\bibitem[Batalha \etal(2013)]{kois} Batalha, N.~M., Rowe,
+J.~F., Bryson, S.~T., \etal\ 2013, \apjs, 204, 24
+
+\bibitem[Carter \etal(2012)]{carter} Carter, J.~A., Agol, E.,
+Chaplin, W.~J., \etal\ 2012, Science, 337, 556
+
+\bibitem[Carter \& Winn(2009)]{cw}
+Carter, J.~A., \& Winn, J.~N.\ 2009, \apj, 704, 51
+
 \bibitem[Christiansen \etal(2013)]{inject}
 Christiansen, J.~L., Clarke, B.~D., Burke, C.~J., et al.\ 2013, \apjs, 207, 35
+
+\bibitem[Dawson \& Johnson(2012)]{photoecc}
+Dawson, R.~I., \& Johnson, J.~A.\ 2012, \apj, 756, 122
+
+\bibitem[Demory \etal(2011)]{demory} Demory, B.-O., Seager,
+S., Madhusudhan, N., \etal\ 2011, \apjl, 735, L12
+
+\bibitem[Dressing \& Charbonneau(2013)]{dressing}
+Dressing, C.~D., \& Charbonneau, D.\ 2013, \apj, 767, 95
+
+\bibitem[Evans \etal(2013)]{evans} Evans, T.~M., Pont, F.,
+Sing, D.~K., \etal\ 2013, \apjl, 772, L16
+
+\bibitem[Gibson \etal(2012)]{gibson-gp}
+Gibson, N.~P., Aigrain, S., Roberts, S., \etal\ 2012, \mnras, 419, 2683
+
+\bibitem[Hogg \etal(2013)]{whitepaper} Hogg, D.~W., Angus, R.,
+Barclay, T., et al.\ 2013, arXiv:1309.0653
+
+\bibitem[Lang(2014)]{unwise} Lang, D.\ 2014, \aj, 147, 108
+
+\bibitem[Lopez  \& Fortney(2013)]{lopez}
+Lopez, E.~D., \& Fortney, J.~J.\ 2013, arXiv:1311.0329
+
+\bibitem[Naylor(1998)]{matched-filter} Naylor, T.\ 1998, \mnras, 296,
+339
 
 \bibitem[Petigura \etal(2013)]{petigura}
 Petigura, E.~A., Howard, A.~W., \& Marcy, G.~W.\ 2013,
@@ -622,6 +666,15 @@ Proceedings of the National Academy of Science, 110, 19273
 
 \bibitem[Rappaport \etal(2014)]{psf}
 Rappaport, S., Barclay, T., DeVore, J., \etal\ 2014, \apj, 784, 40
+
+\bibitem[Roberts \etal(2013)]{arc} Roberts, S., McQuillan,
+A., Reece, S., \& Aigrain, S.\ 2013, \mnras, 435, 3639
+
+\bibitem[Smith \etal(2012)]{pdc2} Smith, J.~C., Stumpe,
+M.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 1000
+
+\bibitem[Stumpe \etal(2012)]{pdc1} Stumpe, M.~C., Smith,
+J.~C., Van Cleve, J.~E., \etal\ 2012, \pasp, 124, 985
 
 \end{thebibliography}
 
