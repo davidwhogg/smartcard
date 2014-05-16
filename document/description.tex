@@ -319,7 +319,7 @@ An example of the \OWL\ photometry acting on one quarter of \Kepler\ data
 on one target star.
 In the top panel, one of the optimized soft photometric apertures is shown,
 in comparison with the standard \Kepler\ SAP aperture.
-In the bottom panel the photometric lightcurves are shown.
+In the bottom panel the photometric light curves are shown.
 The curves marked ``DOWL'', ``DOPW'', and ``DTSA'' are different versions of the
 \OWL\ method.
 \OWL\ removes the trends completely from the data,
@@ -534,16 +534,38 @@ precisely what effects will dominate nor which we should model first, given
 our priorities.
 For example, at the sensitivity level we care about, stellar aberration will
 probably matter, and perhaps even parallax and proper motion.
+Prioritization of these different model aspects will be made by starting with
+the simplest possible model (flat-field, background, PSF, and stellar light
+curves) and then fitting and residual investigation.
+The residuals will show morphologies that point to the biggest unmodeled
+effects.
+This all may sound ambitious!
+But the PI (along with Dustin Lang at CMU) has been building models of this
+kind in a framework and
+codebase---\project{The Tractor}---that is under development for modeling
+\project{SDSS}, \project{WISE}, and \project{CFHTLS} data.
 
-[todo] Reminder of the importance of a LF, both for frequentists and Bayesians.
+In principle, the light curves returned by such a model will be the best that
+can possibly be made; there are frequentist bounds and Bayesian principles
+that say so.
+Those guarantees only apply when the model is good, so whether they really
+will beat the \PLM\ and \OWL\ for isolated sources is not yet clear.
+However, for crowded fields, overlapping sources, or auxilliary operations
+like signal injection, a physical model is a necessary component.
 
-[todo] A full probability for the data given parameters would look like a causal model, with PSF, flat-field and so on.  Refer out to demos in the white paper.
-
-[todo] What baby steps have we taken so far and what kinds of decisions will there be?
-
-[todo] How does this interact with the \PLM\ and the \OWL?  Is it in concert or conflict?  Modify summary to be consistent.
-
-[todo] what, precisely, do we propose?
+We propose to build causal, physical, image-modeling
+software---tentatively called ``\kpsf''---for likelihood fitting and Bayesian
+inference of all s/c parameters, detector sensitivity maps, and stellar
+positions and light curves.
+We propose to run it and explore its residuals to constrain development to
+the dominant terms in the overall noise budget.
+We propose to run the developed versions on at least the \Kepler\ G-type
+stars and release all outputs, which include a great deal of valuable
+engineering data about the satellite along with the light curves.
+We propose to write up this software in a paper or series of papers,
+and release all the code open-source at all stages of development.
+Just as with all the other components of this project, we expect this to be
+very valuable for re-analysis also of \textsl{K2} data.
 
 \section{Management plan and schedule}
 
