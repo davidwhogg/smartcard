@@ -182,9 +182,6 @@ instrumental effects \emph{at the pixel level} instead of in the photometry.
 This method makes a prediction for the variability caused by the instrument in
 a specific pixel at a specific time by using the pixel time series of similar
 nearby (but causally disconnected) targets at different times.
-This prediction can then be used to remove or model the systematics in various
-ways but our current thinking is that this model is best used TODO photometry
-of prediction.
 
 We'll model the flux due to systematic variations in pixel $k$ of target
 $n$ at time $t$ as
@@ -386,6 +383,12 @@ literature.
 
 \section{Flexible, non-parametric modeling of light curve variations}
 
+The \PLM\ and the \OWL\ are designed to find and eradicate s/c jitter
+contributions to the light curve noise or morphology.
+But we emphasized in the introduction that essentially all stars vary at the
+precision of the \Kepler\ photometry.
+
+
 [todo] Why are stochastic stellar variations a killer?  In what sense do they make naive $\chi^2$ fitting bad?
 
 [todo] What is a non-parametric model?  What is a Gaussian Process?
@@ -441,18 +444,43 @@ the flat field and point spread function of the \Kepler\ detector.
 
 \section{Management plan and schedule}
 
-[todo] In the first year, we do OWL and George.  Hogg leads \OWL, DFM leads \George.  DFM starts search as a full-scale test of George and etc.
+In the first year, we plan to complete the \OWL\ and \George\ projects.
+These projects are already started and the latter comprises part of the PhD
+dissertation work of Co-I Foreman-Mackey.
+PI Hogg will lead the \OWL\ work and the Co-I will lead the \George\ project.
+At least draft manuscripts will be written for both projects, they will
+be submitted in the first year if at all possible.
+The Co-I will begin a search for Earth analogs in the G-type stars in the
+\Kepler\ data using the \George\ likelihood and the \OWL\ photometric outputs.
+This search will effectively form a full-scale, end-to-end functional test of
+both pieces of software.
+The PI will open a search for a postdoctoral scholar (postdoc).
 
-[todo] In the second year, we do PLM, let by postdoc.  Finish search.
+In the second year, Co-I Foreman-Mackey will graduate and the postdoc will
+begin work on the \PLM.
+The goal will be to get at least a draft of the \PLM\ paper ready by the end
+of year two.
+The PI and Co-I will shepherd through the publication process the \OWL\ and
+\George\ papers.
+The PI and postdoc will re-run another Earth analog search, but this time
+as a full-scale, end-to-end functional test of the \PLM\ data (but of course
+also using the \OWL\ and \George).
 
-[todo] In the third year we do kpsf, led by postdoc.  and re-run search.
+In the third year, the PI and postdoc will work together on \kpsf, with all
+heavy lifting done by the postdoc.
+The PI and postdoc will shepherd the \PLM\ paper through the publication
+process and also write and submit the \kpsf\ paper for publication.
+If time permits, the postdoc will start a third full search, this time to
+fully test the \kpsf\ model.
 
-All code will be released under the MIT open-source license.
+\textbf{All code will be released under the MIT open-source license.}
 This is a simple license that permits reuse, modification, and re-release of
 the code.
 We also keep all code available on the Web and licensed at every stage of
 the project, so in fact the community can intervene, comment, or build on our
 work at any stage in the development process.
+We will work with the community and also the \textsl{K2} team to aid in
+adoption of the code in scientific projects of all kinds.
 
 \clearpage
 \begin{thebibliography}{}\raggedright%
