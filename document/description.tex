@@ -178,7 +178,8 @@ The idea is simple but a lot of the work that goes into implementing these
 models involves combating over-fitting.
 
 We propose to implement a method based on the same argument that models the
-instrumental effects \emph{at the pixel level} instead of in the photometry.
+instrumental effects \emph{at the pixel level} (TPF level)
+instead of in the photometry.
 This method makes a prediction for the variability caused by the instrument in
 a specific pixel at a specific time by using the pixel time series of similar
 nearby (but causally disconnected) targets at different times.
@@ -484,6 +485,7 @@ of \Kepler's focal plane, the \PLM\ and \OWL\ procedures would be obviated.
 In practice, this is a very difficult problem and data-driven models might
 continue to be the best method for measuring ultra-precise relative photometry
 for isolated stars.
+
 That being said, there are some places where a robust model of the focal
 plane---including the flat field and the point spread function, for
 example---is necessary.
@@ -500,7 +502,38 @@ photometry of the stars as they drift.
 In order to improve these procedures and (possibly) generate more precise
 light curves, we propose to build a full probabilistic generative model for
 the flat field and point spread function of the \Kepler\ detector.
+This model will include a spatially and temporally varying PSF,
+a temporally varying DC or sky background,
+a sub-pixel flat-field (more below),
+and the position and brightness as a function of time (light curve) for every
+star.
+Given all these parameters or parameterized functions, we can write down a
+full-data likelihood or probability for the entire \Kepler\ pixel-level (TPF)
+data set given the parameters.
+This is the object on which fitting and inference would be based.
 
+We have only tried tiny steps towards this model, but they are very promising.
+In a white paper we wrote, we looked at a few of the issues (CITE),
+and we have done some experiments subsequently.
+It looks like we can obtain an extremely good PSF model,
+principally because the data are so extremely high in signal-to-noise.
+
+As for the flat-field, it is hard to get good constraints on this,
+because the s/c jitter is so small, there isn't much movement between the
+stars and the focal plane.
+However, we think that to properly model the variations in the data as
+the s/c drifts, it is necessary to consider the heterogeneity in the individual
+pixel sub-pixel sensitivity functions.
+This requires making a sensitivity map or flat-field model that has more
+parameters than there are pixels!
+That isn't a problem in principle, because there are so many exposures
+and such high signal-to-noise in each.
+
+Although we can see in general that this modeling is possible, we don't know
+precisely what effects will dominate nor which we should model first, given
+our priorities.
+For example, at the sensitivity level we care about, stellar aberration will
+probably matter, and perhaps even parallax and proper motion.
 
 [todo] Reminder of the importance of a LF, both for frequentists and Bayesians.
 
