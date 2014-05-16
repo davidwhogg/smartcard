@@ -120,9 +120,22 @@ in $10^{5}$ or better in terms of raw photon precision);
 sure enough, at this unprecedented precision, unprecedented astronomical
 issues arise.
 
-[todo] There are photons to do it, but various issues:  Calibration, telescope variations, stellar stochastic variability, lack of understanding of the full system.
+For example, even though the satellite points to much better than a hundredth
+of a pixel, the tiny variations in pointing cause tiny fractional differences
+in the amounts of light hitting neighboring pixels in the vicinity of any
+\Kepler\ target.
+This variation projected onto any unmodeled flat-field residual or sub-pixel
+flat-field variation leads to variations in total counts in the objects.
+Similar things happen for temperature-induced optical distortion variations,
+and focus changes.
+These problems are currently not well modeled by the \Kepler\ official pipelines
+and present challenges for every \Kepler\ user working at high precision.
 
-[todo] We should say something about how \Kepler\ operates:  Fixed pointing for three-month periods.  Insensitivity to flat-field and PSF.  But imperfect.
+In addition, it turns out that at this level of precision, the great majority
+of stars---even the great majority of Sun-like stars---are photometrically
+variable in stochastic ways.
+That is, there is ``intrinsic'' noise coming from the stars themselves,
+over and above photon shot noise.
 
 For context for what follows:
 The \Kepler\ mission operates in an extremely simple mode that is designed to
@@ -233,7 +246,9 @@ We propose to run it on a significant fraction of the
 \Kepler\ data (at least all the Sun-like stars).
 We also propose to release the code in a very useable form (for example, ``input
 a \Kepler\ target and get back the \PLM\ photometry'') so that it can be used
-by anyone in the community.
+by anyone in the community, including the \textsl{K2} team.
+We propose to write up at least one paper in the refereed literature describing
+the \PLM.
 In what follows, we will propose further to use the \PLM\ model and photometry
 as inputs to our photometric estimator codes and variability modeling codes.
 
@@ -354,9 +369,20 @@ One key idea of this \documentname\ is that the \OWL\ plays very well the \PLM.
 That is, as the \PLM\ does a better and better job of calibrating the
 instrument (and the \PLM\ effectively calibrates out some parts of the s/c
 jitter noise), the empirical covariance seen by the \OWL\ will either be
-smaller in amplitude or else informed by the \PLM\ model directly....HOGG
+smaller in amplitude or else informed by the \PLM\ model directly;
+indeed the \PLM\ is effectively a model of all the s/c jitter contributions to
+the empirical noise covariance.
 
-[todo] what, precisely, do we propose?  Finish \OWL\ software, explore choice space, produce useful \Kepler\ alternative photometry, release code and documentation, write a paper (or maybe two).
+We propose to fully develop the \OWL\ software and explore the choices available
+in estimation of $\mu$ and $C$ and also in aperture regularization or
+constraint.
+We propose to run the tuned \OWL\ on a large number of \Kepler\ targets
+(certainly including all the Sun-like stars).
+We also propose to release all the code in a simple-to-use form so that it
+can be adopted by any \Kepler\ user and also the \textsl{K2} team if they
+want it.
+We propose to write up the \OWL\ in at least one paper in the scientific
+literature.
 
 \section{Flexible, non-parametric modeling of light curve variations}
 
